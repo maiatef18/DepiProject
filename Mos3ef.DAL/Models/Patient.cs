@@ -8,6 +8,9 @@ namespace Mos3ef.DAL.Models
         [Key]
         public int PatientId { get; set; }
 
+        [Required]
+        public string Name { get; set; }
+
         [StringLength(100)]
         public string? Location { get; set; }
 
