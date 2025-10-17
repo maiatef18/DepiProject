@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "TZOeyPTAvd8=",
-  "success": false,
+  "dgSpecHash": "aQhURIs636k=",
+  "success": true,
   "projectFilePath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Mos3ef.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\MHz\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
@@ -91,33 +91,5 @@
     "C:\\Users\\MHz\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\MHz\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 8.0.21 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.EntityFrameworkCore (>= 8.0.21) \r\n Mos3ef.Api -> Microsoft.EntityFrameworkCore (>= 8.0.20)",
-      "libraryId": "Microsoft.EntityFrameworkCore",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore.SqlServer from 8.0.21 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.EntityFrameworkCore.SqlServer (>= 8.0.21) \r\n Mos3ef.Api -> Microsoft.EntityFrameworkCore.SqlServer (>= 8.0.20)",
-      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    },
-    {
-      "code": "NU1605",
-      "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Microsoft.AspNetCore.Identity.UI from 9.0.10 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.AspNetCore.Identity.UI (>= 9.0.10) \r\n Mos3ef.Api -> Microsoft.AspNetCore.Identity.UI (>= 8.0.20)",
-      "libraryId": "Microsoft.AspNetCore.Identity.UI",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

@@ -3,7 +3,7 @@ using Mos3ef.DAL.Enums;
 
 namespace Mos3ef.DAL.Models
 {
-    public class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser : IdentityUser
     {
         public UserType UserType { get; set; }
 

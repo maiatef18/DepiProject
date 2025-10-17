@@ -33,7 +33,7 @@ namespace Mos3ef.DAL.Models
         [Url]
         public string? Website { get; set; }
 
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
         public ICollection<Service>? Services { get; set; }

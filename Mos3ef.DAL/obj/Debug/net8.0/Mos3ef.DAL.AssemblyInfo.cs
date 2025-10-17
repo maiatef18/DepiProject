@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mos3ef.DAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f9776e78d2adb406001aa426ebdb72e4ec27f8c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41a23c4fb50049639b15ae133658b2c113931194")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mos3ef.DAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mos3ef.DAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
