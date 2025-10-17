@@ -1693,6 +1693,35 @@
             "rid": "win"
           }
         }
+      },
+      "Mos3ef.BLL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Mos3ef.DAL": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Mos3ef.BLL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mos3ef.BLL.dll": {}
+        }
+      },
+      "Mos3ef.DAL/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.20",
+          "Microsoft.AspNetCore.Identity.UI": "9.0.10",
+          "Microsoft.EntityFrameworkCore": "8.0.21",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.21"
+        },
+        "compile": {
+          "bin/placeholder/Mos3ef.DAL.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Mos3ef.DAL.dll": {}
+        }
       }
     }
   },
@@ -4541,6 +4570,16 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Mos3ef.BLL/1.0.0": {
+      "type": "project",
+      "path": "../Mos3ef.BLL/Mos3ef.BLL.csproj",
+      "msbuildProject": "../Mos3ef.BLL/Mos3ef.BLL.csproj"
+    },
+    "Mos3ef.DAL/1.0.0": {
+      "type": "project",
+      "path": "../Mos3ef.DAL/Mos3ef.DAL.csproj",
+      "msbuildProject": "../Mos3ef.DAL/Mos3ef.DAL.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -4551,6 +4590,8 @@
       "Microsoft.EntityFrameworkCore >= 8.0.20",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.20",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.20",
+      "Mos3ef.BLL >= 1.0.0",
+      "Mos3ef.DAL >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.4.0"
     ]
   },
@@ -4561,11 +4602,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Mos3ef.csproj",
-      "projectName": "Mos3ef",
-      "projectPath": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Mos3ef.csproj",
+      "projectUniqueName": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Mos3ef.Api.csproj",
+      "projectName": "Mos3ef.Api",
+      "projectPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Mos3ef.Api.csproj",
       "packagesPath": "C:\\Users\\MHz\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\obj\\",
+      "outputPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4586,7 +4627,14 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj": {
+              "projectPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj"
+            },
+            "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj": {
+              "projectPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -4657,5 +4705,34 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore from 8.0.21 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.EntityFrameworkCore (>= 8.0.21) \r\n Mos3ef.Api -> Microsoft.EntityFrameworkCore (>= 8.0.20)",
+      "libraryId": "Microsoft.EntityFrameworkCore",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.EntityFrameworkCore.SqlServer from 8.0.21 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.EntityFrameworkCore.SqlServer (>= 8.0.21) \r\n Mos3ef.Api -> Microsoft.EntityFrameworkCore.SqlServer (>= 8.0.20)",
+      "libraryId": "Microsoft.EntityFrameworkCore.SqlServer",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.AspNetCore.Identity.UI from 9.0.10 to 8.0.20. Reference the package directly from the project to select a different version. \r\n Mos3ef.Api -> Mos3ef.DAL -> Microsoft.AspNetCore.Identity.UI (>= 9.0.10) \r\n Mos3ef.Api -> Microsoft.AspNetCore.Identity.UI (>= 8.0.20)",
+      "libraryId": "Microsoft.AspNetCore.Identity.UI",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
 }

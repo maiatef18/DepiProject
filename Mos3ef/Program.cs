@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Mos3ef.DAL.Database;
+using Mos3ef.DAL.Repository;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Mos3ef.Data;
-using Mos3ef.Models;
+using Mos3ef.DAL.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 

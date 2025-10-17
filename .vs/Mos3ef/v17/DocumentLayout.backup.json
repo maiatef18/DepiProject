@@ -1,30 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\",
+  "WorkspaceRootPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef,Api.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef,Api.csproj|solutionrelative:mos3ef\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\models\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\mos3ef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\mos3ef.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\mos3ef\\mos3ef\\enums\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\enums\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.csproj|solutionrelative:mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,73 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\appsettings.json",
-              "RelativeDocumentMoniker": "Mos3ef\\appsettings.json",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\appsettings.json*",
-              "RelativeToolTip": "Mos3ef\\appsettings.json*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAmwAQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-10-10T14:38:50.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UserType.cs",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Enums\\UserType.cs",
-              "RelativeDocumentMoniker": "Mos3ef\\Enums\\UserType.cs",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Enums\\UserType.cs",
-              "RelativeToolTip": "Mos3ef\\Enums\\UserType.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:35:48.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Models\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "Mos3ef\\Models\\ApplicationUser.cs",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Models\\ApplicationUser.cs",
-              "RelativeToolTip": "Mos3ef\\Models\\ApplicationUser.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:29:26.234Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Mos3ef\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Mos3ef\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:24:42.794Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Mos3ef",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Mos3ef.csproj",
-              "RelativeDocumentMoniker": "Mos3ef\\Mos3ef.csproj",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Mos3ef.csproj*",
-              "RelativeToolTip": "Mos3ef\\Mos3ef.csproj*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-10T14:23:58.904Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
@@ -108,14 +31,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Program.cs",
-              "RelativeDocumentMoniker": "Mos3ef\\Program.cs",
-              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\Mos3ef\\Mos3ef\\Program.cs",
-              "RelativeToolTip": "Mos3ef\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAVAAAAAAAAAA==",
+              "Title": "ApplicationUser.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Models\\ApplicationUser.cs",
+              "RelativeDocumentMoniker": "Mos3ef\\Models\\ApplicationUser.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Models\\ApplicationUser.cs",
+              "RelativeToolTip": "Mos3ef\\Models\\ApplicationUser.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-10T14:23:02.942Z",
+              "WhenOpened": "2025-10-16T22:59:15.121Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\appsettings.json",
+              "RelativeDocumentMoniker": "Mos3ef\\appsettings.json",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\appsettings.json",
+              "RelativeToolTip": "Mos3ef\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-16T22:58:42.907Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Program.cs",
+              "RelativeDocumentMoniker": "Mos3ef\\Program.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Program.cs",
+              "RelativeToolTip": "Mos3ef\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-10T14:44:20.267Z",
               "EditorCaption": ""
             }
           ]
