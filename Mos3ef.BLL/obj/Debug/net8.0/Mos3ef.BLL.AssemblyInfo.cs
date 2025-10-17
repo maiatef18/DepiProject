@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mos3ef.BLL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+41a23c4fb50049639b15ae133658b2c113931194")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a864c36bece27a46c087b475072a52ef7a3b8504")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mos3ef.BLL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mos3ef.BLL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

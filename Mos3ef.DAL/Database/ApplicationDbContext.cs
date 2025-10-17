@@ -27,14 +27,14 @@ namespace Mos3ef.DAL.Database
                 .HasOne(h => h.User)
                 .WithOne(u => u.HospitalProfile)
                 .HasForeignKey<Hospital>(h => h.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
            
             modelBuilder.Entity<Patient>()
                 .HasOne(p => p.User)
                 .WithOne(u => u.PatientProfile)
                 .HasForeignKey<Patient>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Hospital>()
                 .HasMany(h => h.Services)
