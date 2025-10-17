@@ -1,0 +1,16 @@
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.AssemblyReference.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfoInputs.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfo.cs
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.CoreCompileInputs.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.sourcelink.json
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.deps.json
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.pdb
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.Up2Date
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll

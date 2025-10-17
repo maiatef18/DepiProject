@@ -1,0 +1,15 @@
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll

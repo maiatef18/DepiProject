@@ -15,7 +15,7 @@ namespace Mos3ef.DAL.Models
         public string? Address { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string? UserId { get; set; }
         public ApplicationUser User { get; set; } = null!;
 
         public ICollection<Review>? Reviews { get; set; }

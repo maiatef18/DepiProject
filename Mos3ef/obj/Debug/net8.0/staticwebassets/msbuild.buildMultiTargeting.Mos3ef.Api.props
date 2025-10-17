@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Mos3ef.Api.props" />
+</Project>
