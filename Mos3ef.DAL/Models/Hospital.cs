@@ -27,8 +27,8 @@ namespace Mos3ef.DAL.Models
         [StringLength(15)]
         public string? Phone_Number { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime Opening_Date { get; set; } = DateTime.Now;
+        [DataType(DataType.DateTime)]
+        public DateTime Opening_Hours { get; set; } = DateTime.Now;
 
         [Url]
         public string? Website { get; set; }
