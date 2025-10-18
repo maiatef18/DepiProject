@@ -1,18 +1,20 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Mos3ef.DAL.Database;
-using Mos3ef.DAL.Repository;
-using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Mos3ef.BLL.Manager;
+using Mos3ef.DAL.Database;
 using Mos3ef.DAL.Models;
+using Mos3ef.DAL.Repository;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add DbContext
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-
+// Configure Identity
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = false;
@@ -20,12 +22,20 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
     options.Password.RequireLowercase = false;
     options.Password.RequireNonAlphanumeric = false;
     options.Password.RequiredLength = 6;
+
+    options.User.AllowedUserNameCharacters =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@._";
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+// Configure JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
-var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
+var keyString = jwtSettings["Key"];
+if (string.IsNullOrEmpty(keyString))
+    throw new Exception("JWT Key is missing in configuration.");
+
+var key = Encoding.UTF8.GetBytes(keyString);
 
 builder.Services.AddAuthentication(options =>
 {
@@ -45,6 +55,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(key)
     };
 });
+
+// Add CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -54,9 +66,13 @@ builder.Services.AddCors(options =>
               .AllowAnyOrigin();
     });
 });
-// Add services to the container.
+
+// Add repositories and managers
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthManager, AuthManager>();
+
+// Add controllers and Swagger
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -64,7 +80,6 @@ var app = builder.Build();
 
 app.UseCors("AllowAll");
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -72,7 +87,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication(); // Required for JWT
 app.UseAuthorization();
 
 app.MapControllers();
