@@ -13,3 +13,18 @@ C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll

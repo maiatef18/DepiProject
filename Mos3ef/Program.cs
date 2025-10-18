@@ -70,6 +70,10 @@ builder.Services.AddCors(options =>
 // Add repositories and managers
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IPatientManager, PatientManager>();
+builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
+builder.Services.AddScoped<IServiceManager, ServiceManager>();
 
 // Add controllers and Swagger
 builder.Services.AddControllers();
