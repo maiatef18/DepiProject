@@ -1,7 +1,48 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.dal\\models\\hospital.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|solutionrelative:mos3ef.dal\\models\\hospital.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.dal\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|solutionrelative:mos3ef.dal\\models\\patient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.dal\\enum\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|solutionrelative:mos3ef.dal\\enum\\usertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.dal\\enum\\categorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{39A0D583-108E-4708-AC76-2D2E8255D115}|Mos3ef.DAL\\Mos3ef.DAL.csproj|solutionrelative:mos3ef.dal\\enum\\categorytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.bll\\manager\\iauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|solutionrelative:mos3ef.bll\\manager\\iauthmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.bll\\manager\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|solutionrelative:mos3ef.bll\\manager\\authmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef.bll\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D10ECB3B-7376-4190-A68F-72763EF79311}|Mos3ef.BLL\\Mos3ef.BLL.csproj|solutionrelative:mos3ef.bll\\dtos\\auth\\authresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|solutionrelative:mos3ef\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|solutionrelative:mos3ef\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|c:\\users\\mhz\\source\\repos\\depiproject\\mos3ef\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1B95709C-0171-4D6F-B8DC-678377A50A61}|Mos3ef\\Mos3ef.Api.csproj|solutionrelative:mos3ef\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +50,141 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hospital.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Models\\Hospital.cs",
+              "RelativeDocumentMoniker": "Mos3ef.DAL\\Models\\Hospital.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Models\\Hospital.cs",
+              "RelativeToolTip": "Mos3ef.DAL\\Models\\Hospital.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAgwB0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:54.732Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Patient.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Models\\Patient.cs",
+              "RelativeDocumentMoniker": "Mos3ef.DAL\\Models\\Patient.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Models\\Patient.cs",
+              "RelativeToolTip": "Mos3ef.DAL\\Models\\Patient.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:51.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserType.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Enum\\UserType.cs",
+              "RelativeDocumentMoniker": "Mos3ef.DAL\\Enum\\UserType.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Enum\\UserType.cs",
+              "RelativeToolTip": "Mos3ef.DAL\\Enum\\UserType.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAxwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:47.698Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CategoryType.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Enum\\CategoryType.cs",
+              "RelativeDocumentMoniker": "Mos3ef.DAL\\Enum\\CategoryType.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.DAL\\Enum\\CategoryType.cs",
+              "RelativeToolTip": "Mos3ef.DAL\\Enum\\CategoryType.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:44.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IAuthManager.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Manager\\IAuthManager.cs",
+              "RelativeDocumentMoniker": "Mos3ef.BLL\\Manager\\IAuthManager.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Manager\\IAuthManager.cs",
+              "RelativeToolTip": "Mos3ef.BLL\\Manager\\IAuthManager.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:38.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AuthManager.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Manager\\AuthManager.cs",
+              "RelativeDocumentMoniker": "Mos3ef.BLL\\Manager\\AuthManager.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Manager\\AuthManager.cs",
+              "RelativeToolTip": "Mos3ef.BLL\\Manager\\AuthManager.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:35.667Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Dtos\\Auth\\AuthResponseDto.cs",
+              "RelativeDocumentMoniker": "Mos3ef.BLL\\Dtos\\Auth\\AuthResponseDto.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef.BLL\\Dtos\\Auth\\AuthResponseDto.cs",
+              "RelativeToolTip": "Mos3ef.BLL\\Dtos\\Auth\\AuthResponseDto.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:30.977Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Program.cs",
+              "RelativeDocumentMoniker": "Mos3ef\\Program.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Program.cs",
+              "RelativeToolTip": "Mos3ef\\Program.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAAAFkAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:08.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\appsettings.json",
+              "RelativeDocumentMoniker": "Mos3ef\\appsettings.json",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\appsettings.json",
+              "RelativeToolTip": "Mos3ef\\appsettings.json",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-18T03:18:05.236Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Mos3ef\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\MHz\\Source\\Repos\\DepiProject\\Mos3ef\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Mos3ef\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T03:18:00.595Z",
+              "EditorCaption": ""
             }
           ]
         }
