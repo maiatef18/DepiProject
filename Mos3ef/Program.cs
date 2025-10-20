@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Mos3ef.BLL.Manager;
+using Mos3ef.BLL.Manager.ReviewManager;
 using Mos3ef.DAL.Database;
 using Mos3ef.DAL.Models;
 using Mos3ef.DAL.Repository;
+using Mos3ef.DAL.Repository.ReviewRepository;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -70,6 +72,11 @@ builder.Services.AddCors(options =>
 // Add repositories and managers
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
+
+//Add view repository and manager
+
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewManger, ReviewManger>();
 
 // Add controllers and Swagger
 builder.Services.AddControllers();

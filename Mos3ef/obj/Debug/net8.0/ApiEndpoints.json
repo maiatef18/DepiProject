@@ -48,6 +48,75 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Mos3ef.Api.Controllers.ReviewsController",
+    "Method": "Insert",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "review",
+        "Type": "Mos3ef.BLL.Dtos.ReviewDto.ReviewAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.ReviewsController",
+    "Method": "Update",
+    "RelativePath": "api/Reviews",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "review",
+        "Type": "Mos3ef.BLL.Dtos.ReviewDto.ReviewUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.ReviewsController",
+    "Method": "Delete",
+    "RelativePath": "api/Reviews/{Id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.ReviewsController",
+    "Method": "GetReviewsByService",
+    "RelativePath": "api/Reviews/{serviceId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "serviceId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Mos3ef.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

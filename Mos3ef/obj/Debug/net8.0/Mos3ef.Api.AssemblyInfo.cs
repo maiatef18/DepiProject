@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Mos3ef.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+90369ea59c12313ff1e3506a16b4dfabf4fa89fb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b4eee5b161ff1650802c7032a441ce230033b023")]
 [assembly: System.Reflection.AssemblyProductAttribute("Mos3ef.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Mos3ef.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
