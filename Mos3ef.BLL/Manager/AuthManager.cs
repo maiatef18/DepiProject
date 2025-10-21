@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -20,14 +21,18 @@ namespace Mos3ef.BLL.Manager
         private readonly IAuthRepository _authRepository;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public AuthManager(IAuthRepository authRepository,
-                         SignInManager<ApplicationUser> signInManager,
-                         IConfiguration configuration)
+        public AuthManager(
+            IAuthRepository authRepository,
+            SignInManager<ApplicationUser> signInManager,
+            IConfiguration configuration,
+            IMapper mapper)
         {
             _authRepository = authRepository;
             _signInManager = signInManager;
             _configuration = configuration;
+            _mapper = mapper;
         }
         private string GenerateJwtToken(ApplicationUser user)
         {
@@ -47,11 +52,12 @@ namespace Mos3ef.BLL.Manager
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyString));
 
             var claims = new[]
-            {
-        new Claim(JwtRegisteredClaimNames.Sub, user.Id),
-        new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
-        new Claim("userType", user.UserType.ToString())
-    };
+ {
+    new Claim(ClaimTypes.NameIdentifier, user.Id), 
+    new Claim(JwtRegisteredClaimNames.Email, user.Email ?? ""),
+    new Claim("userType", user.UserType.ToString())
+};
+
 
             var token = new JwtSecurityToken(
                 issuer: issuer,
@@ -75,18 +81,13 @@ namespace Mos3ef.BLL.Manager
 
             var token = GenerateJwtToken(user);
 
-            return new AuthResponseDto
-            {
-                IsSuccess = true,
-                Message = "Login successful!",
-                Token = token,
-                UserId = user.Id,
-                Email = user.Email,
-                Name = user.UserType == UserType.Patient ? user.PatientProfile?.User?.UserName : user.HospitalProfile?.Name,
-                UserType = user.UserType,
-                PatientProfileId = user.PatientProfile?.PatientId,
-                HospitalProfileId = user.HospitalProfile?.HospitalId
-            };
+            var response = _mapper.Map<AuthResponseDto>(user);
+
+            response.IsSuccess = true;
+            response.Message = "Login successful!";
+            response.Token = token;
+
+            return response;
         }
 
         public async Task<AuthResponseDto> RegisterHospitalAsync(HospitalRegisterDto dto)
@@ -95,12 +96,8 @@ namespace Mos3ef.BLL.Manager
             if (existingUser != null)
                 return new AuthResponseDto { IsSuccess = false, Message = "Email already exists." };
 
-            var user = new ApplicationUser
-            {
-                UserName = dto.Email,
-                Email = dto.Email,
-                UserType = UserType.Hospital
-            };
+            var user = _mapper.Map<ApplicationUser>(dto);
+
 
             var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
 
@@ -113,37 +110,30 @@ namespace Mos3ef.BLL.Manager
                 };
             }
 
-            var hospital = new Hospital
-            {
-                Name = dto.Name,
-                Address = dto.Address,
-                Location = dto.Location,
-                Phone_Number = dto.PhoneNumber,
-                UserId = user.Id
-            };
+            var hospital = _mapper.Map<Hospital>(dto);
+            hospital.UserId = user.Id;
 
             await _authRepository.AddHospitalProfileAsync(hospital);
 
             var token = GenerateJwtToken(user);
 
-            return new AuthResponseDto
-            {
-                IsSuccess = true,
-                Message = "Hospital registered successfully!",
-                Token = token,
-                UserId = user.Id,
-                Email = user.Email,
-                Name = hospital.Name,
-                UserType = user.UserType,
-                HospitalProfileId = hospital.HospitalId
-            };
+            var response = _mapper.Map<AuthResponseDto>(user);
+
+            response.IsSuccess = true;
+            response.Message = "Hospital registered successfully!";
+            response.Token = token;
+
+            return response;
+
         }
 
         public async Task<AuthResponseDto> RegisterPatientAsync(PatientRegisterDto dto)
         {
-           
-            if (string.IsNullOrWhiteSpace(dto.Name) || string.IsNullOrWhiteSpace(dto.Email)
-                || string.IsNullOrWhiteSpace(dto.Password) || string.IsNullOrWhiteSpace(dto.ConfirmPassword))
+            
+            if (string.IsNullOrWhiteSpace(dto.Name) ||
+                string.IsNullOrWhiteSpace(dto.Email) ||
+                string.IsNullOrWhiteSpace(dto.Password) ||
+                string.IsNullOrWhiteSpace(dto.ConfirmPassword))
             {
                 return new AuthResponseDto
                 {
@@ -152,22 +142,34 @@ namespace Mos3ef.BLL.Manager
                 };
             }
 
-            
+           
+            if (dto.Password != dto.ConfirmPassword)
+            {
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "Password and Confirm Password do not match."
+                };
+            }
+
+           
             var existingUser = await _authRepository.GetUserByEmailAsync(dto.Email);
             if (existingUser != null)
-                return new AuthResponseDto { IsSuccess = false, Message = "Email already exists." };
-
-            string username = new string(dto.Name.Where(char.IsLetterOrDigit).ToArray());
-            if (string.IsNullOrEmpty(username))
-                username = "User" + new Random().Next(1000, 9999);
+            {
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "Email already exists."
+                };
+            }
 
             
-            var user = new ApplicationUser
-            {
-                UserName = username, 
-                Email = dto.Email,
-                UserType = UserType.Patient
-            };
+            var user = _mapper.Map<ApplicationUser>(dto);
+
+           
+            user.UserName = new string(dto.Name.Where(char.IsLetterOrDigit).ToArray());
+            if (string.IsNullOrEmpty(user.UserName))
+                user.UserName = "User" + new Random().Next(1000, 9999);
 
             
             var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
@@ -180,31 +182,65 @@ namespace Mos3ef.BLL.Manager
                 };
             }
 
-            
+
             var patient = new Patient
             {
-                Name=user.UserName,
                 UserId = user.Id,
-                Location = dto.Location,
-                Address = dto.Address
+                Name = dto.Name 
             };
+
             await _authRepository.AddPatientProfileAsync(patient);
 
             
             var token = GenerateJwtToken(user);
 
+            
+            var response = _mapper.Map<AuthResponseDto>(user);
+           
+            response.IsSuccess = true;
+            response.Message = "Patient registered successfully!";
+            response.Token = token;
+
+            return response;
+        }
+
+    
+    public async Task<AuthResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto)
+        {
+            
+            if (dto.NewPassword != dto.ConfirmNewPassword)
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "New password and confirmation do not match."
+                };
+
+            
+            var user = await _authRepository.GetUserByIdAsync(userId);
+            if (user == null)
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "User not found."
+                };
+
+           
+            var result = await _authRepository.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
+
+            if (!result.IsSuccess)
+                return new AuthResponseDto
+                {
+                    IsSuccess = false,
+                    Message = $"Failed to change password: {result.Error}"
+                };
+
             return new AuthResponseDto
             {
                 IsSuccess = true,
-                Message = "Patient registered successfully!",
-                Token = token,
-                UserId = user.Id,
-                Email = user.Email,
-                Name = dto.Name,
-                UserType = user.UserType,
-                PatientProfileId = patient.PatientId
+                Message = "Password changed successfully."
             };
         }
+
 
 
 

@@ -2,6 +2,9 @@
 using Mos3ef.BLL.Manager;
 using Mos3ef.BLL.Dtos.Auth;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -40,6 +43,20 @@ namespace Mos3ef.Api.Controllers
             var result = await _authManager.LoginAsync(dto);
             if (!result.IsSuccess)
                 return Unauthorized(result);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpPost("change-password")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+
+            var result = await _authManager.ChangePasswordAsync(userId, dto);
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
             return Ok(result);
         }
     }

@@ -12,5 +12,7 @@ namespace Mos3ef.BLL.Manager
         Task<AuthResponseDto> RegisterPatientAsync(PatientRegisterDto dto);
         Task<AuthResponseDto> RegisterHospitalAsync(HospitalRegisterDto dto);
         Task<AuthResponseDto> LoginAsync(LoginDto dto);
+        Task<AuthResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto);
+
     }
 }
