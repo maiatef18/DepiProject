@@ -10,6 +10,9 @@ namespace Mos3ef.DAL.Repository
 {
     public interface IAuthRepository
     {
+        Task<(bool IsSuccess, string? Error)> ChangePasswordAsync(ApplicationUser user, string currentPassword, string newPassword);
+        Task<ApplicationUser?> GetUserByIdAsync(string userId);
+
         Task<ApplicationUser?> GetUserByEmailAsync(string email);
         Task<(bool IsSuccess, string? Error)> CreateUserAsync(ApplicationUser user, string password);
 

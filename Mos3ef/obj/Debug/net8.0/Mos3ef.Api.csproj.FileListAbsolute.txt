@@ -156,3 +156,5 @@ C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\obj\Debug\net8.0\refint\Mos3ef.Api.
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.pdb
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.genruntimeconfig.cache
 C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\obj\Debug\net8.0\ref\Mos3ef.Api.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.dll
+C:\Users\MHz\Source\Repos\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

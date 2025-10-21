@@ -51,6 +51,22 @@ namespace Mos3ef.DAL.Repository
             _context.Patients.Add(patient);
             await _context.SaveChangesAsync();
         }
+        public async Task<ApplicationUser?> GetUserByIdAsync(string userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
+        }
+
+        public async Task<(bool IsSuccess, string? Error)> ChangePasswordAsync(ApplicationUser user, string currentPassword, string newPassword)
+        {
+            var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            if (!result.Succeeded)
+            {
+                var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+                return (false, errors);
+            }
+            return (true, null);
+        }
+
     }
-    }
+}
 
