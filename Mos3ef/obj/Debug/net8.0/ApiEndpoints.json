@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "Mos3ef.Api.Controllers.AccountController",
+    "Method": "AssignRole",
+    "RelativePath": "api/Account/assign-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Mos3ef.BLL.Dtos.Auth.AssignRoleDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.AccountController",
     "Method": "ChangePassword",
     "RelativePath": "api/Account/change-password",
     "HttpMethod": "POST",
@@ -10,6 +26,38 @@
       {
         "Name": "dto",
         "Type": "Mos3ef.BLL.Dtos.Auth.ChangePasswordDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.AccountController",
+    "Method": "CreateRole",
+    "RelativePath": "api/Account/create-role",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "roleName",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.AccountController",
+    "Method": "CreateUser",
+    "RelativePath": "api/Account/create-user",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Mos3ef.BLL.Dtos.Auth.CreateUserDto",
         "IsRequired": true
       }
     ],
@@ -58,6 +106,22 @@
       {
         "Name": "dto",
         "Type": "Mos3ef.BLL.Dtos.Auth.PatientRegisterDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.AccountController",
+    "Method": "UpdateUser",
+    "RelativePath": "api/Account/update-user",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "Mos3ef.BLL.Dtos.Auth.UpdateUserDto",
         "IsRequired": true
       }
     ],
