@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Mos3ef.BLL.Manager;
 using Mos3ef.BLL.Mapping;
 using Mos3ef.DAL.Database;
+using Mos3ef.DAL.DataSeed;
 using Mos3ef.DAL.Models;
 using Mos3ef.DAL.Repository;
 using System.Text;
@@ -115,6 +116,15 @@ builder.Services.AddSwaggerGen(options =>
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+    await AppDbInitializer.SeedAdminAsync(userManager, roleManager);
+}
 
 app.UseCors("AllowAll");
 
