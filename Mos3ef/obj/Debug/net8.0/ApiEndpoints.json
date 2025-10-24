@@ -128,24 +128,167 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Mos3ef.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "AddAsync",
+    "RelativePath": "api/Hospital/Add",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hospitalAddDto",
+        "Type": "Mos3ef.BLL.Dtos.Hospital.HospitalAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "AddServiceAsync",
+    "RelativePath": "api/Hospital/AddService",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "servicesAddDto",
+        "Type": "Mos3ef.BLL.Dtos.Services.ServicesAddDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "DeleteAsync",
+    "RelativePath": "api/Hospital/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "DeleteServiceAsync",
+    "RelativePath": "api/Hospital/DeleteService/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "GetAsync",
+    "RelativePath": "api/Hospital/Get/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "GetAll",
+    "RelativePath": "api/Hospital/GetAll",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": [
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "GetDashboardStatsAsync",
+    "RelativePath": "api/Hospital/GetDashboardStats/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Mos3ef.WeatherForecast, Mos3ef.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
       }
     ],
-    "EndpointName": "GetWeatherForecast"
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "GetServicesReviewsAsync",
+    "RelativePath": "api/Hospital/GetServicesReviews/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "UpdateAsync",
+    "RelativePath": "api/Hospital/Update/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "hospitalUpdateDto",
+        "Type": "Mos3ef.BLL.Dtos.Hospital.HospitalUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Mos3ef.Api.Controllers.HospitalController",
+    "Method": "UpdateServiceAsync",
+    "RelativePath": "api/Hospital/UpdateService/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "servicesUpdateDto",
+        "Type": "Mos3ef.BLL.Dtos.Services.ServicesUpdateDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
   }
 ]
