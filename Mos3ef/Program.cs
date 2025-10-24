@@ -73,6 +73,21 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddAutoMapper(typeof(AuthProfile).Assembly);
+builder.Services.AddScoped<IHospitalManager, HospitalManager>();
+builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Patient", policy =>
+        policy.RequireClaim("UserType", "Patient"));
+
+    options.AddPolicy("Hospital", policy =>
+        policy.RequireClaim("UserType", "Hospital"));
+
+    options.AddPolicy("Admin", policy =>
+        policy.RequireClaim("UserType", "Admin"));
+});
+
 
 // Add controllers and Swagger
 builder.Services.AddControllers();
