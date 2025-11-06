@@ -30,3 +30,19 @@ D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.deps.json
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.pdb
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.AssemblyReference.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.GeneratedMSBuildEditorConfig.editorconfig
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfoInputs.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfo.cs
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.CoreCompileInputs.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.sourcelink.json
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.Up2Date
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll

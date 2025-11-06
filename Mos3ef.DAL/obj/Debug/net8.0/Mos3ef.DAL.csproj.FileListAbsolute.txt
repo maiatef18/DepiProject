@@ -28,3 +28,18 @@ D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dl
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+F:\.Net Full stack\project DEPI\finall version\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll

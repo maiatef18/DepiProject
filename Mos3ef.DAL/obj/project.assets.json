@@ -4417,23 +4417,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dell\\.nuget\\packages\\": {},
+    "C:\\Users\\elmanahry\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj",
+      "projectUniqueName": "F:\\.Net Full stack\\project DEPI\\finall version\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj",
       "projectName": "Mos3ef.DAL",
-      "projectPath": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj",
-      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.DAL\\obj\\",
+      "projectPath": "F:\\.Net Full stack\\project DEPI\\finall version\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj",
+      "packagesPath": "C:\\Users\\elmanahry\\.nuget\\packages\\",
+      "outputPath": "F:\\.Net Full stack\\project DEPI\\finall version\\DepiProject\\Mos3ef.DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\elmanahry\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -4501,7 +4501,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

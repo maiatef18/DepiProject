@@ -3,11 +3,13 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Mos3ef.BLL.Manager;
+using Mos3ef.BLL.Manager.ReviewManager;
 using Mos3ef.BLL.Mapping;
 using Mos3ef.DAL.Database;
 using Mos3ef.DAL.DataSeed;
 using Mos3ef.DAL.Models;
 using Mos3ef.DAL.Repository;
+using Mos3ef.DAL.Repository.ReviewRepository;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -75,6 +77,12 @@ builder.Services.AddScoped<IAuthManager, AuthManager>();
 builder.Services.AddAutoMapper(typeof(AuthProfile).Assembly);
 builder.Services.AddScoped<IHospitalManager, HospitalManager>();
 builder.Services.AddScoped<IHospitalRepository, HospitalRepository>();
+builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+builder.Services.AddScoped<IReviewManger, ReviewManger>();
+builder.Services.AddAutoMapper(a => a.AddProfile(new ReviewProfile()));
+builder.Services.AddMemoryCache();
+
+
 
 builder.Services.AddAuthorization(options =>
 {
