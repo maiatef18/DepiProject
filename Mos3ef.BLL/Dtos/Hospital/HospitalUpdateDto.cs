@@ -16,5 +16,8 @@ namespace Mos3ef.BLL.Dtos.Hospital
         public string? Phone_Number { get; set; }
         public DateTime Opening_Hours { get; set; }
         public string? Website { get; set; }
+        public string? Region { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longitude { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Mos3ef.DAL.Enum;
 using Mos3ef.DAL.Enums;
 
@@ -18,6 +19,7 @@ namespace Mos3ef.DAL.Models
         public string? Description { get; set; }
 
         [Range(0, 100000)]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
         [StringLength(50)]

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Mos3ef.BLL.Manager;
 using Mos3ef.BLL.Dtos.Auth;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -7,6 +6,7 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
 using Mos3ef.DAL.Models;
+using Mos3ef.BLL.Manager.AuthManager;
 
 namespace Mos3ef.Api.Controllers
 {
