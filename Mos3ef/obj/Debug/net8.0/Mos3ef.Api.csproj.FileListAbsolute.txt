@@ -320,3 +320,489 @@ D:\DEPI Project _1_\DepiProject\Mos3ef\obj\Debug\net8.0\refint\Mos3ef.Api.dll
 D:\DEPI Project _1_\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.pdb
 D:\DEPI Project _1_\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.genruntimeconfig.cache
 D:\DEPI Project _1_\DepiProject\Mos3ef\obj\Debug\net8.0\ref\Mos3ef.Api.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.Development.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.runtime.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.endpoints.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.exe
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.deps.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.runtimeconfig.json
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.pdb
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Core.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Identity.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Humanizer.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.OpenApi.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.ClientModel.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.CodeDom.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Memory.Data.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Runtime.Caching.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.pdb
+D:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.pdb
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.AssemblyReference.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\rpswa.dswa.cache.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.GeneratedMSBuildEditorConfig.editorconfig
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfoInputs.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfo.cs
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.CoreCompileInputs.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cs
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.sourcelink.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\rjimswa.dswa.cache.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\scopedcss\bundle\Mos3ef.Api.styles.css
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.development.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.Up2Date
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.dll
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\refint\Mos3ef.Api.dll
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.pdb
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.genruntimeconfig.cache
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\ref\Mos3ef.Api.dll
+D:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.AssemblyReference.cache
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.GeneratedMSBuildEditorConfig.editorconfig
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfoInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfo.cs
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.CoreCompileInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cs
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cache
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.sourcelink.json
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.dll
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\refint\Mos3ef.Api.dll
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.pdb
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.Development.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.endpoints.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.runtime.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.exe
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.deps.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.runtimeconfig.json
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.pdb
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Core.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Identity.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Humanizer.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.OpenApi.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mono.TextTemplating.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.ClientModel.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.CodeDom.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Convention.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Hosting.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Runtime.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.TypedParts.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Drawing.Common.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Memory.Data.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Runtime.Caching.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Permissions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\System.Windows.Extensions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.dll
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\rjimswa.dswa.cache.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\scopedcss\bundle\Mos3ef.Api.styles.css
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json.cache
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.development.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.Up2Date
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.genruntimeconfig.cache
+e:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\ref\Mos3ef.Api.dll
+E:\FullStack .Net\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.Development.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\appsettings.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.runtime.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.staticwebassets.endpoints.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.exe
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.deps.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.runtimeconfig.json
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.Api.pdb
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Core.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Azure.Identity.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Humanizer.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.OpenApi.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mono.TextTemplating.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.ClientModel.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.CodeDom.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Convention.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Hosting.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.Runtime.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Composition.TypedParts.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Drawing.Common.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Memory.Data.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Runtime.Caching.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Security.Permissions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\System.Windows.Extensions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.BLL.pdb
+E:\DepiProject\Mos3ef\bin\Debug\net8.0\Mos3ef.DAL.pdb
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.AssemblyReference.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\rpswa.dswa.cache.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.GeneratedMSBuildEditorConfig.editorconfig
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfoInputs.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.AssemblyInfo.cs
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.CoreCompileInputs.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cs
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.MvcApplicationPartsAssemblyInfo.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.sourcelink.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\rjimswa.dswa.cache.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\scopedcss\bundle\Mos3ef.Api.styles.css
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.json.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.development.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.csproj.Up2Date
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.dll
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\refint\Mos3ef.Api.dll
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.pdb
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\Mos3ef.Api.genruntimeconfig.cache
+E:\DepiProject\Mos3ef\obj\Debug\net8.0\ref\Mos3ef.Api.dll

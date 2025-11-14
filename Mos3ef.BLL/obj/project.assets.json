@@ -3204,23 +3204,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dell\\.nuget\\packages\\": {},
+    "C:\\Users\\karim\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj",
+      "projectUniqueName": "E:\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj",
       "projectName": "Mos3ef.BLL",
-      "projectPath": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj",
-      "packagesPath": "C:\\Users\\dell\\.nuget\\packages\\",
-      "outputPath": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.BLL\\obj\\",
+      "projectPath": "E:\\DepiProject\\Mos3ef.BLL\\Mos3ef.BLL.csproj",
+      "packagesPath": "C:\\Users\\karim\\.nuget\\packages\\",
+      "outputPath": "E:\\DepiProject\\Mos3ef.BLL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\dell\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\karim\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3229,14 +3229,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj": {
-              "projectPath": "D:\\DEPI Project _1_\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj"
+            "E:\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj": {
+              "projectPath": "E:\\DepiProject\\Mos3ef.DAL\\Mos3ef.DAL.csproj"
             }
           }
         }
@@ -3282,7 +3283,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

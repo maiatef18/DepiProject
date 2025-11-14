@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Services;
-using Mos3ef.BLL.Manager;
+using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.DAL.Database;
 
 namespace Mos3ef.Api.Controllers

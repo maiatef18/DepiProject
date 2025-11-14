@@ -30,3 +30,51 @@ D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
 D:\DEPI Project _1_\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll
+D:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.deps.json
+D:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.dll
+D:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.pdb
+D:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.AssemblyReference.cache
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.GeneratedMSBuildEditorConfig.editorconfig
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfoInputs.cache
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfo.cs
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.CoreCompileInputs.cache
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.sourcelink.json
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.Up2Date
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
+D:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.AssemblyReference.cache
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfoInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfo.cs
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.CoreCompileInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.sourcelink.json
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.deps.json
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.dll
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.dll
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.Up2Date
+e:\FullStack .Net\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll
+E:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.deps.json
+E:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.dll
+E:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.BLL.pdb
+E:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef.BLL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.AssemblyReference.cache
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.GeneratedMSBuildEditorConfig.editorconfig
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfoInputs.cache
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.AssemblyInfo.cs
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.CoreCompileInputs.cache
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.sourcelink.json
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.csproj.Up2Date
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.dll
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\refint\Mos3ef.BLL.dll
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\Mos3ef.BLL.pdb
+E:\DepiProject\Mos3ef.BLL\obj\Debug\net8.0\ref\Mos3ef.BLL.dll

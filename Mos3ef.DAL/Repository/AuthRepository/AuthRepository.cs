@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Mos3ef.DAL.Database;
 using Mos3ef.DAL.Models;
 
-namespace Mos3ef.DAL.Repository
+namespace Mos3ef.DAL.Repository.AuthRepository
 {
    
         public class AuthRepository : IAuthRepository

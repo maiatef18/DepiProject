@@ -3,14 +3,14 @@ using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.DAL.Models;
-using Mos3ef.DAL.Repository;
+using Mos3ef.DAL.Repository.HospitalRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mos3ef.BLL.Manager
+namespace Mos3ef.BLL.Manager.HospitalManager
 {
     public class HospitalManager : IHospitalManager
     {

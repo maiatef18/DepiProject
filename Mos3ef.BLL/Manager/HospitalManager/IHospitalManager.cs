@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mos3ef.BLL.Manager
+namespace Mos3ef.BLL.Manager.HospitalManager
 {
     public  interface IHospitalManager
     {

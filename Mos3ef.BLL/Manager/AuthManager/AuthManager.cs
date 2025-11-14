@@ -12,11 +12,11 @@ using Microsoft.IdentityModel.Tokens;
 using Mos3ef.BLL.Dtos.Auth;
 using Mos3ef.DAL.Enums;
 using Mos3ef.DAL.Models;
-using Mos3ef.DAL.Repository;
-using  Mos3ef.BLL.Dtos.Auth;
+using Mos3ef.BLL.Dtos.Auth;
 using Microsoft.EntityFrameworkCore;
+using Mos3ef.DAL.Repository.AuthRepository;
 
-namespace Mos3ef.BLL.Manager
+namespace Mos3ef.BLL.Manager.AuthManager
 {
     public class AuthManager : IAuthManager
     {

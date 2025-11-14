@@ -28,3 +28,48 @@ D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dl
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
 D:\DEPI Project _1_\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+D:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+D:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+D:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+E:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+e:\FullStack .Net\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.deps.json
+E:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.runtimeconfig.json
+E:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef.DAL\bin\Debug\net8.0\Mos3ef.DAL.pdb
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.AssemblyReference.cache
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.GeneratedMSBuildEditorConfig.editorconfig
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfoInputs.cache
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.AssemblyInfo.cs
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.csproj.CoreCompileInputs.cache
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.sourcelink.json
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\refint\Mos3ef.DAL.dll
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.pdb
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\Mos3ef.DAL.genruntimeconfig.cache
+E:\DepiProject\Mos3ef.DAL\obj\Debug\net8.0\ref\Mos3ef.DAL.dll

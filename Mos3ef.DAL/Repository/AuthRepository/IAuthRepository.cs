@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Mos3ef.DAL.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace Mos3ef.DAL.Repository
+namespace Mos3ef.DAL.Repository.AuthRepository
 {
     public interface IAuthRepository
     {

@@ -1,3 +1,28 @@
-.vs/
+# Ignore build output
 bin/
 obj/
+
+# Ignore Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Ignore Rider files
+.idea/
+
+# Ignore temporary files
+*.tmp
+*.log
+*.cache
+*.db
+
+# Ignore DLLs and PDBs
+*.dll
+*.pdb
+
+# Ignore NuGet packages
+*.nupkg
+*.snupkg
+
+# Track source code files only
+# (No need to explicitly include them; Git will track all files not ignored)

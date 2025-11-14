@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mos3ef.DAL.Repository
+namespace Mos3ef.DAL.Repository.HospitalRepository
 {
     public interface IHospitalRepository
     {
