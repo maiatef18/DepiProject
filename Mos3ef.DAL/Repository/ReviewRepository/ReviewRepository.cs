@@ -36,11 +36,23 @@ namespace Mos3ef.DAL.Repository.ReviewRepository
       
         }
 
-        public async Task<int> AddReviewAsync(Review review)
+        public async Task<bool> AddReviewAsync(Review review)
         {
+            // Check if Service exists
+            bool serviceExists = await _applicationDbContext.Services
+                .AnyAsync(s => s.ServiceId == review.ServiceId);
+            if (!serviceExists)
+                return false;
+
+            // Check if Patient exists
+            bool patientExists = await _applicationDbContext.Patients
+                .AnyAsync(p => p.PatientId == review.PatientId);
+            if (!patientExists)
+                return false;
+
             _applicationDbContext.Reviews.Add(review);
             await _applicationDbContext.SaveChangesAsync();
-            return review.ReviewId;
+            return true;
         }
 
         public async Task<int> UpdateReviewAsync(Review review)
@@ -50,10 +62,14 @@ namespace Mos3ef.DAL.Repository.ReviewRepository
             return review.ReviewId;
         }
 
-        public async Task DeleteReviewAsync(Review review)
+        public async Task<bool> DeleteReviewAsync(Review review)
         {
-           _applicationDbContext.Reviews.Remove(review);
-          await _applicationDbContext.SaveChangesAsync();
+            if (review == null)
+                return false;
+
+            _applicationDbContext.Reviews.Remove(review);
+            await _applicationDbContext.SaveChangesAsync();
+            return true;
         }
     }
 }

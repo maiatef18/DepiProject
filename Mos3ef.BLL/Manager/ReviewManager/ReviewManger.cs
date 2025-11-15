@@ -48,19 +48,22 @@ namespace Mos3ef.BLL.Manager.ReviewManager
             return cachedReviews;
         }
 
-        public async Task<int> AddReviewAsync(ReviewAddDto review)
+        public async Task<bool> AddReviewAsync(ReviewAddDto review)
         {
             var newReview = _mapper.Map<Review>(review);
             newReview.Review_Date = DateTime.Now;
-           await _reviewRepository.AddReviewAsync(newReview);
+          bool result= await _reviewRepository.AddReviewAsync(newReview);
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{review.ServiceId}";
             _memoryCache.Remove(cacheKey);
-            return newReview.ReviewId;
+            return result;
         }
 
-        public async Task<int> UpdateReviewAsync(ReviewUpdateDto review)
+        public async Task<bool> UpdateReviewAsync(ReviewUpdateDto review)
         {
             var existingReview = await _reviewRepository.GetReviewByIdAsync(review.ReviewId);
+            if (existingReview == null)
+                return false;
+
             await _reviewRepository.UpdateReviewAsync(_mapper.Map<ReviewUpdateDto, Review>(review, existingReview));
 
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{existingReview.ServiceId}";
@@ -78,22 +81,29 @@ namespace Mos3ef.BLL.Manager.ReviewManager
 
                 _memoryCache.Set(cacheKey, cachedReviews, CacheDuration);
             }
-                return existingReview.ReviewId;
+                return true;
         }
 
-        public async Task DeleteReviewAsync(int Id)
+        public async Task<bool> DeleteReviewAsync(int Id)
         {
-            // Retrieve the review to be deleted
             var reviewToDelete = await _reviewRepository.GetReviewByIdAsync(Id);
+
+            if (reviewToDelete == null)
+                return false;
+
             await _reviewRepository.DeleteReviewAsync(reviewToDelete);
+
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{reviewToDelete.ServiceId}";
 
-            // Update cache after deletion
+            // Update cache
             if (_memoryCache.TryGetValue(cacheKey, out List<ReviewReadDto> reviewsDtos))
             {
                 var updatedReviews = reviewsDtos.Where(r => r.ReviewId != Id).ToList();
                 _memoryCache.Set(cacheKey, updatedReviews, CacheDuration);
             }
+
+            return true;
         }
+
     }
 }

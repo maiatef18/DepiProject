@@ -12,9 +12,9 @@ namespace Mos3ef.DAL.Repository.ReviewRepository
        Task<IEnumerable<Review>> GetReviewsByServiceIdAsync(int serviceId);
         
         Task<Review> GetReviewByIdAsync(int reviewId);
-        Task<int> AddReviewAsync(Review review);
+        Task<bool> AddReviewAsync(Review review);
         Task<int> UpdateReviewAsync(Review review);
-        Task DeleteReviewAsync(Review review);
+        Task<bool> DeleteReviewAsync(Review review);
 
     }
 }

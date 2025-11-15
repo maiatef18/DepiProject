@@ -11,8 +11,8 @@ namespace Mos3ef.BLL.Manager.ReviewManager
     public interface IReviewManger
     {
         Task<IEnumerable<ReviewReadDto>> GetReviewsByServiceIdAsync(int serviceId);
-        Task<int> AddReviewAsync(ReviewAddDto review);
-        Task<int> UpdateReviewAsync(ReviewUpdateDto review);
-        Task DeleteReviewAsync(int Id);
+        Task<bool> AddReviewAsync(ReviewAddDto review);
+        Task<bool> UpdateReviewAsync(ReviewUpdateDto review);
+        Task<bool> DeleteReviewAsync(int Id);
     }
 }

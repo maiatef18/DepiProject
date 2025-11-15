@@ -28,20 +28,23 @@ namespace Mos3ef.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> AddReview(ReviewAddDto review)
         {
-           await _reviewManger.AddReviewAsync(review);
+              
+          bool result = await _reviewManger.AddReviewAsync(review);
+            if (!result)
+                return BadRequest(new Response<bool>("Error in ServiceId or PatientId"));
+
             return Ok(new Response<bool>(true, "Review Created Successfully"));
         }
 
         [Authorize(Policy = "Patient")]
-        [HttpPut]
-        public async Task<IActionResult> Update(int Id, ReviewUpdateDto review)
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> Update(int Id,ReviewUpdateDto review)
         {
-            if (Id != review.ReviewId)
-            {
-                return BadRequest(new Response<bool>(false, "Error in Id"));
-            }
 
-           await _reviewManger.UpdateReviewAsync(review);
+         bool result=  await _reviewManger.UpdateReviewAsync(review);
+            if (!result)
+                return NotFound(new Response<bool>("Review not found"));
+
             return Ok(new Response<bool>(true, "Review Updated Successfully"));
 
         }
@@ -50,9 +53,12 @@ namespace Mos3ef.Api.Controllers
         [HttpDelete("{Id}")]
         public async Task<IActionResult> Delete(int Id)
         {
-           await _reviewManger.DeleteReviewAsync(Id);
-            return Ok(new Response<bool>(true, "Review Deleted Successfully"));
+            var isDeleted = await _reviewManger.DeleteReviewAsync(Id);
 
+            if (!isDeleted)
+                return NotFound(new Response<bool>("Review not found"));
+
+            return Ok(new Response<bool>(true, "Review Deleted Successfully"));
         }
     }
 }
