@@ -10,12 +10,6 @@ namespace Mos3ef.DAL.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"
-                IF COL_LENGTH('Hospitals', 'Opening_Date') IS NOT NULL AND COL_LENGTH('Hospitals', 'Opening_Hours') IS NULL
-                BEGIN
-                    EXEC sp_rename N'[Hospitals].[Opening_Date]', N'Opening_Hours', N'COLUMN';
-                END
-            ");
 
             migrationBuilder.AddColumn<double>(
                 name: "Latitude",
@@ -79,10 +73,6 @@ namespace Mos3ef.DAL.Migrations
                 name: "Region",
                 table: "Hospitals");
 
-            migrationBuilder.RenameColumn(
-                name: "Opening_Hours",
-                table: "Hospitals",
-                newName: "Opening_Date");
 
             migrationBuilder.AlterColumn<string>(
                 name: "UserName",

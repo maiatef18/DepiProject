@@ -4,6 +4,7 @@ using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.DAL.Database;
+using System.Security.Claims;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -78,10 +79,12 @@ namespace Mos3ef.Api.Controllers
         [HttpPost("AddService")]
         public async Task<IActionResult> AddServiceAsync([FromBody] ServicesAddDto servicesAddDto)
         {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int id = await _hospitalManager.AddServiceAsync(servicesAddDto);
+            int id = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
             return Ok(new { ServiceId = id });
         }
 
@@ -94,7 +97,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest("Mismatched Service ID");
 
             await _hospitalManager.UpdateServiceAsync(servicesUpdateDto);
-            return NoContent();
+            return Ok("Updated");
         }
 
 
@@ -103,7 +106,7 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> DeleteServiceAsync([FromRoute] int id)
         {
             await _hospitalManager.DeleteServiceAsync(id);
-            return NoContent();
+            return Ok("Deleted");
         }
 
 

@@ -18,6 +18,14 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             _Context = applicationDbContext;
         }
 
+        public async Task<int> GetHospitalIdByUserIdAsync(string userId)
+        {
+            var hospital = await _Context.Hospitals
+                                         .FirstOrDefaultAsync(h => h.UserId == userId);
+
+            return hospital?.HospitalId ?? 0;
+        }
+
         public async Task<int> AddAsync(Hospital hospital)
         {
             await _Context.Hospitals.AddAsync(hospital);

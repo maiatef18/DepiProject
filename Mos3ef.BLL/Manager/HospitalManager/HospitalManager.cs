@@ -30,12 +30,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             return id;
         }
 
-        public async Task<int> AddServiceAsync(ServicesAddDto service)
-        {
-            var entity = _mapper.Map<Service>(service);
-            var id = await _hospitalRepository.AddServiceAsync(entity);
-            return id;
-        }
+
 
         public async Task DeleteAsync(int id)
         {
@@ -97,5 +92,21 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             _mapper.Map(service, entity);
             await _hospitalRepository.UpdateServiceAsync(entity);
         }
+
+        public async Task<int> AddServiceAsync(string userId , ServicesAddDto service)
+        {
+            int hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
+
+            if (hospitalId == 0)
+                throw new Exception("Hospital not registered!");
+
+            var entity = _mapper.Map<Service>(service);
+            entity.HospitalId = hospitalId;
+
+            var id = await _hospitalRepository.AddServiceAsync(entity);
+            return id;
+        }
+
+        
     }
 }
