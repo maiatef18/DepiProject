@@ -139,19 +139,19 @@ namespace Mos3ef.BLL.Manager.AuthManager
 
             await _userManager.AddToRoleAsync(user, "Hospital");
 
+            var token = await GenerateJwtToken(user);
+
+            var response = _mapper.Map<AuthResponseDto>(user);
+            response.IsSuccess = true;
+            response.Name = dto.Name;
+            response.Message = "Hospital registered successfully!";
+            response.Token = token;
 
             var hospital = _mapper.Map<Hospital>(dto);
             hospital.UserId = user.Id;
             await _authRepository.AddHospitalProfileAsync(hospital);
 
 
-            var token = await GenerateJwtToken(user);
-
-
-            var response = _mapper.Map<AuthResponseDto>(user);
-            response.IsSuccess = true;
-            response.Message = "Hospital registered successfully!";
-            response.Token = token;
 
             return response;
         }
@@ -212,6 +212,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
 
             var response = _mapper.Map<AuthResponseDto>(user);
             response.IsSuccess = true;
+            response.Name = dto.Name;
             response.Message = "Patient registered successfully!";
             response.Token = token;
 

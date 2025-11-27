@@ -18,7 +18,5 @@ namespace Mos3ef.BLL.Dtos.Auth
 
         public string? Name { get; set; }
         public UserType? UserType { get; set; }
-        public int? HospitalProfileId { get; set; }
-        public int? PatientProfileId { get; set; }
     }
 }

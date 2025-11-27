@@ -38,9 +38,7 @@ namespace Mos3ef.BLL.Mapping
             CreateMap<ApplicationUser, AuthResponseDto>()
                 .ForMember(dest => dest.UserId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
-                .ForMember(dest => dest.UserType, opt => opt.MapFrom(src => src.UserType.ToString()))
-                .ForMember(dest => dest.PatientProfileId, opt => opt.MapFrom(src => src.PatientProfile != null ? src.PatientProfile.PatientId : (int?)null))
-                .ForMember(dest => dest.HospitalProfileId, opt => opt.MapFrom(src => src.HospitalProfile != null ? src.HospitalProfile.HospitalId : (int?)null));
+                .ForMember(dest => dest.UserType, opt => opt.MapFrom(src => src.UserType.ToString()));
 
         }
     }

@@ -15,9 +15,8 @@ namespace Mos3ef.DAL.Models
         [StringLength(500)]
         public string? Description { get; set; }
 
-        [Required]
         [StringLength(100)]
-        public string Location { get; set; } = null!; // e.g., city or area
+        public string? Location { get; set; } = null!; 
 
         [Required]
         [StringLength(200)]

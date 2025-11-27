@@ -14,9 +14,8 @@ namespace Mos3ef.BLL.Dtos.Auth
 
         [Required(ErrorMessage = "Email is required.")]
         [EmailAddress(ErrorMessage = "Invalid email format.")]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
-        public string Location { get; set; } = null!;
         public string Address { get; set; } = null!;
 
         [Required(ErrorMessage = "PhoneNumber is required.")]
@@ -29,5 +28,9 @@ namespace Mos3ef.BLL.Dtos.Auth
 
         [Compare("Password", ErrorMessage = "Password and Confirm Password must match.")]
         public string ConfirmPassword { get; set; } = null!;
+
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
     }
+
 }

@@ -32,6 +32,7 @@ namespace Mos3ef.DAL.Repository
         public async Task<Patient?> GetPatientByUserIdAsync(string userId)
         {
             return await _context.Patients
+                .Include(p => p.User)
                 .FirstOrDefaultAsync(p => p.UserId == userId);
         }
 

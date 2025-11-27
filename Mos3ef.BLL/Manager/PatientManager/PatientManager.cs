@@ -27,11 +27,17 @@ namespace Mos3ef.BLL.Manager.PatientManager
             return _mapper.Map<PatientReadDto>(patient);
         }
 
-        public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
-        {
-            var patient = await _patientRepository.GetPatientByUserIdAsync(userId);
-            return _mapper.Map<PatientReadDto>(patient);
-        }
+     
+            public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
+            {
+                var patient = await _patientRepository.GetPatientByUserIdAsync(userId);
+                if (patient == null) return null;
+
+                var dto = _mapper.Map<PatientReadDto>(patient);
+                dto.Email = patient.User?.Email;
+                return dto;
+            }
+        
 
         public async Task<IEnumerable<ServiceReadDto>> GetSavedServicesAsync(int patientId)
         {
