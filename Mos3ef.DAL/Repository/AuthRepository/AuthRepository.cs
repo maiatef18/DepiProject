@@ -22,6 +22,12 @@ namespace Mos3ef.DAL.Repository.AuthRepository
             _context = context;
         }
 
+        public async Task<bool> IsTokenRevokedAsync(string token)
+        {
+            return await _context.RevokedTokens
+                .AnyAsync(t => t.Token == token);
+        }
+
         public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
             {
                 return await _userManager.FindByEmailAsync(email);
@@ -65,6 +71,17 @@ namespace Mos3ef.DAL.Repository.AuthRepository
                 return (false, errors);
             }
             return (true, null);
+        }
+        public async Task RevokeTokenAsync(string token, DateTime expiration)
+        {
+            var revoked = new RevokedToken
+            {
+                Token = token,
+                ExpirationDate = expiration
+            };
+
+            await _context.RevokedTokens.AddAsync(revoked);
+            await _context.SaveChangesAsync();
         }
 
     }

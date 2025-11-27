@@ -117,6 +117,33 @@ namespace Mos3ef.BLL.Manager.AuthManager
         }
         #endregion
 
+        #region logout
+
+        public async Task<BasicResponseDto> LogoutAsync(string token)
+        {
+            if (string.IsNullOrEmpty(token))
+            {
+                return new BasicResponseDto
+                {
+                    IsSuccess = false,
+                    Message = "Token is missing."
+                };
+            }
+
+           
+            var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+            var expiration = jwtToken.ValidTo;
+
+            await _authRepository.RevokeTokenAsync(token, expiration);
+
+            return new BasicResponseDto
+            {
+                IsSuccess = true,
+                Message = "Logged out successfully."
+            };
+        }
+        #endregion
+
         #region RegisterHospital
 
         public async Task<AuthResponseDto> RegisterHospitalAsync(HospitalRegisterDto dto)

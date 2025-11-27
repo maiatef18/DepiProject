@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Mos3ef.Api.Middleware;
 using Mos3ef.BLL.Manager.AuthManager;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.BLL.Manager.PatientManager;
@@ -160,6 +161,8 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseCors("AllowAll");
+app.UseMiddleware<TokenRevocationMiddleware>();
+
 
 if (app.Environment.IsDevelopment())
 {

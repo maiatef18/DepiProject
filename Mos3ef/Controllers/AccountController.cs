@@ -67,6 +67,24 @@ namespace Mos3ef.Api.Controllers
         }
         #endregion
 
+        #region Logout
+        [Authorize]
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            var token = Request.Headers["Authorization"]
+                .ToString()
+                .Replace("Bearer ", "");
+
+            var result = await _authManager.LogoutAsync(token);
+
+            if (!result.IsSuccess)
+                return BadRequest(result);
+
+            return Ok(result);
+        }
+        #endregion
+
         #region ChangePassword
         [Authorize]
         [HttpPost("change-password")]

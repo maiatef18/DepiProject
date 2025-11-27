@@ -16,6 +16,9 @@ namespace Mos3ef.DAL.Repository.AuthRepository
         Task<ApplicationUser?> GetUserByEmailAsync(string email);
         Task<(bool IsSuccess, string? Error)> CreateUserAsync(ApplicationUser user, string password);
 
+        Task RevokeTokenAsync(string token, DateTime expiration);
+        Task<bool> IsTokenRevokedAsync(string token);
+
         Task AddHospitalProfileAsync(Hospital hospital);
 
         Task AddPatientProfileAsync(Patient patient);

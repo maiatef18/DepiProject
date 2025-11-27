@@ -18,7 +18,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
         Task<BasicResponseDto> AssignRoleAsync(string email, string roleName);
         Task<BasicResponseDto> CreateUserAsync(CreateUserDto dto);
         Task<BasicResponseDto> UpdateUserAsync(UpdateUserDto dto);
-
+        Task<BasicResponseDto> LogoutAsync(string token);
 
     }
 }

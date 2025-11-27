@@ -11,13 +11,13 @@ namespace Mos3ef.DAL.Database
             : base(options)
         {
         }
-
+        
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<Review> Reviews { get; set; }
         public DbSet<SavedService> SavedServices { get; set; }
-
+        public DbSet<RevokedToken> RevokedTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
