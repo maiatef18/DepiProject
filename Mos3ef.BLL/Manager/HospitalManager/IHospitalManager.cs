@@ -15,13 +15,13 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         Task<IEnumerable<HospitalReadDto>> GetAllAsync();
         Task<HospitalReadDto?> GetAsync(int id);
         Task<int> AddAsync(HospitalAddDto hospital);
-        Task UpdateAsync(HospitalUpdateDto hospital);
-        Task DeleteAsync(int id);
+        Task UpdateAsync(string  Hospital_Id, HospitalUpdateDto hospital);
+        Task DeleteAsync(string id);
 
  
         Task<int> AddServiceAsync( string userID , ServicesAddDto service);
-        Task UpdateServiceAsync(ServicesUpdateDto service);
-        Task DeleteServiceAsync(int id);
+        Task UpdateServiceAsync( string Hospital_id , int id , ServicesUpdateDto service);
+        Task DeleteServiceAsync(string Hospital_ID , int id);
 
  
         Task<IEnumerable<ReviewReadDto>> GetServicesReviewsAsync(int hospitalId);

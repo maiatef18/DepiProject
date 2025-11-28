@@ -12,12 +12,13 @@ namespace Mos3ef.Api.Controllers
     [Route("api/[controller]")]
     public class HospitalController : ControllerBase
     {
-
+        private readonly IWebHostEnvironment _env;
         private readonly IHospitalManager _hospitalManager;
 
-        public HospitalController(IHospitalManager hospitalManager)
+        public HospitalController(IHospitalManager hospitalManager, IWebHostEnvironment env)
         {
             _hospitalManager = hospitalManager;
+            _env = env;
         }
 
 
@@ -55,22 +56,22 @@ namespace Mos3ef.Api.Controllers
 
 
         [Authorize(Policy = "Hospital")]
-        [HttpPut("Update/{id}")]
-        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromBody] HospitalUpdateDto hospitalUpdateDto)
+        [HttpPut("Update/Id")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> UpdateAsync(HospitalUpdateDto hospitalUpdateDto)
         {
-            if (id != hospitalUpdateDto.Id)
-                return BadRequest("Mismatched Hospital ID");
-
-            await _hospitalManager.UpdateAsync(hospitalUpdateDto);
-            return NoContent();
+            var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
+            return NoContent(); 
         }
 
 
         [Authorize(Policy = "Hospital")]
-        [HttpDelete("Delete/{id}")]
-        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        [HttpDelete("Delete/Id")]
+        public async Task<IActionResult> DeleteAsync()
         {
-            await _hospitalManager.DeleteAsync(id);
+            var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            await _hospitalManager.DeleteAsync(Hospital_ID);
             return NoContent();
         }
 
@@ -93,19 +94,18 @@ namespace Mos3ef.Api.Controllers
         [HttpPut("UpdateService/{id}")]
         public async Task<IActionResult> UpdateServiceAsync([FromRoute] int id, [FromBody] ServicesUpdateDto servicesUpdateDto)
         {
-            if (id != servicesUpdateDto.ServiceId)
-                return BadRequest("Mismatched Service ID");
+            var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            await _hospitalManager.UpdateServiceAsync(servicesUpdateDto);
+            await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
             return Ok("Updated");
         }
-
 
         [Authorize(Policy = "Hospital")]
         [HttpDelete("DeleteService/{id}")]
         public async Task<IActionResult> DeleteServiceAsync([FromRoute] int id)
         {
-            await _hospitalManager.DeleteServiceAsync(id);
+            var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            await _hospitalManager.DeleteServiceAsync(Hospital_Id, id);
             return Ok("Deleted");
         }
 

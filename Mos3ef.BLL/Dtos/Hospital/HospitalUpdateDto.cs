@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,6 @@ namespace Mos3ef.BLL.Dtos.Hospital
 {
     public class HospitalUpdateDto
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
         public string Location { get; set; }
@@ -19,5 +19,7 @@ namespace Mos3ef.BLL.Dtos.Hospital
         public string? Region { get; set; }
         public double? Latitude { get; set; }
         public double? Longitude { get; set; }
+        public IFormFile? ProfileImage { get; set; }
+
     }
 }

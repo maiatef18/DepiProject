@@ -6,6 +6,9 @@ using Mos3ef.DAL.Models;
 using System.Security.Claims;
 using Mos3ef.BLL.Dtos.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Caching.Memory;
+using Mos3ef.BLL.Services;
+using Mos3ef.DAL;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -15,14 +18,23 @@ namespace Mos3ef.Api.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IPatientManager _patientManager;
+        private readonly IMemoryCache _cache;
+        private readonly IFileStorageService _fileStorageService;
+        private int? _cachedPatientId; // Request-level cache
 
-        public PatientsController(IPatientManager patientManager)
+        public PatientsController(IPatientManager patientManager, IMemoryCache cache, IFileStorageService fileStorageService)
         {
             _patientManager = patientManager;
+            _cache = cache;
+            _fileStorageService = fileStorageService;
         }
 
         private async Task<int?> GetCurrentPatientIdAsync()
         {
+            // Return cached value if already fetched in this request
+            if (_cachedPatientId.HasValue)
+                return _cachedPatientId;
+
             var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
             if (string.IsNullOrEmpty(userId))
@@ -36,7 +48,9 @@ namespace Mos3ef.Api.Controllers
                 return null;
             }
 
-            return patient.PatientId;
+            // Cache for subsequent calls in this request
+            _cachedPatientId = patient.PatientId;
+            return _cachedPatientId;
         }
 
         [HttpGet("{id}")]
@@ -61,20 +75,32 @@ namespace Mos3ef.Api.Controllers
             return Ok(patient);
         }
 
-        [HttpGet("GetMyProfile")]
+        [HttpGet("my-profile")]
         public async Task<ActionResult<PatientReadDto>> GetMyProfile()
         {
             var patientId = await GetCurrentPatientIdAsync();
             if (patientId == null) return Unauthorized();
 
-            var patient = await _patientManager.GetPatientByIdAsync(patientId.Value);
-            if (patient == null) return NotFound();
+            // Check cache first
+            var cacheKey = CacheConstant.PatientProfilePrefix + patientId;
+            if (!_cache.TryGetValue(cacheKey, out PatientReadDto patient))
+            {
+                // Not in cache, fetch from database
+                patient = await _patientManager.GetPatientByIdAsync(patientId.Value);
+                if (patient == null) return NotFound();
+
+                // Store in cache for 5 minutes
+                var cacheOptions = new MemoryCacheEntryOptions()
+                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
+                
+                _cache.Set(cacheKey, patient, cacheOptions);
+            }
 
             return Ok(patient);
         }
 
-        [HttpPut("UpdateMyProfile")]
-        public async Task<IActionResult> UpdateMyProfile([FromBody] PatientUpdateDto patientUpdateDto)
+        [HttpPut("my-profile")]
+        public async Task<IActionResult> UpdateMyProfile([FromForm] PatientUpdateDto patientUpdateDto)
         {
             if (!ModelState.IsValid)
             {
@@ -87,15 +113,59 @@ namespace Mos3ef.Api.Controllers
                 return Unauthorized();
             }
 
-            var success = await _patientManager.UpdatePatientAsync(myPatientId.Value, patientUpdateDto);
-            if (!success)
+            string? imagePath = null;
+            string? oldImagePath = null;
+
+            // Handle profile picture upload
+            if (patientUpdateDto.ProfilePicture != null)
             {
-                return NotFound("Patient profile not found.");
+                // Validate file using the service
+                var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
+                if (!_fileStorageService.ValidateFile(patientUpdateDto.ProfilePicture, out string errorMessage, allowedExtensions, maxSizeMB: 5))
+                {
+                    return BadRequest(errorMessage);
+                }
+
+                // Get current patient to check for existing profile picture
+                var currentPatient = await _patientManager.GetPatientByIdAsync(myPatientId.Value);
+                
+                // Store old image path for deletion AFTER successful update
+                if (currentPatient != null && !string.IsNullOrEmpty(currentPatient.ImageUrl))
+                {
+                    oldImagePath = currentPatient.ImageUrl;
+                }
+
+                // Save new file using the service
+                imagePath = await _fileStorageService.SaveFileAsync(patientUpdateDto.ProfilePicture, "uploads/profiles");
             }
+
+            try
+            {
+                var success = await _patientManager.UpdatePatientAsync(myPatientId.Value, patientUpdateDto, imagePath);
+                if (!success)
+                {
+                    return NotFound("Patient profile not found.");
+                }
+
+                // Delete old profile picture AFTER successful update
+                if (!string.IsNullOrEmpty(oldImagePath))
+                {
+                    await _fileStorageService.DeleteFileAsync(oldImagePath);
+                }
+
+                // Invalidate cache after successful update
+                var cacheKey = CacheConstant.PatientProfilePrefix + myPatientId.Value;
+                _cache.Remove(cacheKey);
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
             return NoContent();
         }
 
-        [HttpGet("GetMySavedServices")]
+        [HttpGet("my-saved-services")]
         public async Task<ActionResult<PagedResult<ServiceReadDto>>> GetMySavedServices(
             [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10)
@@ -117,7 +187,7 @@ namespace Mos3ef.Api.Controllers
             return Ok(result);
         }
 
-        [HttpPost("SaveServiceToMyList/{serviceId}")]
+        [HttpPost("my-saved-services/{serviceId}")]
         public async Task<IActionResult> SaveServiceToMyList(int serviceId)
         {
             var myPatientId = await GetCurrentPatientIdAsync();
@@ -132,7 +202,8 @@ namespace Mos3ef.Api.Controllers
             {
                 return NotFound("Patient or Service not found.");
             }
-            return StatusCode(201, "Service saved successfully.");
+            // Return 204 for idempotent operation (works for both new and existing saves)
+            return NoContent();
         }
 
         [HttpDelete("my-saved-services/{serviceId}")]

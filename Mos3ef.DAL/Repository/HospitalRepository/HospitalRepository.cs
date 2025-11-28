@@ -33,7 +33,7 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             return hospital.HospitalId;
         }
 
-        public async Task UpdateAsync(Hospital hospital)
+        public async Task UpdateAsync()
         {
             await _Context.SaveChangesAsync();
         }
@@ -51,6 +51,12 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
                 .FirstOrDefaultAsync(h => h.HospitalId == id);
         }
 
+        public async Task<Hospital?> GetHospitalAsync(string id)
+        {
+            return await _Context.Hospitals
+                .Include(h => h.Services)
+                .FirstOrDefaultAsync(h => h.UserId == id);
+        }
         public async Task<IEnumerable<Hospital>> GetAllAsync()
         {
             return await _Context.Hospitals
@@ -58,11 +64,20 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
                 .ToListAsync();
         }
 
-        public async Task<Service?> GetServiceAsync(int id)
+        public async Task<Service?> GetServiceAsync(string userId, int serviceId)
         {
+            var hospital = await _Context.Hospitals
+                                         .FirstOrDefaultAsync(h => h.UserId == userId);
+
+            if (hospital == null)
+                return null;
+
             return await _Context.Services
-                .FirstOrDefaultAsync(s => s.ServiceId == id);
+                .FirstOrDefaultAsync(s => s.ServiceId == serviceId
+                                       && s.HospitalId == hospital.HospitalId);
         }
+
+
 
         public async Task<int> AddServiceAsync(Service service)
         {
@@ -71,7 +86,7 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             return service.ServiceId;
         }
 
-        public async Task UpdateServiceAsync(Service service)
+        public async Task UpdateServiceAsync()
         {
             await _Context.SaveChangesAsync();
         }

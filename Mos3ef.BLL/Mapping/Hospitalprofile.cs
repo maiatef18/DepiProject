@@ -22,6 +22,7 @@ namespace Mos3ef.BLL.Mapping
 
             CreateMap<Service, ServiceReadDto>().ReverseMap();
             CreateMap<Service, ServicesAddDto>().ReverseMap();
+            CreateMap<Service, ServiceShowDto>().ReverseMap();
             CreateMap<Service, ServicesUpdateDto>().ReverseMap();
 
             CreateMap<Review, ReviewReadDto>().ReverseMap();
