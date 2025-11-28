@@ -9,5 +9,6 @@ namespace Mos3ef.DAL
     public static class CacheConstant
     {
         public const string reviewCacheKey = "ReviewCacheKey";
+        public const string PatientProfilePrefix = "patient_profile_";
     }
 }

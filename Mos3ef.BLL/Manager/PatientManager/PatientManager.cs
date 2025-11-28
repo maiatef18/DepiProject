@@ -5,6 +5,7 @@ using Mos3ef.DAL.Models;
 using Mos3ef.DAL.Repository;
 using AutoMapper;
 using Mos3ef.BLL.Dtos.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace Mos3ef.BLL.Manager.PatientManager
 {
@@ -13,12 +14,14 @@ namespace Mos3ef.BLL.Manager.PatientManager
         private readonly IPatientRepository _patientRepository;
         private readonly IServiceManager _serviceManager;
         private readonly IMapper _mapper;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PatientManager(IPatientRepository patientRepository, IServiceManager serviceManager, IMapper mapper)
+        public PatientManager(IPatientRepository patientRepository, IServiceManager serviceManager, IMapper mapper, UserManager<ApplicationUser> userManager)
         {
             _patientRepository = patientRepository;
             _serviceManager = serviceManager;
             _mapper = mapper;
+            _userManager = userManager;
         }
 
         public async Task<PatientReadDto?> GetPatientByIdAsync(int id)
@@ -27,17 +30,13 @@ namespace Mos3ef.BLL.Manager.PatientManager
             return _mapper.Map<PatientReadDto>(patient);
         }
 
-     
-            public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
-            {
-                var patient = await _patientRepository.GetPatientByUserIdAsync(userId);
-                if (patient == null) return null;
+        public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
+        {
+            var patient = await _patientRepository.GetPatientByUserIdAsync(userId);
+            if (patient == null) return null;
 
-                var dto = _mapper.Map<PatientReadDto>(patient);
-                dto.Email = patient.User?.Email;
-                return dto;
-            }
-        
+            return _mapper.Map<PatientReadDto>(patient);
+        }
 
         public async Task<IEnumerable<ServiceReadDto>> GetSavedServicesAsync(int patientId)
         {
@@ -53,18 +52,7 @@ namespace Mos3ef.BLL.Manager.PatientManager
 
         public async Task<PagedResult<ServiceReadDto>> GetSavedServicesPagedAsync(int patientId, int pageNumber, int pageSize)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(patientId);
-            if (patient == null)
-            {
-                return new PagedResult<ServiceReadDto>
-                {
-                    Items = Enumerable.Empty<ServiceReadDto>(),
-                    TotalCount = 0,
-                    PageNumber = pageNumber,
-                    PageSize = pageSize
-                };
-            }
-
+            // Removed redundant patient existence check - authenticated user is guaranteed to have patient record
             var (savedServices, totalCount) = await _patientRepository.GetSavedServicesPagedAsync(patientId, pageNumber, pageSize);
             var services = _mapper.Map<IEnumerable<ServiceReadDto>>(savedServices.Select(ss => ss.Service));
 
@@ -119,17 +107,61 @@ namespace Mos3ef.BLL.Manager.PatientManager
             return true;
         }
 
-        public async Task<bool> UpdatePatientAsync(int id, PatientUpdateDto patientUpdateDto)
+        public async Task<bool> UpdatePatientAsync(int id, PatientUpdateDto patientUpdateDto, string? imagePath = null)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(id);
+            // Use ForUpdate method to get tracked entity
+            var patient = await _patientRepository.GetPatientByIdForUpdateAsync(id);
 
             if (patient == null)
             {
                 return false; 
             }
 
-
+            // Update Patient fields (Name, Address)
             _mapper.Map(patientUpdateDto, patient);
+
+            // Update profile picture if provided
+            if (!string.IsNullOrEmpty(imagePath))
+            {
+                patient.ImageUrl = imagePath;
+            }
+
+            // Update ApplicationUser fields (Email, PhoneNumber)
+            var user = await _userManager.FindByIdAsync(patient.UserId);
+            if (user != null)
+            {
+                bool userUpdated = false;
+
+                if (!string.IsNullOrEmpty(patientUpdateDto.Email) && user.Email != patientUpdateDto.Email)
+                {
+                    // Check if email is already taken by another user
+                    var existingUser = await _userManager.FindByEmailAsync(patientUpdateDto.Email);
+                    if (existingUser != null && existingUser.Id != user.Id)
+                    {
+                        throw new InvalidOperationException("Email is already in use by another account.");
+                    }
+
+                    user.Email = patientUpdateDto.Email;
+                    user.UserName = patientUpdateDto.Email; // Keep username in sync with email
+                    userUpdated = true;
+                }
+
+                if (!string.IsNullOrEmpty(patientUpdateDto.PhoneNumber) && user.PhoneNumber != patientUpdateDto.PhoneNumber)
+                {
+                    user.PhoneNumber = patientUpdateDto.PhoneNumber;
+                    userUpdated = true;
+                }
+
+                if (userUpdated)
+                {
+                    var result = await _userManager.UpdateAsync(user);
+                    if (!result.Succeeded)
+                    {
+                        var errors = string.Join(", ", result.Errors.Select(e => e.Description));
+                        throw new InvalidOperationException($"Failed to update user information: {errors}");
+                    }
+                }
+            }
 
             await _patientRepository.SaveChangesAsync();
             return true;
