@@ -94,6 +94,7 @@ builder.Services.AddScoped<IPatientRepository, PatientRepository>();
 builder.Services.AddScoped<IPatientManager, PatientManager>();
 builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.AddScoped<Mos3ef.BLL.Services.IFileStorageService, Mos3ef.BLL.Services.FileStorageService>(); // Register file storage service
 
 builder.Services.AddAuthorization(options =>
 {
@@ -171,6 +172,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.UseStaticFiles(); // Enable serving static files from wwwroot
 app.UseAuthentication(); // Required for JWT
 app.UseAuthorization();
 

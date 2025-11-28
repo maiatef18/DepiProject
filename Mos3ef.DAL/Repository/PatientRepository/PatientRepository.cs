@@ -26,13 +26,25 @@ namespace Mos3ef.DAL.Repository
 
         public async Task<Patient?> GetPatientByIdAsync(int id)
         {
-            return await _context.Patients.FindAsync(id);
+            return await _context.Patients
+                .Include(p => p.User)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(p => p.PatientId == id);
+        }
+
+        public async Task<Patient?> GetPatientByIdForUpdateAsync(int id)
+        {
+            // No AsNoTracking - entity will be tracked for updates
+            return await _context.Patients
+                .Include(p => p.User)
+                .FirstOrDefaultAsync(p => p.PatientId == id);
         }
 
         public async Task<Patient?> GetPatientByUserIdAsync(string userId)
         {
             return await _context.Patients
                 .Include(p => p.User)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.UserId == userId);
         }
 

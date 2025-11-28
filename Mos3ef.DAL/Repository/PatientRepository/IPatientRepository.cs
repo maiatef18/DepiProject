@@ -5,7 +5,7 @@ namespace Mos3ef.DAL.Repository
     public interface IPatientRepository
     {
         Task<Patient?> GetPatientByIdAsync(int id);
-
+        Task<Patient?> GetPatientByIdForUpdateAsync(int id); // For update operations - WITH tracking
         Task<Patient?> GetPatientByUserIdAsync(string userId);
         Task<int> SaveChangesAsync();
 
