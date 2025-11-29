@@ -68,15 +68,28 @@ builder.Services.AddAuthentication(options =>
 });
 
 // Add CORS
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll", policy =>
+//    {
+//        policy.AllowAnyHeader()
+//              .AllowAnyMethod()
+//              .AllowAnyOrigin();
+           
+//    });
+//});
+
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowAll", policy =>
+    options.AddPolicy("AllowAll", builder =>
     {
-        policy.AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowAnyOrigin();
+        builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
     });
 });
+
 
 // Add repositories and managers
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
