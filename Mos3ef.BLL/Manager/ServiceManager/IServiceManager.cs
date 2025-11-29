@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mos3ef.DAL.Enum;
 
 namespace Mos3ef.BLL.Manager.ServiceManager
 {
@@ -18,9 +19,11 @@ namespace Mos3ef.BLL.Manager.ServiceManager
         Task<ServiceReadDto> GetService(int id);
         Task<IEnumerable<ReviewReadDto>> GetServiceReviews(int id);
         Task<HospitalReadDto> GetServiceHospital(int id);
-        Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(string keyword);
-        Task<PagedResult<ServiceReadDto>> FilterServicesAsync(ServiceFilterDto filterDto);
-
+        Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(
+         string? keyword,
+         CategoryType? category,
+         double? userLat,
+         double? userLon);
         Task<ServiceReadDto?> GetByIdAsync(int serviceId);
 
         Task<CompareResponseDto> CompareServicesAsync(CompareRequestDto dto);

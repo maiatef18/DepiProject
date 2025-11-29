@@ -5,6 +5,7 @@ using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.BLL.Manager.ServiceManager;
+using Mos3ef.DAL.Enum;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -23,32 +24,24 @@ namespace Mos3ef.Api.Controllers
         /// Get all available services with pagination
         /// </summary>
         [HttpGet]
-        public async Task<IActionResult> GetAllServices(
-            [FromQuery] bool onlyAvailable = true,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+        [HttpGet("search")]
+        public async Task<IActionResult> Search(
+        [FromQuery] string? keyword,
+        [FromQuery] string? category,
+        [FromQuery] double? lat,
+        [FromQuery] double? lon)
         {
-            if (pageNumber < 1)
+            CategoryType? catEnum = null;
+
+            if (!string.IsNullOrWhiteSpace(category))
             {
-                return BadRequest(ApiResponse<PagedResult<ServiceReadDto>>.Failure("Page number must be at least 1."));
+                if (Enum.TryParse<CategoryType>(category, true, out var parsed))
+                    catEnum = parsed;
             }
 
-            if (pageSize < 1 || pageSize > 100)
-            {
-                return BadRequest(ApiResponse<PagedResult<ServiceReadDto>>.Failure("Page size must be between 1 and 100."));
-            }
+            var result = await _serviceManager.SearchServicesAsync(keyword, catEnum, lat, lon);
 
-            var filter = new ServiceFilterDto
-            {
-                OnlyAvailable = onlyAvailable,
-                PageNumber = pageNumber,
-                PageSize = pageSize,
-                SortBy = "name",
-                IsAscending = true
-            };
-
-            var result = await _serviceManager.FilterServicesAsync(filter);
-            return Ok(ApiResponse<PagedResult<ServiceReadDto>>.Success(result, "Services retrieved successfully."));
+            return Ok(result);
         }
 
         /// <summary>
@@ -71,65 +64,7 @@ namespace Mos3ef.Api.Controllers
             return Ok(ApiResponse<ServiceReadDto>.Success(service, "Service retrieved successfully."));
         }
 
-        /// <summary>
-        /// Search services by keyword with optional location-based filtering
-        /// </summary>
-        [HttpGet("search")] 
-        public async Task<IActionResult> SearchServices(
-            [FromQuery] string? keyword, 
-            [FromQuery] double? lat, 
-            [FromQuery] double? lng, 
-            [FromQuery] double? radiusKm,
-            [FromQuery] bool onlyAvailable = true,
-            [FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
-        {
-            if (pageNumber < 1)
-            {
-                return BadRequest(ApiResponse<PagedResult<ServiceReadDto>>.Failure("Page number must be at least 1."));
-            }
-
-            if (pageSize < 1 || pageSize > 100)
-            {
-                return BadRequest(ApiResponse<PagedResult<ServiceReadDto>>.Failure("Page size must be between 1 and 100."));
-            }
-
-            var filter = new ServiceFilterDto
-            {
-                Keyword = keyword,
-                OnlyAvailable = onlyAvailable,
-                UserLatitude = lat,
-                UserLongitude = lng,
-                RadiusKm = radiusKm,
-                SortBy = lat.HasValue && lng.HasValue ? "distance" : "name",
-                IsAscending = true,
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
-
-            var result = await _serviceManager.FilterServicesAsync(filter);
-            return Ok(ApiResponse<PagedResult<ServiceReadDto>>.Success(result, "Services retrieved successfully."));
-        }
-
-        /// <summary>
-        /// Filter services with advanced filtering options
-        /// </summary>
-        [HttpGet("filter")]
-        public async Task<IActionResult> FilterServices([FromQuery] ServiceFilterDto filterDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                var errors = ModelState.Values
-                    .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-                return BadRequest(ApiResponse<PagedResult<ServiceReadDto>>.Failure("Validation failed.", errors));
-            }
-
-            var result = await _serviceManager.FilterServicesAsync(filterDto);
-            return Ok(ApiResponse<PagedResult<ServiceReadDto>>.Success(result, "Services filtered successfully."));
-        }
-
+        
         /// <summary>
         /// Compare two services side-by-side with detailed metrics
         /// </summary>
