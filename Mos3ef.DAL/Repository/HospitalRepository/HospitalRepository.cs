@@ -44,11 +44,11 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             await _Context.SaveChangesAsync();
         }
 
-        public async Task<Hospital?> GetAsync(int id)
+        public async Task<Hospital?> GetAsync(string id)
         {
             return await _Context.Hospitals
                 .Include(h => h.Services)
-                .FirstOrDefaultAsync(h => h.HospitalId == id);
+                .FirstOrDefaultAsync(h => h.UserId == id);
         }
 
         public async Task<Hospital?> GetHospitalAsync(string id)

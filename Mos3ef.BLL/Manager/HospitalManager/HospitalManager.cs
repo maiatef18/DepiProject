@@ -52,7 +52,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             await _hospitalRepository.DeleteServiceAsync(service);
         }
 
-        public async Task<HospitalReadDto?> GetAsync(int id)
+        public async Task<HospitalReadDto?> GetAsync(string id)
         {
             var hospital = await _hospitalRepository.GetAsync(id);
             return hospital == null ? null : _mapper.Map<HospitalReadDto>(hospital);

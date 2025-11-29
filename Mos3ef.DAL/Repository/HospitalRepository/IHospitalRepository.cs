@@ -11,7 +11,7 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
     {
         Task<int> GetHospitalIdByUserIdAsync(string userId);
         Task<IEnumerable<Hospital>> GetAllAsync();
-        Task<Hospital?> GetAsync(int id);
+        Task<Hospital?> GetAsync(String id);
         Task<Hospital?> GetHospitalAsync(string id);
         Task<int> AddAsync(Hospital hospital);
         Task UpdateAsync();

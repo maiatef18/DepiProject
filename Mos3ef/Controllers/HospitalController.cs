@@ -31,13 +31,14 @@ namespace Mos3ef.Api.Controllers
         }
 
 
-        [Authorize(Policy = "Patient")]
-        [HttpGet("Get/{id}")]
-        public async Task<IActionResult> GetAsync([FromRoute] int id)
+        [Authorize(Policy = "Hospital")]
+        [HttpGet("Get-Profile")]
+        public async Task<IActionResult> GetAsync()
         {
-            var hospital = await _hospitalManager.GetAsync(id);
+            var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var hospital = await _hospitalManager.GetAsync(Hospital_ID);
             if (hospital == null)
-                return NotFound($"Hospital with ID {id} not found.");
+                return NotFound($"Hospital with ID {Hospital_ID} not found.");
 
             return Ok(hospital);
         }
@@ -56,7 +57,7 @@ namespace Mos3ef.Api.Controllers
 
 
         [Authorize(Policy = "Hospital")]
-        [HttpPut("Update/Id")]
+        [HttpPut("Update-profile")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> UpdateAsync(HospitalUpdateDto hospitalUpdateDto)
         {
@@ -67,7 +68,7 @@ namespace Mos3ef.Api.Controllers
 
 
         [Authorize(Policy = "Hospital")]
-        [HttpDelete("Delete/Id")]
+        [HttpDelete("Delete-Profile")]
         public async Task<IActionResult> DeleteAsync()
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
