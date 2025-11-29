@@ -12,6 +12,7 @@ using AutoMapper;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Hospital;
 using ComparisonMetrics = Mos3ef.BLL.Dtos.Compare.ComparisonMetrics;
+using Mos3ef.DAL.Enum;
 
 namespace Mos3ef.BLL.Manager.ServiceManager
 {
@@ -51,66 +52,59 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             return _mapper.Map<HospitalReadDto>(hospital);
         }
 
-        public async Task<PagedResult<ServiceReadDto>> FilterServicesAsync(ServiceFilterDto filterDto)
+        public async Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(
+        string? keyword,
+        CategoryType? category,
+        double? userLat,
+        double? userLon)
         {
-            var (services, totalCount) = await _serviceRepository.FilterServicesAsync(
-                filterDto.HasEmergency,
-                filterDto.HasIcu,
-                filterDto.HasNicu,
-                filterDto.HospitalName,
-                filterDto.MaxPrice,
-                filterDto.SortBy,
-                filterDto.IsAscending,
-                filterDto.MinRating,
-                filterDto.Region,
-                filterDto.OnlyAvailable,
-                filterDto.UserLatitude,
-                filterDto.UserLongitude,
-                filterDto.RadiusKm,
-                filterDto.Keyword,
-                filterDto.PageNumber,
-                filterDto.PageSize
-            );
+            IEnumerable<Service> services;
+
             
-            var dtos = _mapper.Map<IEnumerable<ServiceReadDto>>(services).ToList();
-            foreach (var i in Enumerable.Range(0, dtos.Count))
+            if (category.HasValue)
+            {
+                services = await _serviceRepository.SearchByCategoryAsync(category.Value);
+            }
+            else if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                services = await _serviceRepository.SearchByKeywordAsync(keyword);
+            }
+            else
+            {
+                return Enumerable.Empty<ServiceReadDto>();
+            }
+
+            
+            var dtos = _mapper.Map<List<ServiceReadDto>>(services);
+
+            
+            for (int i = 0; i < dtos.Count; i++)
             {
                 var s = services.ElementAt(i);
-                dtos[i].ServiceId = s.ServiceId;
-                if (s.Reviews != null && s.Reviews.Count > 0)
-                {
+
+                
+                if (s.Reviews?.Any() == true)
                     dtos[i].AverageRating = s.Reviews.Average(r => r.Rating);
-                }
-                if (filterDto.UserLatitude.HasValue && filterDto.UserLongitude.HasValue && s.Hospital != null)
+
+                
+                if (userLat.HasValue && userLon.HasValue &&
+                    s.Hospital?.Latitude != null &&
+                    s.Hospital?.Longitude != null)
                 {
-                    double? lat1 = filterDto.UserLatitude;
-                    double? lon1 = filterDto.UserLongitude;
-                    double? lat2 = s.Hospital.Latitude;
-                    double? lon2 = s.Hospital.Longitude;
-                    if (lat1.HasValue && lon1.HasValue && lat2.HasValue && lon2.HasValue)
-                    {
-                        var dLat = (lat2.Value - lat1.Value) * Math.PI / 180.0;
-                        var dLon = (lon2.Value - lon1.Value) * Math.PI / 180.0;
-                        var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) + Math.Cos(lat1.Value * Math.PI / 180.0) * Math.Cos(lat2.Value * Math.PI / 180.0) * Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
-                        var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
-                        dtos[i].DistanceKm = 6371.0 * c;
-                    }
+                    dtos[i].DistanceKm = CalculateDistance(
+                        userLat.Value, userLon.Value,
+                        s.Hospital.Latitude.Value,
+                        s.Hospital.Longitude.Value
+                    );
                 }
             }
 
-            return new PagedResult<ServiceReadDto>
-            {
-                Items = dtos,
-                TotalCount = totalCount,
-                PageNumber = filterDto.PageNumber,
-                PageSize = filterDto.PageSize
-            };
-        }
 
-        public async Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(string keyword)
-        {
-            var services = await _serviceRepository.SearchServicesAsync(keyword);
-            return _mapper.Map<IEnumerable<ServiceReadDto>>(services);
+            return dtos
+    .OrderByDescending(d => d.Availability?.ToLower() == "available") 
+    .ThenBy(d => d.DistanceKm)                                        
+    .ToList();
+
         }
 
         public async Task<ServiceReadDto?> GetByIdAsync(int serviceId)
@@ -266,6 +260,20 @@ namespace Mos3ef.BLL.Manager.ServiceManager
                 Service2 = service2,
                 Metrics = metrics
             };
+        }
+        private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
+        {
+            var dLat = (lat2 - lat1) * Math.PI / 180;
+            var dLon = (lon2 - lon1) * Math.PI / 180;
+
+            var a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
+                    Math.Cos(lat1 * Math.PI / 180) *
+                    Math.Cos(lat2 * Math.PI / 180) *
+                    Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            return 6371 * c;
         }
     }
 }

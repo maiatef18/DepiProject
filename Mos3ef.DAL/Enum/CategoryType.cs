@@ -10,6 +10,12 @@ namespace Mos3ef.DAL.Enum
         [Display(Name = "العناية المركزة")]
         ICU = 2,
 
+        [Display(Name = "قسم الأطفال حديثي الولادة (الحضانة)")]
+        NICU = 17,
+
+        [Display(Name = "بنك الدم")]
+        BloodBank = 18,
+
         [Display(Name = "غرفة العمليات")]
         OperationTheater = 3,
 

@@ -14,13 +14,8 @@ namespace Mos3ef.DAL.Repository.ServiceRepository
         Task<Service> GetService(int id);
         Task<IEnumerable<Review>> GetServiceReviews(int id);
         Task<Hospital?> GetServiceHospital(int id);
-        Task<IEnumerable<Service>> SearchServicesAsync(string keyword);
-        Task<(IEnumerable<Service> Services, int TotalCount)> FilterServicesAsync(
-            bool? hasEmergency, bool? hasIcu, bool? hasNicu, string? hospitalName,
-            decimal? maxPrice, string? sortBy, bool isAscending,
-            int? minRating, string? region, bool onlyAvailable,
-            double? userLatitude, double? userLongitude, double? radiusKm,
-            string? keyword, int pageNumber = 1, int pageSize = 10);
+        Task<IEnumerable<Service>> SearchByKeywordAsync(string keyword);
+        Task<IEnumerable<Service>> SearchByCategoryAsync(CategoryType category);
 
         Task<Service?> GetByIdAsync(int serviceId);
     }
