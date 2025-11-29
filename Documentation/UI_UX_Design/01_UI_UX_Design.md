@@ -6,7 +6,7 @@ The visual interface for Mos3ef has been designed to prioritize accessibility an
 
 ## 4.1 Design Source
 Detailed high-fidelity mockups and interaction flows are available in the official Figma file:
-*   **Mos3ef Figma Design**
+*   [Mos3ef Figma Design](https://www.figma.com/design/NUoTfR9uxMYZKeBwjitpAC/Mos3ef?node-id=19-2&t=rzZzpDjAflKFJ13L-1)
 
 ## 4.2 UI Guidelines
 *   **Primary Color:** Derived from Figma design (Medical Blue tones).
