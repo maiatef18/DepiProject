@@ -24,6 +24,7 @@ namespace Mos3ef.BLL.Mapping
             
             CreateMap<Service, ServicesAddDto>().ReverseMap();
             CreateMap<Service, ServiceShowDto>().ReverseMap();
+            CreateMap<Service, ServiceHospitalDto>().ReverseMap();
             CreateMap<Service, ServicesUpdateDto>().ReverseMap();
             CreateMap<Service, ServiceReadDto>()
      .ForMember(dest => dest.HospitalName,

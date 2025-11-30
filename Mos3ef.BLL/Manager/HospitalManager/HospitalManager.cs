@@ -151,6 +151,13 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             return id;
         }
 
-        
+        public async Task<IEnumerable<ServiceHospitalDto>> GetAllServicesAsync(string hospitalId)
+        {
+            var services = await _hospitalRepository.GetAllServiceAsync(hospitalId);
+
+            var result = _mapper.Map<IEnumerable<ServiceHospitalDto>>(services);
+            return result;
+        }
+
     }
 }

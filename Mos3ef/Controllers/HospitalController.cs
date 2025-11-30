@@ -90,6 +90,22 @@ namespace Mos3ef.Api.Controllers
             return Ok(new { ServiceId = id });
         }
 
+        [Authorize(Policy = "Hospital")]
+        [HttpPost("GetAllServices")]
+        public async Task<IActionResult> GetAllServices()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized("User not found.");
+
+            var services = await _hospitalManager.GetAllServicesAsync(userId);
+
+            if (services == null || !services.Any())
+                return NotFound(); 
+
+            return Ok(services);
+        }
 
         [Authorize(Policy = "Hospital")]
         [HttpPut("UpdateService/{id}")]

@@ -76,6 +76,19 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
                 .FirstOrDefaultAsync(s => s.ServiceId == serviceId
                                        && s.HospitalId == hospital.HospitalId);
         }
+        public async Task<IEnumerable<Service>> GetAllServiceAsync(string userId)
+        {
+            var hospital = await _Context.Hospitals
+                                         .FirstOrDefaultAsync(h => h.UserId == userId);
+
+            if (hospital == null)
+                return new List<Service>();
+
+            return await _Context.Services
+                .Where(s => s.HospitalId == hospital.HospitalId)
+                .ToListAsync();
+        }
+
 
 
 
