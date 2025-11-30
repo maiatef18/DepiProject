@@ -3,6 +3,9 @@
 
 `Mos3ef` is a .NET 8 Web API platform designed to connect patients with hospital services. It provides a RESTful API for registering patients and hospitals, searching for medical services, managing patient profiles, and submitting reviews.
 
+## Demo
+Check out the project demo: [Watch on YouTube](https://youtu.be/Bp7vdTkjM6g)
+
 ## Features
 
   * **User Registration:** Separate registration endpoints for Patients and Hospitals.
