@@ -127,15 +127,25 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         }
 
 
-        public async Task UpdateServiceAsync(string Hospital_Id , int id , ServicesUpdateDto service)
+        public async Task<int> UpdateServiceAsync(string hospitalId, int serviceId, ServicesUpdateDto service)
         {
-            var entity = await _hospitalRepository.GetServiceAsync(Hospital_Id, id);
-            if (entity == null)
-                throw new Exception("Service not found"); 
+            var entity = await _hospitalRepository.GetServiceAsync(hospitalId, serviceId);
 
-            _mapper.Map(service, entity);
-            await _hospitalRepository.UpdateServiceAsync();
+            if (entity == null)
+                throw new Exception("Service not found");
+
+            entity.Name = service.Name;
+            entity.Price = service.Price;
+            entity.Category = service.Category;
+            entity.Description = service.Description;
+            entity.Availability = service.Availability;
+            entity.Working_Hours = service.Working_Hours;
+
+            var id = await _hospitalRepository.UpdateServiceAsync(entity);
+
+            return id;
         }
+
 
         public async Task<int> AddServiceAsync(string userId , ServicesAddDto service)
         {

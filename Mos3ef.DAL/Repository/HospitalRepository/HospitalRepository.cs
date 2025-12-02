@@ -99,10 +99,14 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             return service.ServiceId;
         }
 
-        public async Task UpdateServiceAsync()
+        public async Task<int> UpdateServiceAsync(Service service)
         {
+            _Context.Services.Update(service);
             await _Context.SaveChangesAsync();
+            return service.ServiceId;
         }
+
+        
 
         public async Task DeleteServiceAsync(Service service)
         {

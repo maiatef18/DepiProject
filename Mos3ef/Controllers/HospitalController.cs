@@ -113,8 +113,8 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
-            return Ok("Updated");
+            var ID = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
+            return Ok(new { ServiceId = ID });
         }
 
         [Authorize(Policy = "Hospital")]
