@@ -59,7 +59,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             int id = await _hospitalManager.AddAsync(hospitalAddDto);
-            return Ok(new Response<Hospital>( DateTime.Now,"Hospital Added Successfully"));
+            return Ok(new Response<Hospital>("Hospital Added Successfully"));
         }
 
 

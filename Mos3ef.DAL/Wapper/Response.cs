@@ -24,6 +24,12 @@ namespace Mos3ef.DAL.Wapper
             Message = massage;
             IsSucceded = true;
         }
+        public Response(DateTime dateTime, string massage) : this()
+        {
+            DateTime = dateTime;
+            Message = massage;
+            IsSucceded = true;
+        }
 
         public Response(string massage) : this()
         {
