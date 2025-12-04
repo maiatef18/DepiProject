@@ -94,7 +94,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             var Service = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
-            return Ok(new Response<Service>(Service, "Service Added Successfully"));
+            return Ok(new Response<ServiceShowDto>(Service, "Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -121,7 +121,7 @@ namespace Mos3ef.Api.Controllers
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var Service = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
-            return Ok(new Response<Service>(Service ,"Service Added Successfully"));
+            return Ok(new Response<ServiceShowDto>(Service ,"Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]

@@ -9,6 +9,7 @@ namespace Mos3ef.BLL.Dtos.Services
 {
     public class ServiceShowDto
     {
+        public int ServiceId { get; set; }
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }

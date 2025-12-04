@@ -19,8 +19,8 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         Task DeleteAsync(string id);
 
  
-        Task<Service> AddServiceAsync( string userID , ServicesAddDto service);
-        Task<Service> UpdateServiceAsync( string Hospital_id , int id , ServicesUpdateDto service);
+        Task<ServiceShowDto> AddServiceAsync( string userID , ServicesAddDto service);
+        Task<ServiceShowDto> UpdateServiceAsync( string Hospital_id , int id , ServicesUpdateDto service);
         Task DeleteServiceAsync(string Hospital_ID , int id);
         Task<IEnumerable<ServiceHospitalDto>> GetAllServicesAsync(string Hospital_ID);
 

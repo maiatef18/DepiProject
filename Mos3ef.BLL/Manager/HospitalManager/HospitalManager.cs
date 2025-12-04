@@ -127,7 +127,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         }
 
 
-        public async Task<Service> UpdateServiceAsync(string hospitalId, int serviceId, ServicesUpdateDto service)
+        public async Task<ServiceShowDto> UpdateServiceAsync(string hospitalId, int serviceId, ServicesUpdateDto service)
         {
             var entity = await _hospitalRepository.GetServiceAsync(hospitalId, serviceId);
 
@@ -143,11 +143,12 @@ namespace Mos3ef.BLL.Manager.HospitalManager
 
             var Service = await _hospitalRepository.UpdateServiceAsync(entity);
 
-            return Service;
+            var Entity = _mapper.Map<ServiceShowDto>(Service);
+            return Entity;
         }
 
 
-        public async Task<Service> AddServiceAsync(string userId , ServicesAddDto service)
+        public async Task<ServiceShowDto> AddServiceAsync(string userId , ServicesAddDto service)
         {
             int hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
 
@@ -158,7 +159,8 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             entity.HospitalId = hospitalId;
 
             var Service = await _hospitalRepository.AddServiceAsync(entity);
-            return Service;
+            var Entity  = _mapper.Map<ServiceShowDto>(Service);
+            return Entity;
         }
 
         public async Task<IEnumerable<ServiceHospitalDto>> GetAllServicesAsync(string hospitalId)
