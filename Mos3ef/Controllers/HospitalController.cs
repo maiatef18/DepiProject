@@ -104,7 +104,7 @@ namespace Mos3ef.Api.Controllers
             var services = await _hospitalManager.GetAllServicesAsync(userId);
 
             if (services == null || !services.Any())
-                return BadRequest(new Response<List<Service>>("No services found"));
+                return Ok(new Response<List<Service>>("No services found"));
 
             return Ok(services);
         }
