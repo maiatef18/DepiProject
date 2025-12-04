@@ -4,6 +4,8 @@ using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.DAL.Database;
+using Mos3ef.DAL.Models;
+using Mos3ef.DAL.Wapper;
 using System.Security.Claims;
 
 namespace Mos3ef.Api.Controllers
@@ -102,7 +104,7 @@ namespace Mos3ef.Api.Controllers
             var services = await _hospitalManager.GetAllServicesAsync(userId);
 
             if (services == null || !services.Any())
-                return NotFound(); 
+                return BadRequest(new Response<List<Service>>("No services found"));
 
             return Ok(services);
         }
