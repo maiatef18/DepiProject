@@ -29,6 +29,11 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> GetAll()
         {
             var hospitals = await Task.Run(() => _hospitalManager.GetAllAsync());
+            if (hospitals == null)
+            {
+                return Ok(new Response<List<Hospital>>("No Hospital found"));
+
+            }
             return Ok(hospitals);
         }
 
@@ -40,7 +45,7 @@ namespace Mos3ef.Api.Controllers
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var hospital = await _hospitalManager.GetAsync(Hospital_ID);
             if (hospital == null)
-                return NotFound($"Hospital with ID {Hospital_ID} not found.");
+                return Ok(new Response<Hospital>("No Hospital found"));
 
             return Ok(hospital);
         }
@@ -54,7 +59,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             int id = await _hospitalManager.AddAsync(hospitalAddDto);
-            return Ok(new { HospitalId = id });
+            return Ok(new Response<Hospital>( DateTime.Now,"Hospital Added Successfully"));
         }
 
 
@@ -65,7 +70,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
-            return NoContent(); 
+            return Ok(new Response<Hospital>(DateTime.Now, "Hospital Updated Successfully"));
         }
 
 
@@ -75,7 +80,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.DeleteAsync(Hospital_ID);
-            return NoContent();
+            return Ok(new Response<Hospital>(DateTime.Now, "Hospital Deleted Successfully"));
         }
 
 
@@ -89,7 +94,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             int id = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
-            return Ok(new { ServiceId = id });
+            return Ok(new Response<Service>(DateTime.Now, "Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -116,7 +121,7 @@ namespace Mos3ef.Api.Controllers
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var ID = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
-            return Ok(new { ServiceId = ID });
+            return Ok(new Response<Service>(DateTime.Now, "Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -125,7 +130,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.DeleteServiceAsync(Hospital_Id, id);
-            return Ok("Deleted");
+            return Ok(new Response<Service>(DateTime.Now, "Service Deleted Successfully"));
         }
 
 
@@ -134,6 +139,11 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> GetServicesReviewsAsync([FromRoute] int id)
         {
             var reviews = await _hospitalManager.GetServicesReviewsAsync(id);
+            if (reviews == null)
+            {
+                return Ok(new Response<Review>("Service not have Review "));
+
+            }
             return Ok(reviews);
         }
 
