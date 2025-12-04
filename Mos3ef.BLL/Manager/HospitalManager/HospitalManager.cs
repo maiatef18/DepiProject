@@ -27,11 +27,11 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             _env = env;
         }
 
-        public async Task<int> AddAsync(HospitalAddDto hospital)
+        public async Task<Hospital> AddAsync(HospitalAddDto hospital)
         {
             var entity = _mapper.Map<Hospital>(hospital);
-            var id = await _hospitalRepository.AddAsync(entity);
-            return id;
+            var Hospital = await _hospitalRepository.AddAsync(entity);
+            return Hospital;
         }
 
         public async Task DeleteAsync(string id)
@@ -127,7 +127,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         }
 
 
-        public async Task<int> UpdateServiceAsync(string hospitalId, int serviceId, ServicesUpdateDto service)
+        public async Task<Service> UpdateServiceAsync(string hospitalId, int serviceId, ServicesUpdateDto service)
         {
             var entity = await _hospitalRepository.GetServiceAsync(hospitalId, serviceId);
 
@@ -141,13 +141,13 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             entity.Availability = service.Availability;
             entity.Working_Hours = service.Working_Hours;
 
-            var id = await _hospitalRepository.UpdateServiceAsync(entity);
+            var Service = await _hospitalRepository.UpdateServiceAsync(entity);
 
-            return id;
+            return Service;
         }
 
 
-        public async Task<int> AddServiceAsync(string userId , ServicesAddDto service)
+        public async Task<Service> AddServiceAsync(string userId , ServicesAddDto service)
         {
             int hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
 
@@ -157,8 +157,8 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             var entity = _mapper.Map<Service>(service);
             entity.HospitalId = hospitalId;
 
-            var id = await _hospitalRepository.AddServiceAsync(entity);
-            return id;
+            var Service = await _hospitalRepository.AddServiceAsync(entity);
+            return Service;
         }
 
         public async Task<IEnumerable<ServiceHospitalDto>> GetAllServicesAsync(string hospitalId)

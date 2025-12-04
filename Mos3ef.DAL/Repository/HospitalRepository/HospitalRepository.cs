@@ -26,11 +26,11 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             return hospital?.HospitalId ?? 0;
         }
 
-        public async Task<int> AddAsync(Hospital hospital)
+        public async Task<Hospital> AddAsync(Hospital hospital)
         {
             await _Context.Hospitals.AddAsync(hospital);
             await _Context.SaveChangesAsync();
-            return hospital.HospitalId;
+            return hospital;
         }
 
         public async Task UpdateAsync()
@@ -92,18 +92,18 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
 
 
 
-        public async Task<int> AddServiceAsync(Service service)
+        public async Task<Service> AddServiceAsync(Service service)
         {
             await _Context.Services.AddAsync(service);
             await _Context.SaveChangesAsync();
-            return service.ServiceId;
+            return service;
         }
 
-        public async Task<int> UpdateServiceAsync(Service service)
+        public async Task<Service> UpdateServiceAsync(Service service)
         {
             _Context.Services.Update(service);
             await _Context.SaveChangesAsync();
-            return service.ServiceId;
+            return service;
         }
 
         

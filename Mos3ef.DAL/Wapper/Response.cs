@@ -18,15 +18,10 @@ namespace Mos3ef.DAL.Wapper
         {
             DateTime = DateTime.Now;
         }
-        public Response(T data, string massage) : this()
+
+        public Response(T data , string massage) : this()
         {
             Data = data;
-            Message = massage;
-            IsSucceded = true;
-        }
-        public Response(DateTime dateTime, string massage) : this()
-        {
-            DateTime = dateTime;
             Message = massage;
             IsSucceded = true;
         }

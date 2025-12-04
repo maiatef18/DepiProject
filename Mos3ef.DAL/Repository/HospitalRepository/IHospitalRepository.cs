@@ -13,13 +13,13 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
         Task<IEnumerable<Hospital>> GetAllAsync();
         Task<Hospital?> GetAsync(String id);
         Task<Hospital?> GetHospitalAsync(string id);
-        Task<int> AddAsync(Hospital hospital);
+        Task<Hospital> AddAsync(Hospital hospital);
         Task UpdateAsync();
         Task DeleteAsync(Hospital hospital);
     
         Task<Service?> GetServiceAsync(string Hospital_Id , int id);
-        Task<int> AddServiceAsync(Service service);
-        Task<int> UpdateServiceAsync(Service service);
+        Task<Service> AddServiceAsync(Service service);
+        Task<Service> UpdateServiceAsync(Service service);
         Task DeleteServiceAsync(Service service);
         Task<IEnumerable<Service>> GetAllServiceAsync(string userId);
         Task<IEnumerable<Review>> GetServicesReviewsAsync(int hospitalId);

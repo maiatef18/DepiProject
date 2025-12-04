@@ -58,8 +58,8 @@ namespace Mos3ef.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int id = await _hospitalManager.AddAsync(hospitalAddDto);
-            return Ok(new Response<Hospital>("Hospital Added Successfully"));
+            var Hospital = await _hospitalManager.AddAsync(hospitalAddDto);
+            return Ok(new Response<Hospital>(Hospital, "Hospital Added Successfully"));
         }
 
 
@@ -70,7 +70,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
-            return Ok(new Response<Hospital>(DateTime.Now, "Hospital Updated Successfully"));
+            return Ok(new Response<Hospital>("Hospital Updated Successfully"));
         }
 
 
@@ -80,7 +80,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.DeleteAsync(Hospital_ID);
-            return Ok(new Response<Hospital>(DateTime.Now, "Hospital Deleted Successfully"));
+            return Ok(new Response<Hospital>("Hospital Deleted Successfully"));
         }
 
 
@@ -93,8 +93,8 @@ namespace Mos3ef.Api.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            int id = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
-            return Ok(new Response<Service>(DateTime.Now, "Service Added Successfully"));
+            var Service = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
+            return Ok(new Response<Service>(Service, "Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -120,8 +120,8 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var ID = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
-            return Ok(new Response<Service>(DateTime.Now, "Service Added Successfully"));
+            var Service = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
+            return Ok(new Response<Service>(Service ,"Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -130,7 +130,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             await _hospitalManager.DeleteServiceAsync(Hospital_Id, id);
-            return Ok(new Response<Service>(DateTime.Now, "Service Deleted Successfully"));
+            return Ok(new Response<Service>("Service Deleted Successfully"));
         }
 
 
