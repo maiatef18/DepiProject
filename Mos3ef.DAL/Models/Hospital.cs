@@ -15,8 +15,6 @@ namespace Mos3ef.DAL.Models
         [StringLength(500)]
         public string? Description { get; set; }
 
-        [StringLength(100)]
-        public string? Location { get; set; } = null!;
 
         public string? ImageUrl { get; set; }
 
