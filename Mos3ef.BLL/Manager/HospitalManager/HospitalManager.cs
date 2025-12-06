@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Mos3ef.BLL.cachenig;
 using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
@@ -17,74 +18,137 @@ namespace Mos3ef.BLL.Manager.HospitalManager
     public class HospitalManager : IHospitalManager
     {
         private readonly IHospitalRepository _hospitalRepository;
-        private readonly IMapper _mapper;
+        private readonly ICacheService _CacheService;
         private readonly IWebHostEnvironment _env;
+        private readonly IMapper _mapper;
 
-        public HospitalManager(IHospitalRepository hospitalRepository, IMapper mapper , IWebHostEnvironment env)
+        public HospitalManager(
+            IHospitalRepository hospitalRepository,
+            ICacheService cacheService,
+            IWebHostEnvironment env,
+            IMapper mapper 
+            )
         {
             _hospitalRepository = hospitalRepository;
+            _CacheService = cacheService;
             _mapper = mapper;
             _env = env;
         }
+
+        public async Task<IEnumerable<HospitalReadDto>> GetAllAsync()
+        {
+            string key = CacheKeys.AllHospitals;
+
+            var cached = await _CacheService.GetAsync<IEnumerable<HospitalReadDto>>(key);
+            if (cached != null)
+                return cached;
+
+            var hospitals = await _hospitalRepository.GetAllAsync();
+            var mapped = _mapper.Map<IEnumerable<HospitalReadDto>>(hospitals);
+
+            await _CacheService.SetAsync(key, mapped, TimeSpan.FromMinutes(10));
+
+            return mapped;
+        }
+
 
         public async Task<Hospital> AddAsync(HospitalAddDto hospital)
         {
             var entity = _mapper.Map<Hospital>(hospital);
             var Hospital = await _hospitalRepository.AddAsync(entity);
+
+            // Invalidate cache
+            await _CacheService.RemoveAsync(CacheKeys.AllHospitals);
+
             return Hospital;
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(string Hospital_ID)
         {
-            var hospital = await _hospitalRepository.GetHospitalAsync(id);
+            var hospital = await _hospitalRepository.GetHospitalAsync(Hospital_ID);
             if (hospital == null)
                 throw new Exception("Hospital not found");
 
             await _hospitalRepository.DeleteAsync(hospital);
+
+            // Invalidate cache
+            await _CacheService.RemoveAsync(CacheKeys.Hospital(Hospital_ID));
+            await _CacheService.RemoveAsync(CacheKeys.AllHospitals);
         }
 
-        public async Task DeleteServiceAsync(string Hospital_ID , int id)
+        public async Task DeleteServiceAsync(string Hospital_ID , int Service_ID)
         {
-            var service = await _hospitalRepository.GetServiceAsync(Hospital_ID , id);
+            var service = await _hospitalRepository.GetServiceAsync(Hospital_ID, Service_ID);
             if (service == null)
                 throw new Exception("Service not found");
 
             await _hospitalRepository.DeleteServiceAsync(service);
+
+            // Invalidate service list
+            await _CacheService.RemoveAsync(CacheKeys.HospitalServices(Hospital_ID));
         }
 
-        public async Task<HospitalReadDto?> GetAsync(string id)
+        public async Task<HospitalReadDto?> GetAsync(string Hospital_ID)
         {
-            var hospital = await _hospitalRepository.GetAsync(id);
-            return hospital == null ? null : _mapper.Map<HospitalReadDto>(hospital);
+            string key = CacheKeys.Hospital(Hospital_ID);
+
+            var cached = await _CacheService.GetAsync<HospitalReadDto>(key);
+            if (cached != null)
+                return cached;
+
+            var hospital = await _hospitalRepository.GetAsync(Hospital_ID);
+            if (hospital == null)
+                return null;
+
+            var Hospital = _mapper.Map<HospitalReadDto>(hospital);
+
+            await _CacheService.SetAsync(key, Hospital, TimeSpan.FromMinutes(10));
+
+            return Hospital;
         }
 
-        public async Task<IEnumerable<HospitalReadDto>> GetAllAsync()
-        {
-            var hospitals = await  _hospitalRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<HospitalReadDto>>(hospitals);
-        }
 
         public async Task<(int servicesCount, int reviewsCount, double avgRating)> GetDashboardStatsAsync(int hospitalId)
         {
-            return await _hospitalRepository.GetDashboardStatsAsync(hospitalId);
+            string key = CacheKeys.Dashboard(hospitalId);
+
+            var cached = await _CacheService.GetAsync<(int, int, double)?>(key);
+            if (cached != null)
+                return cached.Value;
+
+            var stats = await _hospitalRepository.GetDashboardStatsAsync(hospitalId);
+
+            await _CacheService.SetAsync(key, stats, TimeSpan.FromMinutes(5));
+
+            return stats;
         }
 
         public async Task<IEnumerable<ReviewReadDto>> GetServicesReviewsAsync(int hospitalId)
         {
+            string key = CacheKeys.HospitalReviews(hospitalId);
+
+            var cached = await _CacheService.GetAsync<IEnumerable<ReviewReadDto>>(key);
+            if (cached != null)
+                return cached;
+
             var reviews = await _hospitalRepository.GetServicesReviewsAsync(hospitalId);
-            return _mapper.Map<IEnumerable<ReviewReadDto>>(reviews);
+            var Reviews = _mapper.Map<IEnumerable<ReviewReadDto>>(reviews);
+
+            await _CacheService.SetAsync(key, Reviews, TimeSpan.FromMinutes(10));
+
+            return Reviews;
         }
 
-        public async Task UpdateAsync(string hospitalId, HospitalUpdateDto dto)
+        public async Task<HospitalReadDto> UpdateAsync(string hospitalId, HospitalUpdateDto dto)
         {
             var entity = await _hospitalRepository.GetHospitalAsync(hospitalId);
 
             if (entity == null)
                 throw new Exception("Hospital not found");
 
+            // Handle image upload
             if (dto.ProfileImage != null)
             {
-                
                 if (!string.IsNullOrEmpty(entity.ImageUrl))
                 {
                     string oldImagePath = Path.Combine(_env.WebRootPath, entity.ImageUrl.TrimStart('/'));
@@ -96,10 +160,18 @@ namespace Mos3ef.BLL.Manager.HospitalManager
                 entity.ImageUrl = newImageUrl;
             }
 
-            
             _mapper.Map(dto, entity);
 
-            await _hospitalRepository.UpdateAsync();
+            var Result  = await _hospitalRepository.UpdateAsync(entity);
+
+            // Invalidate cache
+            await _CacheService.RemoveAsync(CacheKeys.Hospital(hospitalId));
+            await _CacheService.RemoveAsync(CacheKeys.AllHospitals);
+            var Hospital = _mapper.Map<HospitalReadDto>(Result);
+
+            return Hospital;
+
+
         }
 
         private async Task<string> SaveHospitalImage(IFormFile file)
@@ -134,23 +206,20 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             if (entity == null)
                 throw new Exception("Service not found");
 
-            entity.Name = service.Name;
-            entity.Price = service.Price;
-            entity.Category = service.Category;
-            entity.Description = service.Description;
-            entity.Availability = service.Availability;
-            entity.Working_Hours = service.Working_Hours;
+            _mapper.Map(service, entity);
 
             var Service = await _hospitalRepository.UpdateServiceAsync(entity);
 
-            var Entity = _mapper.Map<ServiceShowDto>(Service);
-            return Entity;
+            // Invalidate services cache
+            await _CacheService.RemoveAsync(CacheKeys.HospitalServices(hospitalId));
+
+            return _mapper.Map<ServiceShowDto>(Service);
         }
 
 
         public async Task<ServiceShowDto> AddServiceAsync(string userId , ServicesAddDto service)
         {
-            int hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
+             var hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
 
             if (hospitalId == 0)
                 throw new Exception("Hospital not registered!");
@@ -159,16 +228,28 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             entity.HospitalId = hospitalId;
 
             var Service = await _hospitalRepository.AddServiceAsync(entity);
+
+            // Invalidate service list
+            await _CacheService.RemoveAsync(CacheKeys.HospitalServices(hospitalId.ToString()));
+
             var Entity  = _mapper.Map<ServiceShowDto>(Service);
             return Entity;
         }
 
         public async Task<IEnumerable<ServiceHospitalDto>> GetAllServicesAsync(string hospitalId)
         {
-            var services = await _hospitalRepository.GetAllServiceAsync(hospitalId);
+            string key = CacheKeys.HospitalServices(hospitalId);
 
-            var result = _mapper.Map<IEnumerable<ServiceHospitalDto>>(services);
-            return result;
+            var cached = await _CacheService.GetAsync<IEnumerable<ServiceHospitalDto>>(key);
+            if (cached != null)
+                return cached;
+
+            var services = await _hospitalRepository.GetAllServiceAsync(hospitalId);
+            var Services = _mapper.Map<IEnumerable<ServiceHospitalDto>>(services);
+
+            await _CacheService.SetAsync(key, Services, TimeSpan.FromMinutes(10));
+
+            return Services;
         }
 
     }

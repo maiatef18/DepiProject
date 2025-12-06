@@ -33,9 +33,11 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
             return hospital;
         }
 
-        public async Task UpdateAsync()
+        public async Task<Hospital> UpdateAsync( Hospital hospital)
         {
+            _Context.Hospitals.Update(hospital);
             await _Context.SaveChangesAsync();
+            return hospital;
         }
 
         public async Task DeleteAsync(Hospital hospital)

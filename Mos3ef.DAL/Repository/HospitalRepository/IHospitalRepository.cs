@@ -14,7 +14,7 @@ namespace Mos3ef.DAL.Repository.HospitalRepository
         Task<Hospital?> GetAsync(String id);
         Task<Hospital?> GetHospitalAsync(string id);
         Task<Hospital> AddAsync(Hospital hospital);
-        Task UpdateAsync();
+        Task<Hospital> UpdateAsync(Hospital hospital);
         Task DeleteAsync(Hospital hospital);
     
         Task<Service?> GetServiceAsync(string Hospital_Id , int id);

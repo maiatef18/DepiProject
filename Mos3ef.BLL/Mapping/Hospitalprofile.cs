@@ -27,18 +27,18 @@ namespace Mos3ef.BLL.Mapping
             CreateMap<Service, ServiceHospitalDto>().ReverseMap();
             CreateMap<Service, ServicesUpdateDto>().ReverseMap();
             CreateMap<Service, ServiceReadDto>()
-     .ForMember(dest => dest.HospitalName,
-         opt => opt.MapFrom(src => src.Hospital.Name))
-     .ForMember(dest => dest.HospitalLatitude,
-         opt => opt.MapFrom(src => src.Hospital.Latitude))
-     .ForMember(dest => dest.HospitalLongitude,
-         opt => opt.MapFrom(src => src.Hospital.Longitude))
+             .ForMember(dest => dest.HospitalName,
+                 opt => opt.MapFrom(src => src.Hospital.Name))
+             .ForMember(dest => dest.HospitalLatitude,
+                 opt => opt.MapFrom(src => src.Hospital.Latitude))
+             .ForMember(dest => dest.HospitalLongitude,
+                 opt => opt.MapFrom(src => src.Hospital.Longitude))
 
-     .ForMember(dest => dest.HospitalImage,
-         opt => opt.MapFrom(src => src.Hospital.ImageUrl))  
+             .ForMember(dest => dest.HospitalImage,
+                 opt => opt.MapFrom(src => src.Hospital.ImageUrl))  
 
-     .ForMember(dest => dest.CategoryName,
-         opt => opt.MapFrom(src => src.Category.GetDisplayName()));
+             .ForMember(dest => dest.CategoryName,
+                 opt => opt.MapFrom(src => src.Category.GetDisplayName()));
 
 
 

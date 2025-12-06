@@ -14,13 +14,11 @@ namespace Mos3ef.Api.Controllers
     [Route("api/[controller]")]
     public class HospitalController : ControllerBase
     {
-        private readonly IWebHostEnvironment _env;
         private readonly IHospitalManager _hospitalManager;
 
-        public HospitalController(IHospitalManager hospitalManager, IWebHostEnvironment env)
+        public HospitalController(IHospitalManager hospitalManager)
         {
             _hospitalManager = hospitalManager;
-            _env = env;
         }
 
 
@@ -28,13 +26,12 @@ namespace Mos3ef.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()
         {
-            var hospitals = await Task.Run(() => _hospitalManager.GetAllAsync());
-            if (hospitals == null)
-            {
-                return Ok(new Response<List<Hospital>>("No Hospital found"));
+            var hospitals = await _hospitalManager.GetAllAsync();
 
-            }
-            return Ok(hospitals);
+            if (hospitals == null || !hospitals.Any())
+                return Ok(Response<IEnumerable<HospitalReadDto>>.Fail("No hospitals found"));
+
+            return Ok(Response<IEnumerable<HospitalReadDto>>.Success(hospitals, "Hospitals fetched"));
         }
 
 
@@ -69,8 +66,8 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> UpdateAsync([FromBody]  HospitalUpdateDto hospitalUpdateDto)
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
-            return Ok(new Response<Hospital>("Hospital Updated Successfully"));
+            var Hospital = await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
+            return Ok((new Response<HospitalReadDto>(Hospital, "Hospital Updated Successfully")));
         }
 
 

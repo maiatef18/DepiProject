@@ -32,5 +32,9 @@ namespace Mos3ef.DAL.Wapper
             IsSucceded = false;
         }
 
+        public static Response<T> Success(T data, string message = "") => new Response<T>(data, message);
+        public static Response<T> Fail(string message) => new Response<T>(message);
+
+
     }
 }

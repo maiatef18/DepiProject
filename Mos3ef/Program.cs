@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Mos3ef.Api.Middleware;
+using Mos3ef.BLL.cachenig;
 using Mos3ef.BLL.Manager.AuthManager;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.BLL.Manager.PatientManager;
@@ -109,6 +110,9 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<Mos3ef.BLL.Services.IFileStorageService, Mos3ef.BLL.Services.FileStorageService>(); // Register file storage service
 
+
+builder.Services.AddScoped<ICacheService, MemoryCacheService>();
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("Patient", policy =>
@@ -178,11 +182,10 @@ app.UseCors("AllowAll");
 app.UseMiddleware<TokenRevocationMiddleware>();
 
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles(); // Enable serving static files from wwwroot
