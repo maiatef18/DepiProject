@@ -6,6 +6,7 @@ using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.BLL.Manager.ServiceManager;
 using Mos3ef.DAL.Enum;
+using Mos3ef.DAL.Wapper;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -41,7 +42,7 @@ namespace Mos3ef.Api.Controllers
 
             var result = await _serviceManager.SearchServicesAsync(keyword, catEnum, lat, lon);
 
-            return Ok(result);
+            return Ok(Response<IEnumerable<ServiceReadDto>>.Success(result, "Services retrieved successfully"));
         }
 
         /// <summary>
@@ -52,16 +53,16 @@ namespace Mos3ef.Api.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(ApiResponse<ServiceReadDto>.Failure("Service ID must be greater than 0."));
+                return BadRequest(Response<ServiceReadDto>.Fail("Service ID must be greater than 0."));
             }
 
             var service = await _serviceManager.GetByIdAsync(id);
             if (service == null)
             {
-                return NotFound(ApiResponse<ServiceReadDto>.Failure($"Service with ID {id} not found."));
+                return NotFound(Response<ServiceReadDto>.Fail($"Service with ID {id} not found."));
             }
 
-            return Ok(ApiResponse<ServiceReadDto>.Success(service, "Service retrieved successfully."));
+            return Ok(Response<ServiceReadDto>.Success(service, "Service retrieved successfully."));
         }
 
         
@@ -77,22 +78,22 @@ namespace Mos3ef.Api.Controllers
                     .SelectMany(v => v.Errors)
                     .Select(e => e.ErrorMessage)
                     .ToList();
-                return BadRequest(ApiResponse<CompareResponseDto>.Failure("Validation failed.", errors));
+                return BadRequest(Response<CompareResponseDto>.Fail(string.Join(", ", errors)));
             }
 
             if (compareDto.Service1Id == compareDto.Service2Id)
             {
-                return BadRequest(ApiResponse<CompareResponseDto>.Failure("Cannot compare a service with itself."));
+                return BadRequest(Response<CompareResponseDto>.Fail("Cannot compare a service with itself."));
             }
 
             var result = await _serviceManager.CompareServicesAsync(compareDto);
             
             if (result.Service1 == null || result.Service2 == null)
             {
-                return NotFound(ApiResponse<CompareResponseDto>.Failure("One or both services not found."));
+                return NotFound(Response<CompareResponseDto>.Fail("One or both services not found."));
             }
 
-            return Ok(ApiResponse<CompareResponseDto>.Success(result, "Services compared successfully."));
+            return Ok(Response<CompareResponseDto>.Success(result, "Services compared successfully."));
         }
 
         /// <summary>
@@ -103,18 +104,18 @@ namespace Mos3ef.Api.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(ApiResponse<IEnumerable<ReviewReadDto>>.Failure("Service ID must be greater than 0."));
+                return BadRequest(Response<IEnumerable<ReviewReadDto>>.Fail("Service ID must be greater than 0."));
             }
 
             // Verify service exists
             var service = await _serviceManager.GetByIdAsync(id);
             if (service == null)
             {
-                return NotFound(ApiResponse<IEnumerable<ReviewReadDto>>.Failure($"Service with ID {id} not found."));
+                return NotFound(Response<IEnumerable<ReviewReadDto>>.Fail($"Service with ID {id} not found."));
             }
 
             var reviews = await _serviceManager.GetServiceReviews(id);
-            return Ok(ApiResponse<IEnumerable<ReviewReadDto>>.Success(reviews, "Reviews retrieved successfully."));
+            return Ok(Response<IEnumerable<ReviewReadDto>>.Success(reviews, "Reviews retrieved successfully."));
         }
 
         /// <summary>
@@ -125,23 +126,23 @@ namespace Mos3ef.Api.Controllers
         {
             if (id <= 0)
             {
-                return BadRequest(ApiResponse<HospitalReadDto>.Failure("Service ID must be greater than 0."));
+                return BadRequest(Response<HospitalReadDto>.Fail("Service ID must be greater than 0."));
             }
 
             // Verify service exists
             var service = await _serviceManager.GetByIdAsync(id);
             if (service == null)
             {
-                return NotFound(ApiResponse<HospitalReadDto>.Failure($"Service with ID {id} not found."));
+                return NotFound(Response<HospitalReadDto>.Fail($"Service with ID {id} not found."));
             }
 
             var hospital = await _serviceManager.GetServiceHospital(id);
             if (hospital == null)
             {
-                return NotFound(ApiResponse<HospitalReadDto>.Failure($"Hospital not found for service with ID {id}."));
+                return NotFound(Response<HospitalReadDto>.Fail($"Hospital not found for service with ID {id}."));
             }
 
-            return Ok(ApiResponse<HospitalReadDto>.Success(hospital, "Hospital information retrieved successfully."));
+            return Ok(Response<HospitalReadDto>.Success(hospital, "Hospital information retrieved successfully."));
         }
     }
 }

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mos3ef.BLL.Dtos.Auth;
-using Mos3ef.BLL.Dtos.Auth;
 
 namespace Mos3ef.BLL.Manager.AuthManager
 {

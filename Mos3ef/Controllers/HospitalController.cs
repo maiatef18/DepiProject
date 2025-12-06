@@ -63,7 +63,7 @@ namespace Mos3ef.Api.Controllers
         [Authorize(Policy = "Hospital")]
         [HttpPut("Update-profile")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> UpdateAsync([FromBody]  HospitalUpdateDto hospitalUpdateDto)
+        public async Task<IActionResult> UpdateAsync([FromForm]  HospitalUpdateDto hospitalUpdateDto)
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var Hospital = await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
