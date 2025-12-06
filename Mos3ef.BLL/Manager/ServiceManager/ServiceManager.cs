@@ -13,6 +13,8 @@ using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Hospital;
 using ComparisonMetrics = Mos3ef.BLL.Dtos.Compare.ComparisonMetrics;
 using Mos3ef.DAL.Enum;
+using Microsoft.Extensions.Caching.Memory;
+using Mos3ef.DAL;
 
 namespace Mos3ef.BLL.Manager.ServiceManager
 {
@@ -21,11 +23,13 @@ namespace Mos3ef.BLL.Manager.ServiceManager
     {
         private readonly IServiceRepository _serviceRepository;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
-        public ServiceManager(IServiceRepository serviceRepository, IMapper mapper)
+        public ServiceManager(IServiceRepository serviceRepository, IMapper mapper, IMemoryCache cache)
         {
             _serviceRepository = serviceRepository;
             _mapper = mapper;
+            _cache = cache;
         }
 
         public async Task<IEnumerable<ServiceReadDto>> GetServices()
@@ -42,14 +46,36 @@ namespace Mos3ef.BLL.Manager.ServiceManager
 
         public async Task<IEnumerable<ReviewReadDto>> GetServiceReviews(int id)
         {
+            var cacheKey = $"{CacheConstant.ServiceReviewsPrefix}{id}";
+            
+            if (_cache.TryGetValue(cacheKey, out IEnumerable<ReviewReadDto> cachedReviews))
+            {
+                return cachedReviews;
+            }
+            
             var reviews = await _serviceRepository.GetServiceReviews(id);
-            return _mapper.Map<IEnumerable<ReviewReadDto>>(reviews);
+            var reviewDtos = _mapper.Map<IEnumerable<ReviewReadDto>>(reviews);
+            
+            _cache.Set(cacheKey, reviewDtos, TimeSpan.FromMinutes(5));
+            
+            return reviewDtos;
         }
 
         public async Task<HospitalReadDto> GetServiceHospital(int id)
         {
+            var cacheKey = $"{CacheConstant.ServiceHospitalPrefix}{id}";
+            
+            if (_cache.TryGetValue(cacheKey, out HospitalReadDto cachedHospital))
+            {
+                return cachedHospital;
+            }
+            
             var hospital = await _serviceRepository.GetServiceHospital(id);
-            return _mapper.Map<HospitalReadDto>(hospital);
+            var hospitalDto = _mapper.Map<HospitalReadDto>(hospital);
+            
+            _cache.Set(cacheKey, hospitalDto, TimeSpan.FromMinutes(20));
+            
+            return hospitalDto;
         }
 
         public async Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(
@@ -58,6 +84,16 @@ namespace Mos3ef.BLL.Manager.ServiceManager
         double? userLat,
         double? userLon)
         {
+            // Create cache key from parameters
+            var cacheKey = $"{CacheConstant.ServiceSearchPrefix}" +
+                           $"{keyword ?? "all"}_{category?.ToString() ?? "all"}_" +
+                           $"{userLat?.ToString() ?? "0"}_{userLon?.ToString() ?? "0"}";
+            
+            if (_cache.TryGetValue(cacheKey, out IEnumerable<ServiceReadDto> cachedResults))
+            {
+                return cachedResults;
+            }
+            
             IEnumerable<Service> services;
 
             
@@ -99,18 +135,35 @@ namespace Mos3ef.BLL.Manager.ServiceManager
                 }
             }
 
+            var results = dtos
+                .OrderByDescending(d => d.Availability?.ToLower() == "available") 
+                .ThenBy(d => d.DistanceKm)                                        
+                .ToList();
+            
+            // Cache for 10 minutes
+            _cache.Set(cacheKey, results, TimeSpan.FromMinutes(10));
 
-            return dtos
-    .OrderByDescending(d => d.Availability?.ToLower() == "available") 
-    .ThenBy(d => d.DistanceKm)                                        
-    .ToList();
-
+            return results;
         }
 
         public async Task<ServiceReadDto?> GetByIdAsync(int serviceId)
         {
+            var cacheKey = $"{CacheConstant.ServicePrefix}{serviceId}";
+            
+            if (_cache.TryGetValue(cacheKey, out ServiceReadDto cachedService))
+            {
+                return cachedService;
+            }
+            
             var service = await _serviceRepository.GetByIdAsync(serviceId);
-            return _mapper.Map<ServiceReadDto>(service);
+            var serviceDto = _mapper.Map<ServiceReadDto>(service);
+            
+            if (serviceDto != null)
+            {
+                _cache.Set(cacheKey, serviceDto, TimeSpan.FromMinutes(15));
+            }
+            
+            return serviceDto;
         }
 
         public async Task<CompareResponseDto> CompareServicesAsync(CompareRequestDto dto)
