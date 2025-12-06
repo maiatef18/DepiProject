@@ -6,9 +6,7 @@ using Mos3ef.DAL.Models;
 using System.Security.Claims;
 using Mos3ef.BLL.Dtos.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.BLL.Services;
-using Mos3ef.DAL;
 using Mos3ef.DAL.Wapper;
 
 namespace Mos3ef.Api.Controllers
@@ -19,14 +17,12 @@ namespace Mos3ef.Api.Controllers
     public class PatientsController : ControllerBase
     {
         private readonly IPatientManager _patientManager;
-        private readonly IMemoryCache _cache;
         private readonly IFileStorageService _fileStorageService;
         private int? _cachedPatientId; // Request-level cache
 
-        public PatientsController(IPatientManager patientManager, IMemoryCache cache, IFileStorageService fileStorageService)
+        public PatientsController(IPatientManager patientManager, IFileStorageService fileStorageService)
         {
             _patientManager = patientManager;
-            _cache = cache;
             _fileStorageService = fileStorageService;
         }
 
@@ -83,21 +79,10 @@ namespace Mos3ef.Api.Controllers
             if (patientId == null) 
                 return Unauthorized(Response<PatientReadDto>.Fail("Unauthorized access"));
 
-            // Check cache first
-            var cacheKey = CacheConstant.PatientProfilePrefix + patientId;
-            if (!_cache.TryGetValue(cacheKey, out PatientReadDto patient))
-            {
-                // Not in cache, fetch from database
-                patient = await _patientManager.GetPatientByIdAsync(patientId.Value);
-                if (patient == null) 
-                    return NotFound(Response<PatientReadDto>.Fail("Patient profile not found"));
-
-                // Store in cache for 5 minutes
-                var cacheOptions = new MemoryCacheEntryOptions()
-                    .SetAbsoluteExpiration(TimeSpan.FromMinutes(5));
-                
-                _cache.Set(cacheKey, patient, cacheOptions);
-            }
+            // Manager handles caching
+            var patient = await _patientManager.GetPatientByIdAsync(patientId.Value);
+            if (patient == null) 
+                return NotFound(Response<PatientReadDto>.Fail("Patient profile not found"));
 
             return Ok(Response<PatientReadDto>.Success(patient, "Profile retrieved successfully"));
         }
@@ -159,10 +144,8 @@ namespace Mos3ef.Api.Controllers
                 {
                     await _fileStorageService.DeleteFileAsync(oldImagePath);
                 }
-
-                // Invalidate cache after successful update
-                var cacheKey = CacheConstant.PatientProfilePrefix + myPatientId.Value;
-                _cache.Remove(cacheKey);
+                
+                // Manager handles cache invalidation
             }
             catch (InvalidOperationException ex)
             {

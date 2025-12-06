@@ -6,6 +6,8 @@ using Mos3ef.DAL.Repository;
 using AutoMapper;
 using Mos3ef.BLL.Dtos.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Memory;
+using Mos3ef.DAL;
 
 namespace Mos3ef.BLL.Manager.PatientManager
 {
@@ -15,19 +17,35 @@ namespace Mos3ef.BLL.Manager.PatientManager
         private readonly IServiceManager _serviceManager;
         private readonly IMapper _mapper;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IMemoryCache _cache;
 
-        public PatientManager(IPatientRepository patientRepository, IServiceManager serviceManager, IMapper mapper, UserManager<ApplicationUser> userManager)
+        public PatientManager(IPatientRepository patientRepository, IServiceManager serviceManager, IMapper mapper, UserManager<ApplicationUser> userManager, IMemoryCache cache)
         {
             _patientRepository = patientRepository;
             _serviceManager = serviceManager;
             _mapper = mapper;
             _userManager = userManager;
+            _cache = cache;
         }
 
         public async Task<PatientReadDto?> GetPatientByIdAsync(int id)
         {
+            var cacheKey = $"{CacheConstant.PatientProfilePrefix}{id}";
+            
+            if (_cache.TryGetValue(cacheKey, out PatientReadDto cachedPatient))
+            {
+                return cachedPatient;
+            }
+            
             var patient = await _patientRepository.GetPatientByIdAsync(id);
-            return _mapper.Map<PatientReadDto>(patient);
+            var patientDto = _mapper.Map<PatientReadDto>(patient);
+            
+            if (patientDto != null)
+            {
+                _cache.Set(cacheKey, patientDto, TimeSpan.FromMinutes(5));
+            }
+            
+            return patientDto;
         }
 
         public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
@@ -52,17 +70,27 @@ namespace Mos3ef.BLL.Manager.PatientManager
 
         public async Task<PagedResult<ServiceReadDto>> GetSavedServicesPagedAsync(int patientId, int pageNumber, int pageSize)
         {
-            // Removed redundant patient existence check - authenticated user is guaranteed to have patient record
+            var cacheKey = $"{CacheConstant.PatientSavedServicesPrefix}{patientId}_p{pageNumber}_s{pageSize}";
+            
+            if (_cache.TryGetValue(cacheKey, out PagedResult<ServiceReadDto> cachedResult))
+            {
+                return cachedResult;
+            }
+            
             var (savedServices, totalCount) = await _patientRepository.GetSavedServicesPagedAsync(patientId, pageNumber, pageSize);
             var services = _mapper.Map<IEnumerable<ServiceReadDto>>(savedServices.Select(ss => ss.Service));
 
-            return new PagedResult<ServiceReadDto>
+            var result = new PagedResult<ServiceReadDto>
             {
                 Items = services,
                 TotalCount = totalCount,
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
+            
+            _cache.Set(cacheKey, result, TimeSpan.FromMinutes(3));
+            
+            return result;
         }
 
         public async Task<bool> RemoveSavedServiceAsync(int patientId, int serviceId)
@@ -74,9 +102,12 @@ namespace Mos3ef.BLL.Manager.PatientManager
                 return false; 
             }
 
-
             _patientRepository.RemoveSavedService(savedService);
             await _patientRepository.SaveChangesAsync();
+            
+            // Invalidate saved services cache
+            InvalidateSavedServicesCache(patientId);
+            
             return true;
         }
 
@@ -103,7 +134,11 @@ namespace Mos3ef.BLL.Manager.PatientManager
             };
 
             await _patientRepository.AddSavedServiceAsync(savedService);
-            await _patientRepository.SaveChangesAsync(); 
+            await _patientRepository.SaveChangesAsync();
+            
+            // Invalidate saved services cache
+            InvalidateSavedServicesCache(patientId);
+            
             return true;
         }
 
@@ -164,7 +199,25 @@ namespace Mos3ef.BLL.Manager.PatientManager
             }
 
             await _patientRepository.SaveChangesAsync();
+            
+            // Invalidate patient profile cache
+            var cacheKey = $"{CacheConstant.PatientProfilePrefix}{id}";
+            _cache.Remove(cacheKey);
+            
             return true;
+        }
+        
+        private void InvalidateSavedServicesCache(int patientId)
+        {
+            // Invalidate cache for common page sizes
+            for (int page = 1; page <= 10; page++)
+            {
+                foreach (int size in new[] { 5, 10, 20, 50 })
+                {
+                    var cacheKey = $"{CacheConstant.PatientSavedServicesPrefix}{patientId}_p{page}_s{size}";
+                    _cache.Remove(cacheKey);
+                }
+            }
         }
     }
 }
