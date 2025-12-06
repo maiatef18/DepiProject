@@ -1,23 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Mos3ef.BLL.Dtos.Auth;
+using Mos3ef.DAL.Wapper;
 
 namespace Mos3ef.BLL.Manager.AuthManager
 {
     public interface IAuthManager
     {
-        Task<AuthResponseDto> RegisterPatientAsync(PatientRegisterDto dto);
-        Task<AuthResponseDto> RegisterHospitalAsync(HospitalRegisterDto dto);
-        Task<AuthResponseDto> LoginAsync(LoginDto dto);
-        Task<BasicResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto);
-        Task<BasicResponseDto> CreateRoleAsync(string roleName);
-        Task<BasicResponseDto> AssignRoleAsync(string email, string roleName);
-        Task<BasicResponseDto> CreateUserAsync(CreateUserDto dto);
-        Task<BasicResponseDto> UpdateUserAsync(UpdateUserDto dto);
-        Task<BasicResponseDto> LogoutAsync(string token);
-
+        Task<Response<AuthResponseDto>> RegisterPatientAsync(PatientRegisterDto dto);
+        Task<Response<AuthResponseDto>> RegisterHospitalAsync(HospitalRegisterDto dto);
+        Task<Response<AuthResponseDto>> LoginAsync(LoginDto dto);
+        Task<Response<string>> ChangePasswordAsync(string userId, ChangePasswordDto dto);
+        Task<Response<string>> LogoutAsync(string token);
     }
 }

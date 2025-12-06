@@ -7,14 +7,14 @@ using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Mos3ef.BLL.Dtos.Auth;
 using Mos3ef.DAL.Enums;
 using Mos3ef.DAL.Models;
-using Mos3ef.BLL.Dtos.Auth;
-using Microsoft.EntityFrameworkCore;
 using Mos3ef.DAL.Repository.AuthRepository;
+using Mos3ef.DAL.Wapper;
 
 namespace Mos3ef.BLL.Manager.AuthManager
 {
@@ -26,6 +26,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly IMapper _mapper;
+        private readonly IMemoryCache _cache;
 
         public AuthManager(
             IAuthRepository authRepository,
@@ -33,7 +34,8 @@ namespace Mos3ef.BLL.Manager.AuthManager
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             IConfiguration configuration,
-            IMapper mapper)
+            IMapper mapper,
+            IMemoryCache cache)
         {
             _authRepository = authRepository;
             _signInManager = signInManager;
@@ -41,6 +43,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
             _roleManager = roleManager;
             _configuration = configuration;
             _mapper = mapper;
+            _cache = cache;
         }
 
         #region GenerateJWTToken
@@ -64,22 +67,19 @@ namespace Mos3ef.BLL.Manager.AuthManager
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(keyString));
 
-
             var claims = new List<Claim>
-    {
-        new Claim(ClaimTypes.NameIdentifier, user.Id),
-        new Claim(ClaimTypes.Email, user.Email ?? ""),
-        new Claim(ClaimTypes.Name, user.UserName ?? ""),
-        new Claim("UserType", user.UserType.ToString())
-    };
-
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id),
+                new Claim(ClaimTypes.Email, user.Email ?? ""),
+                new Claim(ClaimTypes.Name, user.UserName ?? ""),
+                new Claim("UserType", user.UserType.ToString())
+            };
 
             var roles = await _userManager.GetRolesAsync(user);
             foreach (var role in roles)
             {
                 claims.Add(new Claim(ClaimTypes.Role, role));
             }
-
 
             var token = new JwtSecurityToken(
                 issuer: issuer,
@@ -93,357 +93,175 @@ namespace Mos3ef.BLL.Manager.AuthManager
         }
         #endregion
 
-        #region login
-        public async Task<AuthResponseDto> LoginAsync(LoginDto dto)
+        #region RegisterPatient
+        public async Task<Response<AuthResponseDto>> RegisterPatientAsync(PatientRegisterDto dto)
         {
-            var user = await _authRepository.GetUserByEmailAsync(dto.Email);
-            if (user == null)
-                return new AuthResponseDto { IsSuccess = false, Message = "Invalid login attempt." };
-
-            var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false, false);
-            if (!result.Succeeded)
-                return new AuthResponseDto { IsSuccess = false, Message = "Invalid login attempt." };
-
-            var token = await GenerateJwtToken(user);
-
-
-            var response = _mapper.Map<AuthResponseDto>(user);
-
-            response.IsSuccess = true;
-            response.Message = "Login successful!";
-            response.Token = token;
-
-            return response;
-        }
-        #endregion
-
-        #region logout
-
-        public async Task<BasicResponseDto> LogoutAsync(string token)
-        {
-            if (string.IsNullOrEmpty(token))
+            try
             {
-                return new BasicResponseDto
+                if (string.IsNullOrWhiteSpace(dto.Name) ||
+                    string.IsNullOrWhiteSpace(dto.Email) ||
+                    string.IsNullOrWhiteSpace(dto.Password) ||
+                    string.IsNullOrWhiteSpace(dto.ConfirmPassword))
                 {
-                    IsSuccess = false,
-                    Message = "Token is missing."
-                };
+                    return Response<AuthResponseDto>.Fail("All fields are required.");
+                }
+
+                if (dto.Password != dto.ConfirmPassword)
+                    return Response<AuthResponseDto>.Fail("Password and Confirm Password do not match.");
+
+                var existingUser = await _authRepository.GetUserByEmailAsync(dto.Email);
+                if (existingUser != null)
+                    return Response<AuthResponseDto>.Fail("Email already exists.");
+
+                var user = _mapper.Map<ApplicationUser>(dto);
+                var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
+                if (!success)
+                    return Response<AuthResponseDto>.Fail($"Failed to create patient: {error}");
+
+                if (!await _roleManager.RoleExistsAsync("Patient"))
+                    await _roleManager.CreateAsync(new IdentityRole("Patient"));
+
+                await _userManager.AddToRoleAsync(user, "Patient");
+
+                var patient = _mapper.Map<Patient>(dto);
+                patient.UserId = user.Id;
+                await _authRepository.AddPatientProfileAsync(patient);
+
+                var token = await GenerateJwtToken(user);
+                var response = _mapper.Map<AuthResponseDto>(user);
+                response.Name = dto.Name;
+                response.Token = token;
+
+                _cache.Remove($"User_{dto.Email}");
+
+                return Response<AuthResponseDto>.Success(response, "Patient registered successfully!");
             }
-
-           
-            var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
-            var expiration = jwtToken.ValidTo;
-
-            await _authRepository.RevokeTokenAsync(token, expiration);
-
-            return new BasicResponseDto
+            catch (Exception ex)
             {
-                IsSuccess = true,
-                Message = "Logged out successfully."
-            };
+                return Response<AuthResponseDto>.Fail($"Registration failed: {ex.Message}");
+            }
         }
         #endregion
 
         #region RegisterHospital
-
-        public async Task<AuthResponseDto> RegisterHospitalAsync(HospitalRegisterDto dto)
+        public async Task<Response<AuthResponseDto>> RegisterHospitalAsync(HospitalRegisterDto dto)
         {
-            var existingUser = await _authRepository.GetUserByEmailAsync(dto.Email);
-            if (existingUser != null)
-                return new AuthResponseDto { IsSuccess = false, Message = "Email already exists." };
+            try
+            {
+                var existingUser = await _authRepository.GetUserByEmailAsync(dto.Email);
+                if (existingUser != null)
+                    return Response<AuthResponseDto>.Fail("Email already exists.");
+
+                var user = _mapper.Map<ApplicationUser>(dto);
+                var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
+                if (!success)
+                    return Response<AuthResponseDto>.Fail($"Failed to create hospital: {error}");
+
+                if (!await _roleManager.RoleExistsAsync("Hospital"))
+                    await _roleManager.CreateAsync(new IdentityRole("Hospital"));
+
+                await _userManager.AddToRoleAsync(user, "Hospital");
+
+                var token = await GenerateJwtToken(user);
+                var response = _mapper.Map<AuthResponseDto>(user);
+                response.Name = dto.Name;
+                response.Token = token;
+
+                var hospital = _mapper.Map<Hospital>(dto);
+                hospital.UserId = user.Id;
+                await _authRepository.AddHospitalProfileAsync(hospital);
 
 
-            var user = _mapper.Map<ApplicationUser>(dto);
-
-
-            var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
-            if (!success)
-                return new AuthResponseDto { IsSuccess = false, Message = $"Failed to create hospital: {error}" };
-
-
-            if (!await _roleManager.RoleExistsAsync("Hospital"))
-                await _roleManager.CreateAsync(new IdentityRole("Hospital"));
-
-            await _userManager.AddToRoleAsync(user, "Hospital");
-
-            var token = await GenerateJwtToken(user);
-
-            var response = _mapper.Map<AuthResponseDto>(user);
-            response.IsSuccess = true;
-            response.Name = dto.Name;
-            response.Message = "Hospital registered successfully!";
-            response.Token = token;
-
-            var hospital = _mapper.Map<Hospital>(dto);
-            hospital.UserId = user.Id;
-            await _authRepository.AddHospitalProfileAsync(hospital);
-
-
-
-            return response;
+                return Response<AuthResponseDto>.Success(response, "Hospital registered successfully!");
+            }
+            catch (Exception ex)
+            {
+                return Response<AuthResponseDto>.Fail($"Registration failed: {ex.Message}");
+            }
         }
         #endregion
 
-        #region RegisterPatient
-        public async Task<AuthResponseDto> RegisterPatientAsync(PatientRegisterDto dto)
+        #region Login
+        public async Task<Response<AuthResponseDto>> LoginAsync(LoginDto dto)
         {
-            
-            if (string.IsNullOrWhiteSpace(dto.Name) ||
-                string.IsNullOrWhiteSpace(dto.Email) ||
-                string.IsNullOrWhiteSpace(dto.Password) ||
-                string.IsNullOrWhiteSpace(dto.ConfirmPassword))
+            try
             {
-                return new AuthResponseDto
-                {
-                    IsSuccess = false,
-                    Message = "Name, Email, Password, and ConfirmPassword are required."
-                };
-            }
 
-            if (dto.Password != dto.ConfirmPassword)
+                var cacheKey = $"User_{dto.Email}";
+                if (!_cache.TryGetValue(cacheKey, out ApplicationUser user))
+                {
+                    user = await _authRepository.GetUserByEmailAsync(dto.Email);
+                    if (user == null)
+                        return Response<AuthResponseDto>.Fail("Invalid login attempt.");
+
+                    _cache.Set(cacheKey, user, new MemoryCacheEntryOptions()
+                        .SetSlidingExpiration(TimeSpan.FromMinutes(5)));
+                }
+
+                var result = await _signInManager.PasswordSignInAsync(user, dto.Password, false, false);
+                if (!result.Succeeded)
+                    return Response<AuthResponseDto>.Fail("Invalid login attempt.");
+
+                var token = await GenerateJwtToken(user);
+                var response = _mapper.Map<AuthResponseDto>(user);
+                response.Token = token;
+
+                return Response<AuthResponseDto>.Success(response, "Login successful!");
+            }
+            catch (Exception ex)
             {
-                return new AuthResponseDto
-                {
-                    IsSuccess = false,
-                    Message = "Password and Confirm Password do not match."
-                };
+                return Response<AuthResponseDto>.Fail($"Login failed: {ex.Message}");
             }
+        }
+        #endregion
 
+        #region Logout
+        public async Task<Response<string>> LogoutAsync(string token)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(token))
+                    return Response<string>.Fail("Token is missing.");
 
-            var existingUser = await _authRepository.GetUserByEmailAsync(dto.Email);
-            if (existingUser != null)
-                return new AuthResponseDto { IsSuccess = false, Message = "Email already exists." };
+                var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
+                var expiration = jwtToken.ValidTo;
 
+                await _authRepository.RevokeTokenAsync(token, expiration);
 
-            var user = _mapper.Map<ApplicationUser>(dto);
-
-
-            var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
-            if (!success)
-                return new AuthResponseDto { IsSuccess = false, Message = $"Failed to create patient: {error}" };
-
-
-            if (!await _roleManager.RoleExistsAsync("Patient"))
-                await _roleManager.CreateAsync(new IdentityRole("Patient"));
-
-            await _userManager.AddToRoleAsync(user, "Patient");
-
-
-            var patient = _mapper.Map<Patient>(dto);
-            patient.UserId = user.Id;
-            await _authRepository.AddPatientProfileAsync(patient);
-
-
-            var token = await GenerateJwtToken(user);
-
-
-            var response = _mapper.Map<AuthResponseDto>(user);
-            response.IsSuccess = true;
-            response.Name = dto.Name;
-            response.Message = "Patient registered successfully!";
-            response.Token = token;
-
-            return response;
+                return Response<string>.Success(null, "Logged out successfully.");
+            }
+            catch (Exception ex)
+            {
+                return Response<string>.Fail($"Logout failed: {ex.Message}");
+            }
         }
         #endregion
 
         #region ChangePassword
-
-        public async Task<BasicResponseDto> ChangePasswordAsync(string userId, ChangePasswordDto dto)
+        public async Task<Response<string>> ChangePasswordAsync(string userId, ChangePasswordDto dto)
         {
-
-            if (dto.NewPassword != dto.ConfirmNewPassword)
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = "New password and confirmation do not match."
-                };
-
-
-            var user = await _authRepository.GetUserByIdAsync(userId);
-            if (user == null)
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = "User not found."
-                };
-
-
-            var result = await _authRepository.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
-
-            if (!result.IsSuccess)
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = $"Failed to change password: {result.Error}"
-                };
-
-            return new BasicResponseDto
+            try
             {
-                IsSuccess = true,
-                Message = "Password changed successfully."
-            };
+                if (dto.NewPassword != dto.ConfirmNewPassword)
+                    return Response<string>.Fail("New password and confirmation do not match.");
+
+                var user = await _authRepository.GetUserByIdAsync(userId);
+                if (user == null)
+                    return Response<string>.Fail("User not found.");
+
+                var result = await _authRepository.ChangePasswordAsync(user, dto.CurrentPassword, dto.NewPassword);
+                if (!result.IsSuccess)
+                    return Response<string>.Fail($"Failed to change password: {result.Error}");
+
+                _cache.Remove($"User_{user.Email}");
+
+                return Response<string>.Success(null, "Password changed successfully.");
+            }
+            catch (Exception ex)
+            {
+                return Response<string>.Fail($"Change password failed: {ex.Message}");
+            }
         }
         #endregion
-
-        #region AssignRole
-        public async Task<BasicResponseDto> AssignRoleAsync(string email, string roleName)
-        {
-            var response = new BasicResponseDto();
-
-            if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(roleName))
-            {
-                response.IsSuccess = false;
-                response.Message = "Email and RoleName are required.";
-                return response;
-            }
-
-            var user = await _userManager.FindByEmailAsync(email);
-            if (user == null)
-            {
-                response.IsSuccess = false;
-                response.Message = $"User with email '{email}' not found.";
-                return response;
-            }
-
-            if (!await _roleManager.RoleExistsAsync(roleName))
-                await _roleManager.CreateAsync(new IdentityRole(roleName));
-
-            var userRoles = await _userManager.GetRolesAsync(user);
-            if (userRoles.Contains(roleName))
-            {
-                response.IsSuccess = false;
-                response.Message = $"User already has the '{roleName}' role.";
-                return response;
-            }
-            var result = await _userManager.AddToRoleAsync(user, roleName);
-            if (!result.Succeeded)
-            {
-                response.IsSuccess = false;
-                response.Message = $"Failed to assign role: {string.Join(", ", result.Errors.Select(e => e.Description))}";
-                return response;
-            }
-
-            response.IsSuccess = true;
-            response.Message = $"Role '{roleName}' assigned to user '{email}' successfully.";
-            return response;
-        }
-        #endregion
-
-        #region CreateRole
-
-        public async Task<BasicResponseDto> CreateRoleAsync(string roleName)
-        {
-            if (string.IsNullOrWhiteSpace(roleName))
-            {
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = "Role name cannot be empty."
-                };
-            }
-
-            
-            if (await _roleManager.RoleExistsAsync(roleName))
-            {
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = $"Role '{roleName}' already exists."
-                };
-            }
-
-            
-            var result = await _roleManager.CreateAsync(new IdentityRole(roleName));
-            if (!result.Succeeded)
-            {
-                var errors = string.Join(", ", result.Errors.Select(e => e.Description));
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = $"Failed to create role: {errors}"
-                };
-            }
-
-            return new BasicResponseDto
-            {
-                IsSuccess = true,
-                Message = $"Role '{roleName}' created successfully."
-            };
-        }
-        #endregion
-
-        #region CreateUser
-
-        public async Task<BasicResponseDto> CreateUserAsync(CreateUserDto dto)
-        {
-            if (string.IsNullOrWhiteSpace(dto.Email) || string.IsNullOrWhiteSpace(dto.Password))
-                return new BasicResponseDto { IsSuccess = false, Message = "Email and Password are required." };
-
-            var existingUser = await _userManager.FindByEmailAsync(dto.Email);
-            if (existingUser != null)
-                return new BasicResponseDto { IsSuccess = false, Message = "User with this email already exists." };
-
-            var user = new ApplicationUser
-            {
-                UserName = dto.Email,
-                Email = dto.Email,
-                UserType = Enum.TryParse<UserType>(dto.Role, out var type) ? type : UserType.Patient
-            };
-
-            var result = await _userManager.CreateAsync(user, dto.Password);
-            if (!result.Succeeded)
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = string.Join(", ", result.Errors.Select(e => e.Description))
-                };
-
-            await AssignRoleAsync(dto.Email, dto.Role);
-
-            return new BasicResponseDto
-            {
-                IsSuccess = true,
-                Message = $"User '{dto.Email}' created successfully with role '{dto.Role}'."
-            };
-        }
-        #endregion
-
-        #region UpdateUser
-        public async Task<BasicResponseDto> UpdateUserAsync(UpdateUserDto dto)
-        {
-            var user = await _userManager.FindByEmailAsync(dto.Email);
-            if (user == null)
-                return new BasicResponseDto { IsSuccess = false, Message = "User not found." };
-
-            var updateResult = await _userManager.UpdateAsync(user);
-            if (!updateResult.Succeeded)
-                return new BasicResponseDto
-                {
-                    IsSuccess = false,
-                    Message = string.Join(", ", updateResult.Errors.Select(e => e.Description))
-                };
-
-            if (!string.IsNullOrWhiteSpace(dto.NewPassword))
-            {
-                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var passwordResult = await _userManager.ResetPasswordAsync(user, token, dto.NewPassword);
-
-                if (!passwordResult.Succeeded)
-                    return new BasicResponseDto
-                    {
-                        IsSuccess = false,
-                        Message = string.Join(", ", passwordResult.Errors.Select(e => e.Description))
-                    };
-            }
-
-            return new BasicResponseDto
-            {
-                IsSuccess = true,
-                Message = $"User '{dto.Email}' updated successfully."
-            };
-        }
-        #endregion
-
     }
 }
