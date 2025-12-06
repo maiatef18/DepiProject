@@ -42,7 +42,7 @@ namespace Mos3ef.Api.Controllers
 
             var result = await _serviceManager.SearchServicesAsync(keyword, catEnum, lat, lon);
 
-            return Ok(Response<List<ServiceReadDto>>.Success(result, "Services retrieved successfully"));
+            return Ok(Response<IEnumerable<ServiceReadDto>>.Success(result, "Services retrieved successfully"));
         }
 
         /// <summary>
