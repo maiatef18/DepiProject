@@ -110,7 +110,6 @@ builder.Services.AddScoped<IServiceRepository, ServiceRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<Mos3ef.BLL.Services.IFileStorageService, Mos3ef.BLL.Services.FileStorageService>(); // Register file storage service
 
-
 builder.Services.AddScoped<ICacheService, MemoryCacheService>();
 
 builder.Services.AddAuthorization(options =>

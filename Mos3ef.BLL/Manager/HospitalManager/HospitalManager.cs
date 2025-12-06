@@ -6,6 +6,7 @@ using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.DAL.Models;
+using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.DAL.Repository.HospitalRepository;
 using System;
 using System.Collections.Generic;
