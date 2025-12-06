@@ -32,5 +32,8 @@ namespace Mos3ef.DAL.Wapper
             IsSucceded = false;
         }
 
+        // Static factory methods for cleaner usage
+        public static Response<T> Success(T data, string message = "") => new Response<T>(data, message);
+        public static Response<T> Fail(string message) => new Response<T>(message);
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.BLL.Services;
 using Mos3ef.DAL;
+using Mos3ef.DAL.Wapper;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -70,16 +71,17 @@ namespace Mos3ef.Api.Controllers
             var patient = await _patientManager.GetPatientByIdAsync(id);
             if (patient == null)
             {
-                return NotFound("Patient not found.");
+                return NotFound(Response<PatientReadDto>.Fail("Patient not found."));
             }
-            return Ok(patient);
+            return Ok(Response<PatientReadDto>.Success(patient, "Patient retrieved successfully"));
         }
 
         [HttpGet("my-profile")]
-        public async Task<ActionResult<PatientReadDto>> GetMyProfile()
+        public async Task<IActionResult> GetMyProfile()
         {
             var patientId = await GetCurrentPatientIdAsync();
-            if (patientId == null) return Unauthorized();
+            if (patientId == null) 
+                return Unauthorized(Response<PatientReadDto>.Fail("Unauthorized access"));
 
             // Check cache first
             var cacheKey = CacheConstant.PatientProfilePrefix + patientId;
@@ -87,7 +89,8 @@ namespace Mos3ef.Api.Controllers
             {
                 // Not in cache, fetch from database
                 patient = await _patientManager.GetPatientByIdAsync(patientId.Value);
-                if (patient == null) return NotFound();
+                if (patient == null) 
+                    return NotFound(Response<PatientReadDto>.Fail("Patient profile not found"));
 
                 // Store in cache for 5 minutes
                 var cacheOptions = new MemoryCacheEntryOptions()
@@ -96,7 +99,7 @@ namespace Mos3ef.Api.Controllers
                 _cache.Set(cacheKey, patient, cacheOptions);
             }
 
-            return Ok(patient);
+            return Ok(Response<PatientReadDto>.Success(patient, "Profile retrieved successfully"));
         }
 
         [HttpPut("my-profile")]
@@ -104,13 +107,17 @@ namespace Mos3ef.Api.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                return BadRequest(Response<bool>.Fail(string.Join(", ", errors)));
             }
 
             var myPatientId = await GetCurrentPatientIdAsync();
             if (myPatientId == null)
             {
-                return Unauthorized();
+                return Unauthorized(Response<bool>.Fail("Unauthorized access"));
             }
 
             string? imagePath = null;
@@ -123,7 +130,7 @@ namespace Mos3ef.Api.Controllers
                 var allowedExtensions = new[] { ".jpg", ".jpeg", ".png" };
                 if (!_fileStorageService.ValidateFile(patientUpdateDto.ProfilePicture, out string errorMessage, allowedExtensions, maxSizeMB: 5))
                 {
-                    return BadRequest(errorMessage);
+                    return BadRequest(Response<bool>.Fail(errorMessage));
                 }
 
                 // Get current patient to check for existing profile picture
@@ -144,7 +151,7 @@ namespace Mos3ef.Api.Controllers
                 var success = await _patientManager.UpdatePatientAsync(myPatientId.Value, patientUpdateDto, imagePath);
                 if (!success)
                 {
-                    return NotFound("Patient profile not found.");
+                    return NotFound(Response<bool>.Fail("Patient profile not found."));
                 }
 
                 // Delete old profile picture AFTER successful update
@@ -159,32 +166,33 @@ namespace Mos3ef.Api.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(ex.Message);
+                return BadRequest(Response<bool>.Fail(ex.Message));
             }
 
-            return NoContent();
+            return Ok(Response<bool>.Success(true, "Profile updated successfully"));
         }
 
         [HttpGet("my-saved-services")]
-        public async Task<ActionResult<PagedResult<ServiceReadDto>>> GetMySavedServices(
+        public async Task<IActionResult> GetMySavedServices(
             [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10)
         {
             if (pageNumber < 1)
             {
-                return BadRequest("Page number must be at least 1.");
+                return BadRequest(Response<PagedResult<ServiceReadDto>>.Fail("Page number must be at least 1."));
             }
 
             if (pageSize < 1 || pageSize > 100)
             {
-                return BadRequest("Page size must be between 1 and 100.");
+                return BadRequest(Response<PagedResult<ServiceReadDto>>.Fail("Page size must be between 1 and 100."));
             }
 
             var patientId = await GetCurrentPatientIdAsync();
-            if (patientId == null) return Unauthorized();
+            if (patientId == null) 
+                return Unauthorized(Response<PagedResult<ServiceReadDto>>.Fail("Unauthorized access"));
 
             var result = await _patientManager.GetSavedServicesPagedAsync(patientId.Value, pageNumber, pageSize);
-            return Ok(result);
+            return Ok(Response<PagedResult<ServiceReadDto>>.Success(result, "Saved services retrieved successfully"));
         }
 
         [HttpPost("my-saved-services/{serviceId}")]
@@ -193,17 +201,17 @@ namespace Mos3ef.Api.Controllers
             var myPatientId = await GetCurrentPatientIdAsync();
             if (myPatientId == null)
             {
-                return Unauthorized();
+                return Unauthorized(Response<bool>.Fail("Unauthorized access"));
             }
 
             var success = await _patientManager.SaveServiceAsync(myPatientId.Value, serviceId);
 
             if (!success)
             {
-                return NotFound("Patient or Service not found.");
+                return NotFound(Response<bool>.Fail("Patient or Service not found."));
             }
-            // Return 204 for idempotent operation (works for both new and existing saves)
-            return NoContent();
+            
+            return Ok(Response<bool>.Success(true, "Service saved successfully"));
         }
 
         [HttpDelete("my-saved-services/{serviceId}")]
@@ -212,16 +220,16 @@ namespace Mos3ef.Api.Controllers
             var myPatientId = await GetCurrentPatientIdAsync();
             if (myPatientId == null)
             {
-                return Unauthorized();
+                return Unauthorized(Response<bool>.Fail("Unauthorized access"));
             }
 
             var success = await _patientManager.RemoveSavedServiceAsync(myPatientId.Value, serviceId);
 
             if (!success)
             {
-                return NotFound("Saved service link not found.");
+                return NotFound(Response<bool>.Fail("Saved service link not found."));
             }
-            return NoContent();
+            return Ok(Response<bool>.Success(true, "Service removed successfully"));
         }
     }
 }
