@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Mos3ef.BLL.cachenig;
+using Mos3ef.BLL.Caching;
 using Mos3ef.BLL.Dtos.Hospital;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;

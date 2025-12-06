@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Mos3ef.Api.Middleware;
-using Mos3ef.BLL.cachenig;
+using Mos3ef.BLL.Caching;
 using Mos3ef.BLL.Manager.AuthManager;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.BLL.Manager.PatientManager;
