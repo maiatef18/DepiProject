@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mos3ef.BLL.Dtos.Hospital;
+using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Dtos.Services;
 using Mos3ef.BLL.Manager.HospitalManager;
 using Mos3ef.DAL.Database;
@@ -29,7 +30,7 @@ namespace Mos3ef.Api.Controllers
             var hospitals = await _hospitalManager.GetAllAsync();
 
             if (hospitals == null || !hospitals.Any())
-                return Ok(Response<IEnumerable<HospitalReadDto>>.Fail("No hospitals found"));
+                return Ok(Response<HospitalReadDto>.Fail("Hospital not found"));
 
             return Ok(Response<IEnumerable<HospitalReadDto>>.Success(hospitals, "Hospitals fetched"));
         }
@@ -42,9 +43,9 @@ namespace Mos3ef.Api.Controllers
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var hospital = await _hospitalManager.GetAsync(Hospital_ID);
             if (hospital == null)
-                return Ok(new Response<Hospital>("No Hospital found"));
+                return Ok( Response<Hospital>.Fail("No Hospital found"));
 
-            return Ok(hospital);
+            return Ok(Response<HospitalReadDto>.Success(hospital, "Hospital fetched"));
         }
 
 
@@ -56,7 +57,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             var Hospital = await _hospitalManager.AddAsync(hospitalAddDto);
-            return Ok(new Response<Hospital>(Hospital, "Hospital Added Successfully"));
+            return Ok(Response<Hospital>.Success(Hospital, "Hospital Added Successfully"));
         }
 
 
@@ -67,7 +68,7 @@ namespace Mos3ef.Api.Controllers
         {
             var Hospital_ID = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var Hospital = await _hospitalManager.UpdateAsync(Hospital_ID, hospitalUpdateDto);
-            return Ok((new Response<HospitalReadDto>(Hospital, "Hospital Updated Successfully")));
+            return Ok(( Response<HospitalReadDto>.Success(Hospital, "Hospital Updated Successfully")));
         }
 
 
@@ -91,7 +92,7 @@ namespace Mos3ef.Api.Controllers
                 return BadRequest(ModelState);
 
             var Service = await _hospitalManager.AddServiceAsync(userId , servicesAddDto);
-            return Ok(new Response<ServiceShowDto>(Service, "Service Added Successfully"));
+            return Ok( Response<ServiceShowDto>.Success(Service, "Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -106,9 +107,9 @@ namespace Mos3ef.Api.Controllers
             var services = await _hospitalManager.GetAllServicesAsync(userId);
 
             if (services == null || !services.Any())
-                return Ok(new Response<List<Service>>("No services found"));
+                return Ok( Response<List<Service>>.Fail("No services found"));
 
-            return Ok(services);
+            return Ok(Response<IEnumerable<ServiceHospitalDto>>.Success(services, "Services fetched"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -118,7 +119,7 @@ namespace Mos3ef.Api.Controllers
             var Hospital_Id = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var Service = await _hospitalManager.UpdateServiceAsync(Hospital_Id, id, servicesUpdateDto);
-            return Ok(new Response<ServiceShowDto>(Service ,"Service Added Successfully"));
+            return Ok( Response<ServiceShowDto>.Success(Service ,"Service Added Successfully"));
         }
 
         [Authorize(Policy = "Hospital")]
@@ -138,10 +139,10 @@ namespace Mos3ef.Api.Controllers
             var reviews = await _hospitalManager.GetServicesReviewsAsync(id);
             if (reviews == null)
             {
-                return Ok(new Response<Review>("Service not have Review "));
+                return Ok( Response<Review>.Fail("Service not have Review "));
 
             }
-            return Ok(reviews);
+            return Ok(Response<IEnumerable<ReviewReadDto>>.Success(reviews, "Reviews fetched"));
         }
 
 
@@ -150,7 +151,7 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> GetDashboardStatsAsync([FromRoute] int id)
         {
             var stats = await _hospitalManager.GetDashboardStatsAsync(id);
-            return Ok(stats);
+            return Ok(Response<(int servicesCount, int reviewsCount, double avgRating)>.Success(stats, "Stats fetched"));
         }
 
 
