@@ -8,9 +8,18 @@ using Mos3ef.BLL.Dtos.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.DAL;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.BLL.Manager.PatientManager
 {
+    /// <summary>
+    /// Manager for patient-related business logic.
+    /// 
+    /// Following Clean Architecture:
+    /// - Throws business exceptions (NotFoundException, BadRequestException) when rules are violated
+    /// - Controller/Middleware translates these to HTTP responses
+    /// - Contains caching logic for performance
+    /// </summary>
     public class PatientManager : IPatientManager
     {
         private readonly IPatientRepository _patientRepository;
@@ -28,7 +37,11 @@ namespace Mos3ef.BLL.Manager.PatientManager
             _cache = cache;
         }
 
-        public async Task<PatientReadDto?> GetPatientByIdAsync(int id)
+        /// <summary>
+        /// Get patient by ID with caching.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when patient is not found</exception>
+        public async Task<PatientReadDto> GetPatientByIdAsync(int id)
         {
             var cacheKey = $"{CacheConstant.PatientProfilePrefix}{id}";
             
@@ -38,36 +51,44 @@ namespace Mos3ef.BLL.Manager.PatientManager
             }
             
             var patient = await _patientRepository.GetPatientByIdAsync(id);
-            var patientDto = _mapper.Map<PatientReadDto>(patient);
-            
-            if (patientDto != null)
+            if (patient == null)
             {
-                _cache.Set(cacheKey, patientDto, TimeSpan.FromMinutes(5));
+                throw new NotFoundException($"Patient with ID {id} not found.");
             }
+            
+            var patientDto = _mapper.Map<PatientReadDto>(patient);
+            _cache.Set(cacheKey, patientDto, TimeSpan.FromMinutes(5));
             
             return patientDto;
         }
 
-        public async Task<PatientReadDto?> GetPatientByUserIdAsync(string userId)
+        /// <summary>
+        /// Get patient by ApplicationUser ID.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when patient is not found</exception>
+        public async Task<PatientReadDto> GetPatientByUserIdAsync(string userId)
         {
             var patient = await _patientRepository.GetPatientByUserIdAsync(userId);
-            if (patient == null) return null;
+            if (patient == null)
+            {
+                throw new NotFoundException("Patient profile not found for this user.");
+            }
 
             return _mapper.Map<PatientReadDto>(patient);
         }
 
         public async Task<IEnumerable<ServiceReadDto>> GetSavedServicesAsync(int patientId)
         {
-            var patient = await _patientRepository.GetPatientByIdAsync(patientId);
-            if (patient == null)
-            {
-                return Enumerable.Empty<ServiceReadDto>();
-            }
+            // Verify patient exists
+            await GetPatientByIdAsync(patientId);
 
             var savedServices = await _patientRepository.GetSavedServicesAsync(patientId);
             return _mapper.Map<IEnumerable<ServiceReadDto>>(savedServices.Select(ss => ss.Service));
         }
 
+        /// <summary>
+        /// Get saved services with pagination and caching.
+        /// </summary>
         public async Task<PagedResult<ServiceReadDto>> GetSavedServicesPagedAsync(int patientId, int pageNumber, int pageSize)
         {
             var cacheKey = $"{CacheConstant.PatientSavedServicesPrefix}{patientId}_p{pageNumber}_s{pageSize}";
@@ -93,13 +114,17 @@ namespace Mos3ef.BLL.Manager.PatientManager
             return result;
         }
 
-        public async Task<bool> RemoveSavedServiceAsync(int patientId, int serviceId)
+        /// <summary>
+        /// Remove a saved service from patient's list.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when saved service link not found</exception>
+        public async Task RemoveSavedServiceAsync(int patientId, int serviceId)
         {
             var savedService = await _patientRepository.FindSavedServiceAsync(patientId, serviceId);
 
             if (savedService == null)
             {
-                return false; 
+                throw new NotFoundException("Saved service link not found.");
             }
 
             _patientRepository.RemoveSavedService(savedService);
@@ -107,24 +132,29 @@ namespace Mos3ef.BLL.Manager.PatientManager
             
             // Invalidate saved services cache
             InvalidateSavedServicesCache(patientId);
-            
-            return true;
         }
 
-        public async Task<bool> SaveServiceAsync(int patientId, int serviceId)
+        /// <summary>
+        /// Save a service to patient's favorites list.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when service not found</exception>
+        public async Task SaveServiceAsync(int patientId, int serviceId)
         {
- 
-            var patient = await _patientRepository.GetPatientByIdAsync(patientId);
-            if (patient == null) return false;
+            // Verify patient exists (will throw if not found)
+            await GetPatientByIdAsync(patientId);
 
+            // Verify service exists (ServiceManager will throw if not found)
             var service = await _serviceManager.GetByIdAsync(serviceId);
-            if (service == null) return false; 
+            if (service == null)
+            {
+                throw new NotFoundException($"Service with ID {serviceId} not found.");
+            }
 
-
+            // Check if already saved (idempotent operation)
             var alreadyExists = await _patientRepository.FindSavedServiceAsync(patientId, serviceId);
             if (alreadyExists != null)
             {
-                return true; 
+                return; // Already saved, nothing to do
             }
 
             var savedService = new SavedService
@@ -138,18 +168,21 @@ namespace Mos3ef.BLL.Manager.PatientManager
             
             // Invalidate saved services cache
             InvalidateSavedServicesCache(patientId);
-            
-            return true;
         }
 
-        public async Task<bool> UpdatePatientAsync(int id, PatientUpdateDto patientUpdateDto, string? imagePath = null)
+        /// <summary>
+        /// Update patient profile.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when patient not found</exception>
+        /// <exception cref="InvalidOperationException">Thrown when email already in use</exception>
+        public async Task UpdatePatientAsync(int id, PatientUpdateDto patientUpdateDto, string? imagePath = null)
         {
             // Use ForUpdate method to get tracked entity
             var patient = await _patientRepository.GetPatientByIdForUpdateAsync(id);
 
             if (patient == null)
             {
-                return false; 
+                throw new NotFoundException($"Patient with ID {id} not found.");
             }
 
             // Update Patient fields (Name, Address)
@@ -203,8 +236,6 @@ namespace Mos3ef.BLL.Manager.PatientManager
             // Invalidate patient profile cache
             var cacheKey = $"{CacheConstant.PatientProfilePrefix}{id}";
             _cache.Remove(cacheKey);
-            
-            return true;
         }
         
         private void InvalidateSavedServicesCache(int patientId)

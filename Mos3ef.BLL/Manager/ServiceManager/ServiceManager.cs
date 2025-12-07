@@ -15,10 +15,18 @@ using ComparisonMetrics = Mos3ef.BLL.Dtos.Compare.ComparisonMetrics;
 using Mos3ef.DAL.Enum;
 using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.DAL;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.BLL.Manager.ServiceManager
 {
-
+    /// <summary>
+    /// Manager for service-related business logic.
+    /// 
+    /// Following Clean Architecture:
+    /// - Throws business exceptions (NotFoundException) when entities are not found
+    /// - Controller/Middleware translates these to HTTP responses
+    /// - Contains caching logic for performance
+    /// </summary>
     public class ServiceManager : IServiceManager
     {
         private readonly IServiceRepository _serviceRepository;
@@ -44,6 +52,9 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             return _mapper.Map<ServiceReadDto>(service);
         }
 
+        /// <summary>
+        /// Get reviews for a service with caching.
+        /// </summary>
         public async Task<IEnumerable<ReviewReadDto>> GetServiceReviews(int id)
         {
             var cacheKey = $"{CacheConstant.ServiceReviewsPrefix}{id}";
@@ -61,6 +72,10 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             return reviewDtos;
         }
 
+        /// <summary>
+        /// Get hospital for a service with caching.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when hospital not found</exception>
         public async Task<HospitalReadDto> GetServiceHospital(int id)
         {
             var cacheKey = $"{CacheConstant.ServiceHospitalPrefix}{id}";
@@ -71,18 +86,25 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             }
             
             var hospital = await _serviceRepository.GetServiceHospital(id);
-            var hospitalDto = _mapper.Map<HospitalReadDto>(hospital);
+            if (hospital == null)
+            {
+                throw new NotFoundException($"Hospital not found for service with ID {id}.");
+            }
             
+            var hospitalDto = _mapper.Map<HospitalReadDto>(hospital);
             _cache.Set(cacheKey, hospitalDto, TimeSpan.FromMinutes(20));
             
             return hospitalDto;
         }
 
+        /// <summary>
+        /// Search services by keyword, category, and location with caching.
+        /// </summary>
         public async Task<IEnumerable<ServiceReadDto>> SearchServicesAsync(
-        string? keyword,
-        CategoryType? category,
-        double? userLat,
-        double? userLon)
+            string? keyword,
+            CategoryType? category,
+            double? userLat,
+            double? userLon)
         {
             // Create cache key from parameters
             var cacheKey = $"{CacheConstant.ServiceSearchPrefix}" +
@@ -146,7 +168,11 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             return results;
         }
 
-        public async Task<ServiceReadDto?> GetByIdAsync(int serviceId)
+        /// <summary>
+        /// Get service by ID with caching.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when service not found</exception>
+        public async Task<ServiceReadDto> GetByIdAsync(int serviceId)
         {
             var cacheKey = $"{CacheConstant.ServicePrefix}{serviceId}";
             
@@ -156,28 +182,42 @@ namespace Mos3ef.BLL.Manager.ServiceManager
             }
             
             var service = await _serviceRepository.GetByIdAsync(serviceId);
-            var serviceDto = _mapper.Map<ServiceReadDto>(service);
-            
-            if (serviceDto != null)
+            if (service == null)
             {
-                _cache.Set(cacheKey, serviceDto, TimeSpan.FromMinutes(15));
+                throw new NotFoundException($"Service with ID {serviceId} not found.");
             }
+            
+            var serviceDto = _mapper.Map<ServiceReadDto>(service);
+            _cache.Set(cacheKey, serviceDto, TimeSpan.FromMinutes(15));
             
             return serviceDto;
         }
 
+        /// <summary>
+        /// Compare two services side-by-side.
+        /// </summary>
+        /// <exception cref="NotFoundException">Thrown when one or both services not found</exception>
         public async Task<CompareResponseDto> CompareServicesAsync(CompareRequestDto dto)
         {
-            var service1 = await GetByIdAsync(dto.Service1Id);
-            var service2 = await GetByIdAsync(dto.Service2Id);
-
-            if (service1 == null || service2 == null)
+            ServiceReadDto service1;
+            ServiceReadDto service2;
+            
+            try
             {
-                return new CompareResponseDto
-                {
-                    Service1 = service1,
-                    Service2 = service2
-                };
+                service1 = await GetByIdAsync(dto.Service1Id);
+            }
+            catch (NotFoundException)
+            {
+                throw new NotFoundException($"Service with ID {dto.Service1Id} not found.");
+            }
+            
+            try
+            {
+                service2 = await GetByIdAsync(dto.Service2Id);
+            }
+            catch (NotFoundException)
+            {
+                throw new NotFoundException($"Service with ID {dto.Service2Id} not found.");
             }
 
             var metrics = new ComparisonMetrics();
@@ -314,6 +354,10 @@ namespace Mos3ef.BLL.Manager.ServiceManager
                 Metrics = metrics
             };
         }
+
+        /// <summary>
+        /// Calculate distance between two coordinates using Haversine formula.
+        /// </summary>
         private double CalculateDistance(double lat1, double lon1, double lat2, double lon2)
         {
             var dLat = (lat2 - lat1) * Math.PI / 180;
@@ -330,3 +374,4 @@ namespace Mos3ef.BLL.Manager.ServiceManager
         }
     }
 }
+
