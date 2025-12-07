@@ -179,6 +179,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseCors("AllowAll");
 app.UseMiddleware<TokenRevocationMiddleware>();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 
 
