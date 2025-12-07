@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Mos3ef.BLL.Manager.AuthManager;
-using Mos3ef.DAL.Wapper;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.Api.Controllers
 {
@@ -20,28 +20,26 @@ namespace Mos3ef.Api.Controllers
         }
 
         #region RegisterPatient
-
         [HttpPost("register/patient")]
         public async Task<IActionResult> RegisterPatient([FromBody] PatientRegisterDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(Response<string>.Fail("Invalid model state."));
+                throw new BadRequestException("Invalid model state.");
 
             var result = await _authManager.RegisterPatientAsync(dto);
-            return result.IsSucceded ? Ok(result) : BadRequest(result);
+            return Ok(result); 
         }
         #endregion
 
         #region RegisterHospital
-
         [HttpPost("register/hospital")]
         public async Task<IActionResult> RegisterHospital([FromBody] HospitalRegisterDto dto)
         {
             if (!ModelState.IsValid)
-                return BadRequest(Response<string>.Fail("Invalid model state."));
+                throw new BadRequestException("Invalid model state.");
 
             var result = await _authManager.RegisterHospitalAsync(dto);
-            return result.IsSucceded ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
         #endregion
 
@@ -50,7 +48,7 @@ namespace Mos3ef.Api.Controllers
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
             var result = await _authManager.LoginAsync(dto);
-            return result.IsSucceded ? Ok(result) : Unauthorized(result);
+            return Ok(result);
         }
         #endregion
 
@@ -61,22 +59,21 @@ namespace Mos3ef.Api.Controllers
         {
             var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
             var result = await _authManager.LogoutAsync(token);
-            return result.IsSucceded ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
         #endregion
 
-        #region change password
-
+        #region ChangePassword
         [Authorize]
         [HttpPost("change-password")]
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userId))
-                return Unauthorized(Response<string>.Fail("User not found."));
+                throw new BadRequestException("User not found.");
 
             var result = await _authManager.ChangePasswordAsync(userId, dto);
-            return result.IsSucceded ? Ok(result) : BadRequest(result);
+            return Ok(result);
         }
         #endregion
     }

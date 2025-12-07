@@ -75,9 +75,8 @@ namespace Mos3ef.BLL.Manager.AuthManager
                 new Claim("UserType", user.UserType.ToString())
             };
 
-            var roles = await _userManager.GetRolesAsync(user);
-            foreach (var role in roles)
-                claims.Add(new Claim(ClaimTypes.Role, role));
+            var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
+
 
             var token = new JwtSecurityToken(
                 issuer,
@@ -107,13 +106,11 @@ namespace Mos3ef.BLL.Manager.AuthManager
             if (!success)
                 throw new BadRequestException(error);
 
-            if (!await _roleManager.RoleExistsAsync("Patient"))
-                await _roleManager.CreateAsync(new IdentityRole("Patient"));
-
             await _userManager.AddToRoleAsync(user, "Patient");
 
             var patient = _mapper.Map<Patient>(dto);
             patient.UserId = user.Id;
+
             await _authRepository.AddPatientProfileAsync(patient);
 
             var token = await GenerateJwtToken(user);
@@ -121,8 +118,6 @@ namespace Mos3ef.BLL.Manager.AuthManager
             var response = _mapper.Map<AuthResponseDto>(user);
             response.Name = dto.Name;
             response.Token = token;
-
-            _cache.Remove($"User_{dto.Email}");
 
             return Response<AuthResponseDto>.Success(response, "Patient registered successfully!");
         }
@@ -140,9 +135,6 @@ namespace Mos3ef.BLL.Manager.AuthManager
             var (success, error) = await _authRepository.CreateUserAsync(user, dto.Password);
             if (!success)
                 throw new BadRequestException(error);
-
-            if (!await _roleManager.RoleExistsAsync("Hospital"))
-                await _roleManager.CreateAsync(new IdentityRole("Hospital"));
 
             await _userManager.AddToRoleAsync(user, "Hospital");
 
@@ -163,7 +155,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
         #region Login
         public async Task<Response<AuthResponseDto>> LoginAsync(LoginDto dto)
         {
-            // 1. Get user by email (always fro
+            
             var user = await _authRepository.GetUserByEmailAsync(dto.Email);
             if (user == null)
                 throw new UnauthorizedException("Invalid login attempt.");
@@ -197,13 +189,24 @@ namespace Mos3ef.BLL.Manager.AuthManager
             if (string.IsNullOrEmpty(token))
                 throw new BadRequestException("Token is required.");
 
+           
             var jwtToken = new JwtSecurityTokenHandler().ReadJwtToken(token);
-            var expiration = jwtToken.ValidTo;
+            var userIdClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
+            if (string.IsNullOrEmpty(userIdClaim))
+                throw new BadRequestException("Invalid token: UserId not found.");
+
+            
+            var expiration = jwtToken.ValidTo;
             await _authRepository.RevokeTokenAsync(token, expiration);
+
+            
+            var cacheKey = $"User_{userIdClaim}";
+            _cache.Remove(cacheKey);
 
             return Response<string>.Success(null, "Logged out successfully.");
         }
+
         #endregion
 
         #region ChangePassword
@@ -220,7 +223,7 @@ namespace Mos3ef.BLL.Manager.AuthManager
             if (!result.IsSuccess)
                 throw new BadRequestException(result.Error);
 
-            _cache.Remove($"User_{user.Email}");
+            _cache.Remove($"User_{user.Id}");
 
             return Response<string>.Success(null, "Password changed successfully.");
         }
