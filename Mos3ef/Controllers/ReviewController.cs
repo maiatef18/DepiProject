@@ -4,9 +4,18 @@ using Microsoft.AspNetCore.Mvc;
 using Mos3ef.BLL.Dtos.Review;
 using Mos3ef.BLL.Manager.ReviewManager;
 using Mos3ef.DAL.Wapper;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.Api.Controllers
 {
+    /// <summary>
+    /// Controller for managing service reviews.
+    /// 
+    /// Following Clean Architecture:
+    /// - Controller is thin - only handles HTTP concerns
+    /// - Business logic and validation are in the Manager layer
+    /// - Exceptions from Manager propagate to GlobalExceptionMiddleware
+    /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase
@@ -17,48 +26,79 @@ namespace Mos3ef.Api.Controllers
         {
             _reviewManger = reviewManger;
         }
+
+        /// <summary>
+        /// Get all reviews for a specific service.
+        /// </summary>
         [HttpGet("{serviceId}")]
         public async Task<IActionResult> GetReviewsByService(int serviceId)
         {
+            if (serviceId <= 0)
+                throw new BadRequestException("Service ID must be greater than 0.");
+
             var reviews = await _reviewManger.GetReviewsByServiceIdAsync(serviceId);
-            return Ok(new Response<IEnumerable<ReviewReadDto>>(reviews, "reviews return Successfully"));
+            return Ok(Response<IEnumerable<ReviewReadDto>>.Success(reviews, "Reviews retrieved successfully"));
         }
 
+        /// <summary>
+        /// Add a new review for a service.
+        /// </summary>
         [Authorize(Policy = "Patient")]
         [HttpPost]
-        public async Task<IActionResult> AddReview(ReviewAddDto review)
+        public async Task<IActionResult> AddReview([FromBody] ReviewAddDto review)
         {
-              
-          bool result = await _reviewManger.AddReviewAsync(review);
-            if (!result)
-                return BadRequest(new Response<bool>("Error in ServiceId or PatientId"));
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                throw new ValidationException(errors);
+            }
 
-            return Ok(new Response<bool>(true, "Review Created Successfully"));
+            // Manager throws BadRequestException if ServiceId or PatientId invalid
+            await _reviewManger.AddReviewAsync(review);
+            return Ok(Response<bool>.Success(true, "Review created successfully"));
         }
 
+        /// <summary>
+        /// Update an existing review.
+        /// </summary>
         [Authorize(Policy = "Patient")]
-        [HttpPut("{Id}")]
-        public async Task<IActionResult> Update(int Id,ReviewUpdateDto review)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] ReviewUpdateDto review)
         {
+            if (id <= 0)
+                throw new BadRequestException("Review ID must be greater than 0.");
 
-         bool result=  await _reviewManger.UpdateReviewAsync(review);
-            if (!result)
-                return NotFound(new Response<bool>("Review not found"));
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+                throw new ValidationException(errors);
+            }
 
-            return Ok(new Response<bool>(true, "Review Updated Successfully"));
-
+            // Manager throws NotFoundException if review not found
+            await _reviewManger.UpdateReviewAsync(review);
+            return Ok(Response<bool>.Success(true, "Review updated successfully"));
         }
 
+        /// <summary>
+        /// Delete a review.
+        /// </summary>
         [Authorize(Policy = "Patient")]
-        [HttpDelete("{Id}")]
-        public async Task<IActionResult> Delete(int Id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
         {
-            var isDeleted = await _reviewManger.DeleteReviewAsync(Id);
+            if (id <= 0)
+                throw new BadRequestException("Review ID must be greater than 0.");
 
-            if (!isDeleted)
-                return NotFound(new Response<bool>("Review not found"));
-
-            return Ok(new Response<bool>(true, "Review Deleted Successfully"));
+            // Manager throws NotFoundException if review not found
+            await _reviewManger.DeleteReviewAsync(id);
+            return Ok(Response<bool>.Success(true, "Review deleted successfully"));
         }
     }
 }
+

@@ -8,11 +8,22 @@ using System.Threading.Tasks;
 
 namespace Mos3ef.BLL.Manager.ReviewManager
 {
+    /// <summary>
+    /// Interface for review-related business operations.
+    /// Methods throw exceptions for error cases instead of returning bool.
+    /// </summary>
     public interface IReviewManger
     {
         Task<IEnumerable<ReviewReadDto>> GetReviewsByServiceIdAsync(int serviceId);
-        Task<bool> AddReviewAsync(ReviewAddDto review);
-        Task<bool> UpdateReviewAsync(ReviewUpdateDto review);
-        Task<bool> DeleteReviewAsync(int Id);
+        
+        /// <exception cref="Mos3ef.Api.Exceptions.BadRequestException">Thrown when ServiceId or PatientId invalid</exception>
+        Task AddReviewAsync(ReviewAddDto review);
+        
+        /// <exception cref="Mos3ef.Api.Exceptions.NotFoundException">Thrown when review not found</exception>
+        Task UpdateReviewAsync(ReviewUpdateDto review);
+        
+        /// <exception cref="Mos3ef.Api.Exceptions.NotFoundException">Thrown when review not found</exception>
+        Task DeleteReviewAsync(int id);
     }
 }
+
