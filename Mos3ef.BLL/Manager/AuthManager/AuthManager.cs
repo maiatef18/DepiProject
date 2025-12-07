@@ -76,7 +76,8 @@ namespace Mos3ef.BLL.Manager.AuthManager
             };
 
             var role = (await _userManager.GetRolesAsync(user)).FirstOrDefault();
-
+            if (role != null)
+                claims.Add(new Claim(ClaimTypes.Role, role));
 
             var token = new JwtSecurityToken(
                 issuer,
