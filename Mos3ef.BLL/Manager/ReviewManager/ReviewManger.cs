@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
 using Mos3ef.BLL.Dtos.Review;
-
 using Mos3ef.DAL;
 using Mos3ef.DAL.Models;
 using Mos3ef.DAL.Repository.ReviewRepository;
@@ -10,65 +9,71 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.BLL.Manager.ReviewManager
 {
+    /// <summary>
+    /// Manager for review-related business logic.
+    /// Throws business exceptions for error cases.
+    /// </summary>
     public class ReviewManger : IReviewManger
     {
         private readonly IReviewRepository _reviewRepository;
         private readonly IMapper _mapper;
         private readonly IMemoryCache _memoryCache;
 
-        // chache duration
         private static readonly TimeSpan CacheDuration = TimeSpan.FromMinutes(30);
 
-        public ReviewManger(IReviewRepository reviewRepository,IMapper mapper, IMemoryCache memoryCache)
+        public ReviewManger(IReviewRepository reviewRepository, IMapper mapper, IMemoryCache memoryCache)
         {
             _reviewRepository = reviewRepository;
             _mapper = mapper;
-           _memoryCache = memoryCache;
+            _memoryCache = memoryCache;
         }
-   
 
         public async Task<IEnumerable<ReviewReadDto>> GetReviewsByServiceIdAsync(int serviceId)
         {
-            // chache key for service reviews
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{serviceId}";
 
-            // the cache check 
             if (!_memoryCache.TryGetValue(cacheKey, out IEnumerable<ReviewReadDto> cachedReviews))
             {
                 var reviews = await _reviewRepository.GetReviewsByServiceIdAsync(serviceId);
-                var reviewsResualt = _mapper.Map<IEnumerable<ReviewReadDto>>(reviews).ToList();
+                var reviewsResult = _mapper.Map<IEnumerable<ReviewReadDto>>(reviews).ToList();
 
-                _memoryCache.Set(cacheKey, reviewsResualt, CacheDuration);
-                cachedReviews = reviewsResualt;
+                _memoryCache.Set(cacheKey, reviewsResult, CacheDuration);
+                cachedReviews = reviewsResult;
             }
 
             return cachedReviews;
         }
 
-        public async Task<bool> AddReviewAsync(ReviewAddDto review)
+        /// <exception cref="BadRequestException">Thrown when ServiceId or PatientId is invalid</exception>
+        public async Task AddReviewAsync(ReviewAddDto review)
         {
             var newReview = _mapper.Map<Review>(review);
             newReview.Review_Date = DateTime.Now;
-          bool result= await _reviewRepository.AddReviewAsync(newReview);
+            
+            bool result = await _reviewRepository.AddReviewAsync(newReview);
+            if (!result)
+                throw new BadRequestException("Invalid ServiceId or PatientId.");
+
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{review.ServiceId}";
             _memoryCache.Remove(cacheKey);
-            return result;
         }
 
-        public async Task<bool> UpdateReviewAsync(ReviewUpdateDto review)
+        /// <exception cref="NotFoundException">Thrown when review not found</exception>
+        public async Task UpdateReviewAsync(ReviewUpdateDto review)
         {
             var existingReview = await _reviewRepository.GetReviewByIdAsync(review.ReviewId);
             if (existingReview == null)
-                return false;
+                throw new NotFoundException($"Review with ID {review.ReviewId} not found.");
 
             await _reviewRepository.UpdateReviewAsync(_mapper.Map<ReviewUpdateDto, Review>(review, existingReview));
 
             string cacheKey = $"{CacheConstant.reviewCacheKey}_{existingReview.ServiceId}";
 
-            // UPdate cache after updating review
+            // Update cache after updating review
             if (_memoryCache.TryGetValue(cacheKey, out List<ReviewReadDto> cachedReviews))
             {
                 var reviewToUpdate = cachedReviews.FirstOrDefault(r => r.ReviewId == existingReview.ReviewId);
@@ -81,15 +86,14 @@ namespace Mos3ef.BLL.Manager.ReviewManager
 
                 _memoryCache.Set(cacheKey, cachedReviews, CacheDuration);
             }
-                return true;
         }
 
-        public async Task<bool> DeleteReviewAsync(int Id)
+        /// <exception cref="NotFoundException">Thrown when review not found</exception>
+        public async Task DeleteReviewAsync(int id)
         {
-            var reviewToDelete = await _reviewRepository.GetReviewByIdAsync(Id);
-
+            var reviewToDelete = await _reviewRepository.GetReviewByIdAsync(id);
             if (reviewToDelete == null)
-                return false;
+                throw new NotFoundException($"Review with ID {id} not found.");
 
             await _reviewRepository.DeleteReviewAsync(reviewToDelete);
 
@@ -98,12 +102,10 @@ namespace Mos3ef.BLL.Manager.ReviewManager
             // Update cache
             if (_memoryCache.TryGetValue(cacheKey, out List<ReviewReadDto> reviewsDtos))
             {
-                var updatedReviews = reviewsDtos.Where(r => r.ReviewId != Id).ToList();
+                var updatedReviews = reviewsDtos.Where(r => r.ReviewId != id).ToList();
                 _memoryCache.Set(cacheKey, updatedReviews, CacheDuration);
             }
-
-            return true;
         }
-
     }
 }
+

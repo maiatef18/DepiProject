@@ -13,9 +13,9 @@ namespace Mos3ef.BLL.Manager.HospitalManager
     public  interface IHospitalManager
     {
         Task<IEnumerable<HospitalReadDto>> GetAllAsync();
-        Task<HospitalReadDto?> GetAsync(String id);
+        Task<HospitalReadDto> GetAsync(String id);
         Task<Hospital> AddAsync(HospitalAddDto hospital);
-        Task<HospitalReadDto?> UpdateAsync(string  Hospital_Id, HospitalUpdateDto hospital);
+        Task<HospitalReadDto> UpdateAsync(string  Hospital_Id, HospitalUpdateDto hospital);
         Task DeleteAsync(string id);
 
         Task<ServiceShowDto> AddServiceAsync( string userID , ServicesAddDto service);

@@ -13,9 +13,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mos3ef.Api.Exceptions;
 
 namespace Mos3ef.BLL.Manager.HospitalManager
 {
+    /// <summary>
+    /// Manager for hospital-related business logic.
+    /// Throws business exceptions for error cases.
+    /// </summary>
     public class HospitalManager : IHospitalManager
     {
         private readonly IHospitalRepository _hospitalRepository;
@@ -68,7 +73,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         {
             var hospital = await _hospitalRepository.GetHospitalAsync(Hospital_ID);
             if (hospital == null)
-                throw new Exception("Hospital not found");
+                throw new NotFoundException("Hospital not found.");
 
             await _hospitalRepository.DeleteAsync(hospital);
 
@@ -77,11 +82,11 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             await _CacheService.RemoveAsync(CacheKeys.AllHospitals);
         }
 
-        public async Task DeleteServiceAsync(string Hospital_ID , int Service_ID)
+        public async Task DeleteServiceAsync(string Hospital_ID, int Service_ID)
         {
             var service = await _hospitalRepository.GetServiceAsync(Hospital_ID, Service_ID);
             if (service == null)
-                throw new Exception("Service not found");
+                throw new NotFoundException("Service not found.");
 
             await _hospitalRepository.DeleteServiceAsync(service);
 
@@ -89,7 +94,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             await _CacheService.RemoveAsync(CacheKeys.HospitalServices(Hospital_ID));
         }
 
-        public async Task<HospitalReadDto?> GetAsync(string Hospital_ID)
+        public async Task<HospitalReadDto> GetAsync(string Hospital_ID)
         {
             string key = CacheKeys.Hospital(Hospital_ID);
 
@@ -99,7 +104,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
 
             var hospital = await _hospitalRepository.GetAsync(Hospital_ID);
             if (hospital == null)
-                return null;
+                throw new NotFoundException("Hospital not found.");
 
             var Hospital = _mapper.Map<HospitalReadDto>(hospital);
 
@@ -145,7 +150,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             var entity = await _hospitalRepository.GetHospitalAsync(hospitalId);
 
             if (entity == null)
-                throw new Exception("Hospital not found");
+                throw new NotFoundException("Hospital not found.");
 
             // Handle image upload
             if (dto.ProfileImage != null)
@@ -163,7 +168,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
 
             _mapper.Map(dto, entity);
 
-            var Result  = await _hospitalRepository.UpdateAsync(entity);
+            var Result = await _hospitalRepository.UpdateAsync(entity);
 
             // Invalidate cache
             await _CacheService.RemoveAsync(CacheKeys.Hospital(hospitalId));
@@ -171,8 +176,6 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             var Hospital = _mapper.Map<HospitalReadDto>(Result);
 
             return Hospital;
-
-
         }
 
         private async Task<string> SaveHospitalImage(IFormFile file)
@@ -181,7 +184,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             var ext = Path.GetExtension(file.FileName).ToLower();
 
             if (!allowedExt.Contains(ext))
-                throw new Exception("Invalid image type");
+                throw new BadRequestException("Invalid image type. Allowed: .jpg, .jpeg, .png");
 
             string fileName = Guid.NewGuid().ToString() + ext;
             string folder = Path.Combine(_env.WebRootPath, "images/hospitals");
@@ -205,7 +208,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             var entity = await _hospitalRepository.GetServiceAsync(hospitalId, serviceId);
 
             if (entity == null)
-                throw new Exception("Service not found");
+                throw new NotFoundException("Service not found.");
 
             _mapper.Map(service, entity);
 
@@ -218,12 +221,12 @@ namespace Mos3ef.BLL.Manager.HospitalManager
         }
 
 
-        public async Task<ServiceShowDto> AddServiceAsync(string userId , ServicesAddDto service)
+        public async Task<ServiceShowDto> AddServiceAsync(string userId, ServicesAddDto service)
         {
-             var hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
+            var hospitalId = await _hospitalRepository.GetHospitalIdByUserIdAsync(userId);
 
             if (hospitalId == 0)
-                throw new Exception("Hospital not registered!");
+                throw new NotFoundException("Hospital not registered for this user.");
 
             var entity = _mapper.Map<Service>(service);
             entity.HospitalId = hospitalId;
@@ -233,7 +236,7 @@ namespace Mos3ef.BLL.Manager.HospitalManager
             // Invalidate service list
             await _CacheService.RemoveAsync(CacheKeys.HospitalServices(hospitalId.ToString()));
 
-            var Entity  = _mapper.Map<ServiceShowDto>(Service);
+            var Entity = _mapper.Map<ServiceShowDto>(Service);
             return Entity;
         }
 
@@ -252,6 +255,6 @@ namespace Mos3ef.BLL.Manager.HospitalManager
 
             return Services;
         }
-
     }
 }
+
